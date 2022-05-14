@@ -5,7 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WigeDev_File_Copy"
         mc:Ignorable="d"
-        Title="WigeDev File Copy" Height="450" Width="800">
+        Title="WigeDev File Copy" Height="400" Width="400">
+    <Window.Resources>
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="16" />
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="16" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -24,9 +35,12 @@
             <TextBox Name="destinationTextBox" />
         </StackPanel>
 
-        <Button Grid.Row="2" Content="Copy" />
+        <StackPanel Grid.Row="2">
+            <Button Content="Copy" />    
+        </StackPanel>
 
-        <ListBox Name="outputListBox" Grid.Row="3" />
+
+        <ListBox Name="outputListBox" Grid.Row="3"/>
 
     </Grid>
 </Window>

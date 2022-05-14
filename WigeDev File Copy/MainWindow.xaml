@@ -20,7 +20,6 @@
             <Setter Property="FontSize" Value="24" />
         </Style>
         <Style TargetType="TextBox">
-            <EventSetter Event="TextChanged" Handler="TextBox_TextChanged"/>
             <Setter Property="Height" Value="32" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
         </Style>
@@ -35,20 +34,20 @@
 
         <StackPanel>
             <Label>Source</Label>
-            <TextBox Name="sourceTextBox" />
+            <TextBox Text="{Binding Source}" />
         </StackPanel>
 
         <StackPanel Grid.Row="1">
             <Label>Destination</Label>
-            <TextBox Name="destinationTextBox" />
+            <TextBox Text="{Binding Destination}" />
         </StackPanel>
 
         <StackPanel Grid.Row="2">
-            <Button Name="copyButton" Content="Copy" IsEnabled="False" Click="copyButton_Click" />    
+            <Button Content="Copy" Command="{Binding Path=CopyCancelCommand}" />    
         </StackPanel>
 
 
-        <ListBox Name="outputListBox" Grid.Row="3" />
+        <ListBox Grid.Row="3" ItemsSource="{Binding Output}" SourceUpdated="ListBox_SourceUpdated" />
  
     </Grid>
 </Window>

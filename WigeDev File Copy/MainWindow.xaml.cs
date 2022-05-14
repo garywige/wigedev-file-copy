@@ -1,15 +1,23 @@
 ﻿using System.Windows;
+using System.Collections.Generic;
 
 namespace WigeDev_File_Copy
 {
     /// <summary>
     /// Interaction logic for Main.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public sealed partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void outputScrollToBottom()
+        {
+            outputListBox.Items.MoveCurrentToLast();
+            outputListBox.ScrollIntoView(outputListBox.Items.CurrentItem);
         }
     }
 }

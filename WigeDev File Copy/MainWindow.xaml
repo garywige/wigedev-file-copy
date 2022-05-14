@@ -40,7 +40,7 @@
         </StackPanel>
 
 
-        <ListBox Name="outputListBox" Grid.Row="3"/>
-
+        <ListBox Name="outputListBox" Grid.Row="3" />
+ 
     </Grid>
 </Window>

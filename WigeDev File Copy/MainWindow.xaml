@@ -5,8 +5,28 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WigeDev_File_Copy"
         mc:Ignorable="d"
-        Title="Main" Height="450" Width="800">
+        Title="WigeDev File Copy" Height="450" Width="800">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Label>Source</Label>
+            <TextBox Name="sourceTextBox" />
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <Label>Destination</Label>
+            <TextBox Name="destinationTextBox" />
+        </StackPanel>
+
+        <Button Grid.Row="2" Content="Copy" />
+
+        <ListBox Name="outputListBox" Grid.Row="3" />
+
     </Grid>
 </Window>

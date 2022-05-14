@@ -19,5 +19,15 @@ namespace WigeDev_File_Copy
             outputListBox.Items.MoveCurrentToLast();
             outputListBox.ScrollIntoView(outputListBox.Items.CurrentItem);
         }
+
+        private void TextBox_TextChanged(object sender, System.Windows.Controls.TextChangedEventArgs e)
+        {
+            // TODO: validation
+        }
+
+        private void copyButton_Click(object sender, RoutedEventArgs e)
+        {
+            // TODO: copy or cancel
+        }
     }
 }

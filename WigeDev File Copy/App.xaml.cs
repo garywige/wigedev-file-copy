@@ -11,7 +11,7 @@ namespace WigeDev_File_Copy
 
         public App()
         {
-            window = new MainWindow();
+            window = new MainWindow(null);
         }
 
         protected override void OnStartup(StartupEventArgs e)

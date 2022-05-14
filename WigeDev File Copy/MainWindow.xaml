@@ -34,12 +34,12 @@
 
         <StackPanel>
             <Label>Source</Label>
-            <TextBox Text="{Binding Source}" />
+            <TextBox Text="{Binding Path=Source.Text}" />
         </StackPanel>
 
         <StackPanel Grid.Row="1">
             <Label>Destination</Label>
-            <TextBox Text="{Binding Destination}" />
+            <TextBox Text="{Binding Path=Destination.Text}" />
         </StackPanel>
 
         <StackPanel Grid.Row="2">

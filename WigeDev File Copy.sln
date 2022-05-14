@@ -17,7 +17,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel.Implementations",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validation.Interfaces", "Validation.Interfaces\Validation.Interfaces.csproj", "{B54D1480-7FD5-4605-BDCC-9AF0D0624D75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation.Implementations", "Validation.Implementations\Validation.Implementations.csproj", "{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validation.Implementations", "Validation.Implementations\Validation.Implementations.csproj", "{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Copier.Interfaces", "Copier.Interfaces\Copier.Interfaces.csproj", "{22BE38AE-EDEF-4B42-A80B-7657657B1300}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -57,6 +59,10 @@ Global
 		{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22BE38AE-EDEF-4B42-A80B-7657657B1300}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22BE38AE-EDEF-4B42-A80B-7657657B1300}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22BE38AE-EDEF-4B42-A80B-7657657B1300}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22BE38AE-EDEF-4B42-A80B-7657657B1300}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

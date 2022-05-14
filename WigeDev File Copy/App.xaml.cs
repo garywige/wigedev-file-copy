@@ -17,7 +17,7 @@ namespace WigeDev_File_Copy
             window = new MainWindow(new ViewModel(
                 new TextField(), 
                 new TextField(), 
-                null, 
+                new CopyCancelCommand(null, null), 
                 new List<string>()
                 ));
         }

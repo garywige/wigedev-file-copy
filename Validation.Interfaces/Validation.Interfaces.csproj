@@ -6,9 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
-    <ProjectReference Include="..\ViewModel.Interfaces\ViewModel.Interfaces.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -5,8 +5,12 @@ namespace Tests
 {
     public class FakeTextField : ITextField
     {
-        public string Text { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
-
+        private string text = string.Empty;
+        public string Text
+        {
+            get { return text; }
+            set { text = value; }
+        }
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

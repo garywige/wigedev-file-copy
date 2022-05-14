@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Model.Implementations\Model.Implementations.csproj" />
+    <ProjectReference Include="..\Validation.Implementations\Validation.Implementations.csproj" />
     <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
     <ProjectReference Include="..\ViewModel.Implementations\ViewModel.Implementations.csproj" />
   </ItemGroup>

@@ -5,9 +5,9 @@ namespace WigeDev.ViewModel.Interfaces
 {
     public interface IViewModel
     {
-        public ITextField Source { get; set; }
-        public ITextField Destination { get; set; }
-        public ICommand CopyCancelCommand { get; set; }
-        public IList<string> Output { get; set; }
+        public ITextField Source { get; }
+        public ITextField Destination { get; }
+        public ICommand CopyCancelCommand { get; }
+        public IList<string> Output { get; }
     }
 }

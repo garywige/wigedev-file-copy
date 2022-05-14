@@ -1,4 +1,7 @@
-﻿using System.Windows;
+﻿using System.Collections.Generic;
+using System.Windows;
+using WigeDev.Model.Implementations;
+using WigeDev.ViewModel.Implementations;
 
 namespace WigeDev_File_Copy
 {
@@ -11,7 +14,12 @@ namespace WigeDev_File_Copy
 
         public App()
         {
-            window = new MainWindow(null);
+            window = new MainWindow(new ViewModel(
+                new TextField(), 
+                new TextField(), 
+                null, 
+                new List<string>()
+                ));
         }
 
         protected override void OnStartup(StartupEventArgs e)

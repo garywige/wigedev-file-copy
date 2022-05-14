@@ -12,6 +12,6 @@ namespace WigeDev.Validation.Implementations
             this.field = field; 
         }
 
-        public bool IsValid => field.Text != String.Empty;
+        public virtual bool IsValid => field.Text != String.Empty;
     }
 }

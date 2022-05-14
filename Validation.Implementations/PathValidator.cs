@@ -8,6 +8,6 @@ namespace WigeDev.Validation.Implementations
         public PathValidator(ITextField field): base(field)
         { }
 
-        new public bool IsValid => base.IsValid && (new DirectoryInfo(field.Text)).Exists;
+        public override bool IsValid => base.IsValid && (new DirectoryInfo(field.Text)).Exists;
     }
 }

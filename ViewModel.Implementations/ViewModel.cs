@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.ComponentModel;
+using System.Windows.Input;
 using WigeDev.Model.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 
@@ -11,12 +12,14 @@ namespace WigeDev.ViewModel.Implementations
         protected ICommand copyCancelCommand;
         protected IList<string> output;
 
-        public ViewModel(ITextField source, ITextField destination, ICommand copyCancelCommand, IList<string> output)
+        public ViewModel(ITextField source, ITextField destination, ICommand copyCancelCommand, IList<string> output, PropertyChangedEventHandler propertyChanged)
         {
             this.source = source;
             this.destination = destination;
             this.copyCancelCommand = copyCancelCommand;
             this.output = output;
+            this.source.PropertyChanged += propertyChanged;
+            this.destination.PropertyChanged += propertyChanged;
         }
 
         public ITextField Source => source;

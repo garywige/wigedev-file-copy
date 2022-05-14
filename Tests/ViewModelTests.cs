@@ -13,7 +13,7 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            sut = new(new FakeTextField(), new FakeTextField(), new FakeCommand(), new List<string>());
+            sut = new(new FakeTextField(), new FakeTextField(), new FakeCommand(), new List<string>(), (s, e) => { });
             isError = false;
         }
 

@@ -5,17 +5,19 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WigeDev File Copy", "WigeDev File Copy\WigeDev File Copy.csproj", "{2929831C-2D80-4288-842E-5A6E73D68269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel.Interfaces", "ViewModel.Interfaces\ViewModel.Interfaces.csproj", "{43748954-939A-4D27-8721-A64F1E9F94EE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel.Interfaces", "ViewModel.Interfaces\ViewModel.Interfaces.csproj", "{43748954-939A-4D27-8721-A64F1E9F94EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.Interfaces", "Model.Interfaces\Model.Interfaces.csproj", "{1C584FEC-8BB6-4115-B404-A762247FB052}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model.Interfaces", "Model.Interfaces\Model.Interfaces.csproj", "{1C584FEC-8BB6-4115-B404-A762247FB052}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{31CA8830-BC47-44E4-AA09-DC0CC3E400FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{31CA8830-BC47-44E4-AA09-DC0CC3E400FB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model.Implementations", "Model.Implementations\Model.Implementations.csproj", "{B12609B3-3A19-47D8-9006-537F674272DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Model.Implementations", "Model.Implementations\Model.Implementations.csproj", "{B12609B3-3A19-47D8-9006-537F674272DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModel.Implementations", "ViewModel.Implementations\ViewModel.Implementations.csproj", "{F4143B53-678B-4C96-91A6-CABE3E21F9A2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModel.Implementations", "ViewModel.Implementations\ViewModel.Implementations.csproj", "{F4143B53-678B-4C96-91A6-CABE3E21F9A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation.Interfaces", "Validation.Interfaces\Validation.Interfaces.csproj", "{B54D1480-7FD5-4605-BDCC-9AF0D0624D75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Validation.Interfaces", "Validation.Interfaces\Validation.Interfaces.csproj", "{B54D1480-7FD5-4605-BDCC-9AF0D0624D75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validation.Implementations", "Validation.Implementations\Validation.Implementations.csproj", "{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{B54D1480-7FD5-4605-BDCC-9AF0D0624D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B54D1480-7FD5-4605-BDCC-9AF0D0624D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B54D1480-7FD5-4605-BDCC-9AF0D0624D75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA3A082A-CC4C-49A4-B21B-3956AAF2C510}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

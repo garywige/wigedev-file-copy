@@ -6,8 +6,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Cancellation.Interfaces\Cancellation.Interfaces.csproj" />
-  </ItemGroup>
-
 </Project>

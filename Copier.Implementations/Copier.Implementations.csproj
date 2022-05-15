@@ -8,6 +8,9 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Cancellation.Interfaces\Cancellation.Interfaces.csproj" />
+    <ProjectReference Include="..\Copier.Interfaces\Copier.Interfaces.csproj" />
+    <ProjectReference Include="..\Model.Interfaces\Model.Interfaces.csproj" />
+    <ProjectReference Include="..\Output.Interfaces\Output.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

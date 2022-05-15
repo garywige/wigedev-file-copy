@@ -5,6 +5,7 @@ using WigeDev.Model.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.ViewModel.Implementations;
+using WigeDev.Copier.Implementations;
 
 namespace WigeDev_File_Copy
 {
@@ -25,7 +26,14 @@ namespace WigeDev_File_Copy
 
             var copyCancelCommand = new CopyCancelCommand(
                 new FormValidator(validators),
-                new CopyCancelExecute(null));
+                new CopyCancelExecute(
+                    new Copier(
+                    null,
+                    source,
+                    dest,
+                    null,
+                    null,
+                    null)));
 
             var propertyChanged = new PropertyChangedEventHandler((s, e) => copyCancelCommand.TestCanExecute());
 

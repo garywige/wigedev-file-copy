@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace WigeDev.Cancellation.Interfaces
+﻿namespace WigeDev.Cancellation.Interfaces
 {
     public interface ICancellationManager
     {

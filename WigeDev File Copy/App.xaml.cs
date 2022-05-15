@@ -34,7 +34,7 @@ namespace WigeDev_File_Copy
                     source,
                     dest,
                     new Output(outputList),
-                    null,
+                    new PathConstructor(),
                     null)));
 
             var propertyChanged = new PropertyChangedEventHandler((s, e) => copyCancelCommand.TestCanExecute());

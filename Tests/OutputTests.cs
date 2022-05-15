@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using WigeDev.Output.Implementations;
 
 namespace Tests
@@ -8,13 +9,13 @@ namespace Tests
     {
         private Output sut;
         private bool isError;
-        FakeViewModel viewModel;
+        private List<string> output;
 
         [TestInitialize]
         public void Initialize()
         {
-            viewModel = new();
-            sut = new(viewModel);
+            output = new();
+            sut = new(output);
             isError = false;
         }
 
@@ -34,10 +35,10 @@ namespace Tests
         }
 
         [TestMethod]
-        public void WriteIncrementsViewModelOutputCount()
+        public void WriteIncrementsOutputListCount()
         {
             sut.Write("");
-            var result = viewModel.Output.Count;
+            var result = output.Count;
             Assert.AreEqual(1, result);
         }
 
@@ -45,7 +46,7 @@ namespace Tests
         public void WriteAddsMessageToViewModelOutput()
         {
             sut.Write("test");
-            var result = viewModel.Output[0];
+            var result = output[0];
             Assert.AreEqual("test", result);
         }
     }

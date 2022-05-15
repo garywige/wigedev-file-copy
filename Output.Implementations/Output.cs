@@ -1,16 +1,15 @@
 ﻿using WigeDev.Output.Interfaces;
-using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Output.Implementations
 {
     public class Output : IOutput
     {
-        protected IViewModel viewModel;
+        protected IList<string> output;
 
-        public Output(IViewModel viewModel) =>
-            this.viewModel = viewModel;
+        public Output(IList<string> output) =>
+            this.output = output;
 
         public void Write(string message) =>
-            this.viewModel.Output.Add(message);
+            this.output.Add(message);
     }
 }

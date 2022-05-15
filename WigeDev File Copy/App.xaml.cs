@@ -28,7 +28,7 @@ namespace WigeDev_File_Copy
                 new FormValidator(validators),
                 new CopyCancelExecute(
                     new Copier(
-                    null,
+                    new FileEnumerator(),
                     source,
                     dest,
                     null,

@@ -1,12 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using WigeDev.Cancellation.Implementations;
+using WigeDev.Copier.Implementations;
 using WigeDev.Model.Implementations;
+using WigeDev.Output.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.ViewModel.Implementations;
-using WigeDev.Copier.Implementations;
-using WigeDev.Output.Implementations;
 
 namespace WigeDev_File_Copy
 {
@@ -35,7 +36,7 @@ namespace WigeDev_File_Copy
                     dest,
                     new Output(outputList),
                     new PathConstructor(),
-                    null)));
+                    new CancellationManager())));
 
             var propertyChanged = new PropertyChangedEventHandler((s, e) => copyCancelCommand.TestCanExecute());
 

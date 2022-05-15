@@ -6,6 +6,7 @@ using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.Copier.Implementations;
+using WigeDev.Output.Implementations;
 
 namespace WigeDev_File_Copy
 {
@@ -23,6 +24,7 @@ namespace WigeDev_File_Copy
             var validators = new List<IValidator>();
             validators.Add(new PathValidator(source));
             validators.Add(new PathValidator(dest));
+            var outputList = new List<string>();
 
             var copyCancelCommand = new CopyCancelCommand(
                 new FormValidator(validators),
@@ -31,7 +33,7 @@ namespace WigeDev_File_Copy
                     new FileEnumerator(),
                     source,
                     dest,
-                    null,
+                    new Output(outputList),
                     null,
                     null)));
 
@@ -41,7 +43,7 @@ namespace WigeDev_File_Copy
                 source, 
                 dest, 
                 copyCancelCommand, 
-                new List<string>(),
+                outputList,
                 propertyChanged
                 ));
         }

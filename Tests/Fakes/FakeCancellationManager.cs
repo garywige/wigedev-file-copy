@@ -11,6 +11,7 @@ namespace Tests
         {
             cts = new();
             WasCancelCalled = false;
+            WasTokenAccessed = false;
         }
 
         ~FakeCancellationManager()
@@ -19,7 +20,14 @@ namespace Tests
             cts.Dispose();
         }
 
-        public CancellationToken Token => cts.Token;
+        public CancellationToken Token
+        {
+            get
+            {
+                WasTokenAccessed = true;
+                return cts.Token;
+            }
+        }
 
         public void Cancel()
         {
@@ -30,5 +38,6 @@ namespace Tests
         }
 
         public bool WasCancelCalled { get; private set; }
+        public bool WasTokenAccessed { get; private set; }
     }
 }

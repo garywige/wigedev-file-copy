@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Copier.Implementations\Copier.Implementations.csproj" />
     <ProjectReference Include="..\Model.Implementations\Model.Implementations.csproj" />
+    <ProjectReference Include="..\Output.Implementations\Output.Implementations.csproj" />
     <ProjectReference Include="..\Validation.Implementations\Validation.Implementations.csproj" />
     <ProjectReference Include="..\ViewModel.Implementations\ViewModel.Implementations.csproj" />
     <ProjectReference Include="..\ViewModel.Interfaces\ViewModel.Interfaces.csproj" />

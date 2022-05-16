@@ -12,16 +12,47 @@ namespace WigeDev.Copier.Implementations
             this.fi = fi;
         }
 
-        public string Name => throw new NotImplementedException();
+        public string Name => fi.FullName;
 
-        public Task CopyTo(string dest, ICancellationManager cancellationManager)
+        public async Task CopyTo(string dest, ICancellationManager cancellationManager)
         {
-            throw new NotImplementedException();
+            var token = cancellationManager.Token;
+            createDirectories(dest);
+            await copyFile(dest, token);
         }
+        
 
-        public static SourceFile Create(FileInfo fi)
+        public static SourceFile Create(FileInfo fi) =>
+            new SourceFile(fi);
+
+        private void createDirectories(string dest) =>
+            (new FileInfo(dest))?.Directory?.Create();
+        
+
+        private async Task copyFile(string dest, CancellationToken token)
         {
-            return new SourceFile(fi);
+            FileStream? readStream = null, writeStream = null;
+
+            try
+            {
+                readStream = fi.OpenRead();
+                writeStream = (new FileInfo(dest)).OpenWrite();
+                await readStream.CopyToAsync(writeStream, token);
+                await writeStream.FlushAsync(token);
+            }
+            catch(OperationCanceledException)
+            {
+                throw new OperationCanceledException();
+            }
+            catch(Exception)
+            {
+
+            }
+            finally
+            {
+                readStream?.Close();
+                writeStream?.Close();
+            }
         }
     }
 }

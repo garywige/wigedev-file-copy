@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using WigeDev.Cancellation.Implementations;
@@ -25,7 +26,8 @@ namespace WigeDev_File_Copy
             var validators = new List<IValidator>();
             validators.Add(new PathValidator(source));
             validators.Add(new PathValidator(dest));
-            var outputList = new List<string>();
+            var outputList = new ObservableCollection<string>();
+            var output = new BasicOutput(outputList);
 
             var copyCancelCommand = new CopyCancelCommand(
                 new FormValidator(validators),
@@ -34,7 +36,7 @@ namespace WigeDev_File_Copy
                     new FileEnumerator(),
                     source,
                     dest,
-                    new Output(outputList),
+                    output,
                     new PathConstructor(),
                     new CancellationManager())));
 
@@ -44,7 +46,7 @@ namespace WigeDev_File_Copy
                 source, 
                 dest, 
                 copyCancelCommand, 
-                outputList,
+                output,
                 propertyChanged
                 ));
         }

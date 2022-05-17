@@ -5,9 +5,9 @@ using WigeDev.Output.Implementations;
 namespace Tests
 {
     [TestClass]
-    public class OutputTests
+    public class BasicOutputTests
     {
-        private Output sut;
+        private BasicOutput sut;
         private bool isError;
         private List<string> output;
 
@@ -48,6 +48,15 @@ namespace Tests
             sut.Write("test");
             var result = output[0];
             Assert.AreEqual("test", result);
+        }
+
+        [TestMethod]
+        public void WriteRaisesPropertyChanged()
+        {
+            bool wasPropertyChanged = false;
+            sut.PropertyChanged += (s, e) => wasPropertyChanged = true;
+            sut.Write("test");
+            Assert.IsTrue(wasPropertyChanged);
         }
     }
 }

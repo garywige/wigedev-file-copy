@@ -47,7 +47,7 @@
         </StackPanel>
 
 
-        <ListBox Grid.Row="3" ItemsSource="{Binding Output}" SourceUpdated="ListBox_SourceUpdated" />
- 
+        <ListBox Name="outputListBox" Grid.Row="3" ItemsSource="{Binding Output}"/>
+
     </Grid>
 </Window>

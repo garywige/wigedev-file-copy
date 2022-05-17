@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using WigeDev.Model.Interfaces;
 using WigeDev.ViewModel.Interfaces;
+using WigeDev.Output.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {
@@ -12,19 +13,25 @@ namespace WigeDev.ViewModel.Implementations
         protected ICommand copyCancelCommand;
         protected IList<string> output;
 
-        public ViewModel(ITextField source, ITextField destination, ICommand copyCancelCommand, IList<string> output, PropertyChangedEventHandler propertyChanged)
+        public ViewModel(ITextField source, ITextField destination, ICommand copyCancelCommand, IOutput output, PropertyChangedEventHandler propertyChanged)
         {
             this.source = source;
             this.destination = destination;
             this.copyCancelCommand = copyCancelCommand;
-            this.output = output;
+            this.output = output.Output;
             this.source.PropertyChanged += propertyChanged;
             this.destination.PropertyChanged += propertyChanged;
+
+            output.PropertyChanged += (s, e) =>
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Output"));
+            
         }
 
         public ITextField Source => source;
         public ITextField Destination => destination;
         public ICommand CopyCancelCommand => copyCancelCommand;
         public IList<string> Output => output;
+
+        public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

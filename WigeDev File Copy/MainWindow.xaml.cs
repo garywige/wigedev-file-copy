@@ -16,16 +16,19 @@ namespace WigeDev_File_Copy
             InitializeComponent();
             this.viewModel = viewModel;
             this.DataContext = this.viewModel;
+
+            this.viewModel.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "Output")
+                    outputScrollToBottom();
+            };
+            
         }
 
-        private void ListBox_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-            var listBox = sender as ListBox;
-            if(listBox != null)
-            {
-                if(!listBox.Items.MoveCurrentToLast())
-                    listBox.ScrollIntoView(listBox.Items.CurrentItem);
-            }
+        private void outputScrollToBottom()
+        { 
+            outputListBox.Items.MoveCurrentToLast();
+            outputListBox.ScrollIntoView(outputListBox.Items.CurrentItem);
         }
     }
 }

@@ -6,9 +6,11 @@ namespace Tests
 {
     public class FakeOutput : IOutput
     {
+
         public FakeOutput()
         {
             WasWriteCalled = false;
+            Output = new List<string>();
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -20,6 +22,6 @@ namespace Tests
 
         public bool WasWriteCalled { get; private set; }
 
-        public IList<string> Output => throw new System.NotImplementedException();
+        public IList<string> Output { get; private set; }
     }
 }

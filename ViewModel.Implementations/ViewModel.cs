@@ -12,13 +12,16 @@ namespace WigeDev.ViewModel.Implementations
         protected ITextField destination;
         protected ICommand copyCancelCommand;
         protected IList<string> output;
+        protected IJobStatus jobStatus;
 
-        public ViewModel(ITextField source, ITextField destination, ICommand copyCancelCommand, IOutput output, PropertyChangedEventHandler propertyChanged)
+        public ViewModel(ITextField source, ITextField destination, ICommand copyCancelCommand, IOutput output, PropertyChangedEventHandler propertyChanged, IJobStatus jobStatus)
         {
             this.source = source;
             this.destination = destination;
             this.copyCancelCommand = copyCancelCommand;
             this.output = output.Output;
+            this.jobStatus = jobStatus;
+
             this.source.PropertyChanged += propertyChanged;
             this.destination.PropertyChanged += propertyChanged;
 
@@ -31,6 +34,7 @@ namespace WigeDev.ViewModel.Implementations
         public ITextField Destination => destination;
         public ICommand CopyCancelCommand => copyCancelCommand;
         public IList<string> Output => output;
+        public bool IsCopying => jobStatus.IsCopying;
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

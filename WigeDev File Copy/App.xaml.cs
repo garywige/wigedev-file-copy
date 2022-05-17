@@ -38,7 +38,8 @@ namespace WigeDev_File_Copy
                     dest,
                     output,
                     new PathConstructor(),
-                    new CancellationManager())));
+                    new CancellationManager()), 
+                    null));
 
             var propertyChanged = new PropertyChangedEventHandler((s, e) => copyCancelCommand.TestCanExecute());
 
@@ -47,7 +48,8 @@ namespace WigeDev_File_Copy
                 dest, 
                 copyCancelCommand, 
                 output,
-                propertyChanged
+                propertyChanged,
+                null
                 ));
         }
 

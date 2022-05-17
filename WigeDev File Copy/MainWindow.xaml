@@ -34,12 +34,12 @@
 
         <StackPanel>
             <Label>Source</Label>
-            <TextBox Text="{Binding Path=Source.Text}" IsEnabled="{Binding Path=IsCopying}" />
+            <TextBox Text="{Binding Path=Source.Text}" IsEnabled="{Binding Path=IsNotCopying}" />
         </StackPanel>
 
         <StackPanel Grid.Row="1">
             <Label>Destination</Label>
-            <TextBox Text="{Binding Path=Destination.Text}" IsEnabled="{Binding Path=IsCopying}"/>
+            <TextBox Text="{Binding Path=Destination.Text}" IsEnabled="{Binding Path=IsNotCopying}"/>
         </StackPanel>
 
         <StackPanel Grid.Row="2">

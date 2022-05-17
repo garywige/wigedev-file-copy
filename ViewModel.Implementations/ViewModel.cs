@@ -26,7 +26,14 @@ namespace WigeDev.ViewModel.Implementations
             this.destination.PropertyChanged += propertyChanged;
 
             output.PropertyChanged += (s, e) =>
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Output"));
+            {
+                if (e.PropertyName == "Output") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Output"));
+            };
+
+            jobStatus.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "IsCopying") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsNotCopying"));
+            };
             
         }
 
@@ -34,7 +41,7 @@ namespace WigeDev.ViewModel.Implementations
         public ITextField Destination => destination;
         public ICommand CopyCancelCommand => copyCancelCommand;
         public IList<string> Output => output;
-        public bool IsCopying => jobStatus.IsCopying;
+        public bool IsNotCopying => !jobStatus.IsCopying;
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

@@ -28,6 +28,7 @@ namespace WigeDev_File_Copy
             validators.Add(new PathValidator(dest));
             var outputList = new ObservableCollection<string>();
             var output = new BasicOutput(outputList);
+            var jobStatus = new JobStatus();
 
             var copyCancelCommand = new CopyCancelCommand(
                 new FormValidator(validators),
@@ -39,7 +40,7 @@ namespace WigeDev_File_Copy
                     output,
                     new PathConstructor(),
                     new CancellationManager()), 
-                    null));
+                    jobStatus));
 
             var propertyChanged = new PropertyChangedEventHandler((s, e) => copyCancelCommand.TestCanExecute());
 
@@ -49,7 +50,7 @@ namespace WigeDev_File_Copy
                 copyCancelCommand, 
                 output,
                 propertyChanged,
-                null
+                jobStatus
                 ));
         }
 

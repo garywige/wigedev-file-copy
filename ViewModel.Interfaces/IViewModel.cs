@@ -10,6 +10,6 @@ namespace WigeDev.ViewModel.Interfaces
         public ITextField Destination { get; }
         public ICommand CopyCancelCommand { get; }
         public IList<string> Output { get; }
-        public bool IsCopying { get; }
+        public bool IsNotCopying { get; }
     }
 }

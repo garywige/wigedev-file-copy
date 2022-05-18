@@ -21,6 +21,8 @@ namespace Tests
 
         public IList<string> Output { get; private set; }
 
+        public bool IsNotCopying => throw new System.NotImplementedException();
+
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

@@ -14,7 +14,7 @@ namespace Tests
         public void Initialize()
         {
             copier = new FakeCopier();
-            sut = new(copier);
+            sut = new(copier, new FakeJobStatus());
             isError = false;
         }
 

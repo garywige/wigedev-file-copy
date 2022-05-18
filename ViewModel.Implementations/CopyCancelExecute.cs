@@ -6,24 +6,25 @@ namespace WigeDev.ViewModel.Implementations
     public class CopyCancelExecute : IExecute
     {
         protected ICopier copier;
-        protected bool isCopying;
+        protected IJobStatus jobStatus;
 
-        public CopyCancelExecute(ICopier copier)
+        public CopyCancelExecute(ICopier copier, IJobStatus jobStatus)
         {
             this.copier = copier;
-            this.isCopying = false;
+            this.jobStatus = jobStatus;
         }
 
         public async void Execute()
         {   
-            if(!isCopying)
+            if(!jobStatus.IsCopying)
             {
-                isCopying = true;
+                jobStatus.IsCopying = true;
                 await copier.Copy();
+                jobStatus.IsCopying = false;
             }
             else
             {
-                isCopying = false;
+                jobStatus.IsCopying = false;
                 copier.Cancel();
             }
         }

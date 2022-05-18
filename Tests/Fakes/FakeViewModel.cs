@@ -23,6 +23,8 @@ namespace Tests
 
         public bool IsNotCopying => throw new System.NotImplementedException();
 
+        public string CopyCancelButtonContent => throw new System.NotImplementedException();
+
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

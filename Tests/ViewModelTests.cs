@@ -9,11 +9,13 @@ namespace Tests
     {
         private ViewModel sut;
         private bool isError;
+        private FakeJobStatus jobStatus;
 
         [TestInitialize]
         public void Initialize()
         {
-            sut = new(new FakeTextField(), new FakeTextField(), new FakeCommand(), new FakeOutput(), (s, e) => { }, new FakeJobStatus());
+            jobStatus = new FakeJobStatus();
+            sut = new(new FakeTextField(), new FakeTextField(), new FakeCommand(), new FakeOutput(), (s, e) => { }, jobStatus);
             isError = false;
         }
 
@@ -103,6 +105,35 @@ namespace Tests
         {
             var result = sut.Output;
             Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void CopyCancelButtonContentReturnsCopyWhenIsNotCopying()
+        {
+            var result = sut.CopyCancelButtonContent;
+            Assert.AreEqual("Copy", result);
+        }
+
+        [TestMethod]
+        public void CopyCancelButtonContentReturnsCancelWhenCopying()
+        {
+            jobStatus.IsCopying = true;
+            var result = sut.CopyCancelButtonContent;
+            Assert.AreEqual("Cancel", result);
+        }
+
+        [TestMethod]
+        public void CopyCancelButtonContentRaisesPropertyChangedOnJobStatusChange()
+        {
+            bool propertyChanged = false;
+            sut.PropertyChanged += (s, e) =>
+            {
+                if(e.PropertyName == "CopyCancelButtonContent")
+                    propertyChanged = true;
+            };
+
+            jobStatus.IsCopying = true;
+            Assert.IsTrue(propertyChanged);
         }
     }
 }

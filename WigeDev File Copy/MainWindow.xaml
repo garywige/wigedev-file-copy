@@ -43,7 +43,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row="2">
-            <Button Content="Copy" Command="{Binding Path=CopyCancelCommand}" />    
+            <Button Content="{Binding Path=CopyCancelButtonContent}" Command="{Binding Path=CopyCancelCommand}" />    
         </StackPanel>
 
 

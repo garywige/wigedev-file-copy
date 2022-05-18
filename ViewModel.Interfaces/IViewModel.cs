@@ -11,5 +11,6 @@ namespace WigeDev.ViewModel.Interfaces
         public ICommand CopyCancelCommand { get; }
         public IList<string> Output { get; }
         public bool IsNotCopying { get; }
+        public string CopyCancelButtonContent { get; }
     }
 }

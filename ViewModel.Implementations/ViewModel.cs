@@ -25,15 +25,8 @@ namespace WigeDev.ViewModel.Implementations
             this.source.PropertyChanged += propertyChanged;
             this.destination.PropertyChanged += propertyChanged;
 
-            output.PropertyChanged += (s, e) =>
-            {
-                if (e.PropertyName == "Output") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Output"));
-            };
-
-            jobStatus.PropertyChanged += (s, e) =>
-            {
-                if (e.PropertyName == "IsCopying") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsNotCopying"));
-            };
+            output.PropertyChanged += outputPropertyChanged;
+            jobStatus.PropertyChanged += jobStatusPropertyChanged;
             
         }
 
@@ -42,7 +35,23 @@ namespace WigeDev.ViewModel.Implementations
         public ICommand CopyCancelCommand => copyCancelCommand;
         public IList<string> Output => output;
         public bool IsNotCopying => !jobStatus.IsCopying;
+        public string CopyCancelButtonContent => jobStatus.IsCopying ? "Cancel" : "Copy";
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        private void outputPropertyChanged(object? sender, PropertyChangedEventArgs args)
+        {
+            if (args.PropertyName == "Output") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Output"));
+        }
+
+        private void jobStatusPropertyChanged(object? sender, PropertyChangedEventArgs args)
+        {
+
+            if (args.PropertyName == "IsCopying")
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsNotCopying"));
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CopyCancelButtonContent"));
+            }
+        }
     }
 }

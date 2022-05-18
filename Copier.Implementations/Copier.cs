@@ -37,6 +37,7 @@ namespace WigeDev.Copier.Implementations
 
         public async Task Copy()
         {
+            output.Output.Clear();
             foreach (var file in await enumerator.Enumerate(source.Text, cancellationManager))
             {
                 output.Write(file.Name);

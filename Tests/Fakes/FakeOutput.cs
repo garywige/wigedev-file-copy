@@ -18,6 +18,7 @@ namespace Tests
         public void Write(string message)
         {
             WasWriteCalled = true;
+            Output.Add(message);
         }
 
         public bool WasWriteCalled { get; private set; }

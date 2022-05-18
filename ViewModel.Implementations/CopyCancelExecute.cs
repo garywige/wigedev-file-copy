@@ -20,6 +20,7 @@ namespace WigeDev.ViewModel.Implementations
             {
                 jobStatus.IsCopying = true;
                 await copier.Copy();
+                jobStatus.IsCopying = false;
             }
             else
             {

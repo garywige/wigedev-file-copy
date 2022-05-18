@@ -86,5 +86,14 @@ namespace Tests
             var result = cancellationManager.WasCancelCalled;
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public async Task CopyClearsOutputList()
+        {
+            await sut.Copy();
+            await sut.Copy();
+            var result = output.Output.Count;
+            Assert.AreEqual(1, result);
+        }
     }
 }

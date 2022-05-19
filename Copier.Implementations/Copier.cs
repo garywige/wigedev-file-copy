@@ -38,11 +38,24 @@ namespace WigeDev.Copier.Implementations
         public async Task Copy()
         {
             output.Output.Clear();
-            foreach (var file in await enumerator.Enumerate(source.Text, cancellationManager))
+
+            try
             {
-                output.Write(file.Name);
-                await file.CopyTo(pathConstructor.Construct(source.Text, dest.Text, file.Name), cancellationManager);
-            }      
+                foreach (var file in await enumerator.Enumerate(source.Text, cancellationManager))
+                    await copyFile(file);
+
+                output.Write("The copy job completed successfully.");
+            }
+            catch(OperationCanceledException)
+            {
+                output.Write("The copy job was canceled.");
+            }
+        }
+
+        private async Task copyFile(ISourceFile file)
+        {
+            output.Write(file.Name);
+            await file.CopyTo(pathConstructor.Construct(source.Text, dest.Text, file.Name), cancellationManager);
         }
     }
 }

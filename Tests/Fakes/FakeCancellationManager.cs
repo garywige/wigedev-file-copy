@@ -33,8 +33,6 @@ namespace Tests
         {
             WasCancelCalled = true;
             cts.Cancel();
-            cts.Dispose();
-            cts = new();
         }
 
         public bool WasCancelCalled { get; private set; }

@@ -93,7 +93,24 @@ namespace Tests
             await sut.Copy();
             await sut.Copy();
             var result = output.Output.Count;
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(2, result);
+        }
+
+        [TestMethod]
+        public async Task CopyDoesntThrowOnCancel()
+        {
+            sut.Cancel();
+
+            try
+            {
+                await sut.Copy();
+            }
+            catch
+            {
+                isError = true;
+            }
+
+            Assert.IsFalse(isError);
         }
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WigeDev_File_Copy"
         mc:Ignorable="d"
-        Title="WigeDev File Copy" Height="420" Width="400" MinHeight="420" Background="LightGray" FontSize="16">
+        Title="WigeDev File Copy" Height="440" Width="400" MinHeight="440" Background="LightGray" FontSize="16">
     <Window.Resources>
         <Style TargetType="StackPanel">
             <Setter Property="Margin" Value="16" />

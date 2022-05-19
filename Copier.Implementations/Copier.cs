@@ -8,6 +8,9 @@ namespace WigeDev.Copier.Implementations
 {
     public class Copier : ICopier
     {
+        protected static readonly string messageJobComplete = "The job completed successfully.";
+        protected static readonly string messageJobCanceled = "The job was canceled.";
+
         protected IFileEnumerator enumerator;
         protected ITextField source;
         protected ITextField dest;
@@ -44,15 +47,15 @@ namespace WigeDev.Copier.Implementations
                 foreach (var file in await enumerator.Enumerate(source.Text, cancellationManager))
                     await copyFile(file);
 
-                output.Write("The copy job completed successfully.");
+                output.Write(messageJobComplete);
             }
             catch(OperationCanceledException)
             {
-                output.Write("The copy job was canceled.");
+                output.Write(messageJobCanceled);
             }
         }
 
-        private async Task copyFile(ISourceFile file)
+        protected async Task copyFile(ISourceFile file)
         {
             output.Write(file.Name);
             await file.CopyTo(pathConstructor.Construct(source.Text, dest.Text, file.Name), cancellationManager);

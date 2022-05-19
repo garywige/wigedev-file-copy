@@ -9,15 +9,14 @@ namespace WigeDev_File_Copy
     /// </summary>
     public sealed partial class MainWindow : Window
     {
-        private IViewModel viewModel;
-
-        public MainWindow(IViewModel viewModel)
+        public MainWindow(IViewModel viewModel, IFolderSelectionControlViewModel sourceViewModel, IFolderSelectionControlViewModel destViewModel)
         {
             InitializeComponent();
-            this.viewModel = viewModel;
-            this.DataContext = this.viewModel;
+            this.DataContext = viewModel;
+            sourceSelection.DataContext = sourceViewModel;
+            destinationSelection.DataContext = destViewModel;
 
-            this.viewModel.PropertyChanged += (s, e) =>
+            viewModel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "Output")
                     outputScrollToBottom();

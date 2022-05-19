@@ -4,26 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WigeDev_File_Copy"
+        xmlns:uc="clr-namespace:WigeDev_File_Copy.UserControls"
         mc:Ignorable="d"
         Title="WigeDev File Copy" Height="440" Width="400" MinHeight="440" Background="LightGray" FontSize="16">
-    <Window.Resources>
-        <Style TargetType="StackPanel">
-            <Setter Property="Margin" Value="16" />
-        </Style>
-        <Style TargetType="ListBox">
-            <Setter Property="VerticalAlignment" Value="Stretch" />
-            <Setter Property="Margin" Value="16" />
-            <Setter Property="Background" Value="LightGray" />
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Padding" Value="16" />
-            <Setter Property="FontSize" Value="24" />
-        </Style>
-        <Style TargetType="TextBox">
-            <Setter Property="Height" Value="32" />
-            <Setter Property="VerticalContentAlignment" Value="Center" />
-        </Style>
-    </Window.Resources>
+   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -32,15 +16,9 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <StackPanel>
-            <Label>Source</Label>
-            <TextBox Text="{Binding Path=Source.Text}" IsEnabled="{Binding Path=IsNotCopying}" />
-        </StackPanel>
+        <uc:FolderSelectionControl x:Name="sourceSelection"/>
 
-        <StackPanel Grid.Row="1">
-            <Label>Destination</Label>
-            <TextBox Text="{Binding Path=Destination.Text}" IsEnabled="{Binding Path=IsNotCopying}"/>
-        </StackPanel>
+        <uc:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
 
         <StackPanel Grid.Row="2">
             <Button Content="{Binding Path=CopyCancelButtonContent}" Command="{Binding Path=CopyCancelCommand}" />    

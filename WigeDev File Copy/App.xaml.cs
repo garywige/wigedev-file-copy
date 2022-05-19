@@ -51,7 +51,9 @@ namespace WigeDev_File_Copy
                 output,
                 propertyChanged,
                 jobStatus
-                ));
+                ),
+                null,
+                null);
         }
 
         protected override void OnStartup(StartupEventArgs e)

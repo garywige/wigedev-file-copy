@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Windows;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
@@ -9,6 +8,7 @@ using WigeDev.Output.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.ViewModel.Implementations;
+using WigeDev.View;
 
 namespace WigeDev_File_Copy
 {
@@ -21,15 +21,21 @@ namespace WigeDev_File_Copy
 
         public App()
         {
+            // TextFields
             var source = new TextField();
             var dest = new TextField();
+
+            // Validators
             var validators = new List<IValidator>();
             validators.Add(new PathValidator(source));
             validators.Add(new PathValidator(dest));
+
+            // Output
             var outputList = new ObservableCollection<string>();
             var output = new BasicOutput(outputList);
             var jobStatus = new JobStatus();
 
+            // Command
             var copyCancelCommand = new CopyCancelCommand(
                 new FormValidator(validators),
                 new CopyCancelExecute(
@@ -42,18 +48,15 @@ namespace WigeDev_File_Copy
                     new CancellationManager()), 
                     jobStatus));
 
-            var propertyChanged = new PropertyChangedEventHandler((s, e) => copyCancelCommand.TestCanExecute());
+            source.PropertyChanged += (s, e) => copyCancelCommand.TestCanExecute();
+            dest.PropertyChanged += (s, e) => copyCancelCommand.TestCanExecute();
 
-            window = new MainWindow(new ViewModel(
-                source,
-                dest,
-                copyCancelCommand,
-                output,
-                propertyChanged,
-                jobStatus
-                ),
+            // Main Window
+            window = new MainWindow(
                 new FolderSelectionControlViewModel("Source", source, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
-                new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())));
+                new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
+                new CommandControlViewModel(jobStatus, copyCancelCommand),
+                new OutputViewModel(output));
         }
 
         protected override void OnStartup(StartupEventArgs e)

@@ -6,7 +6,7 @@ using WigeDev.ViewModel.Interfaces;
 
 namespace Tests
 {
-    public class FakeViewModel : IViewModel
+    public class FakeViewModel : IOutputViewModel
     {
         public FakeViewModel()
         {

@@ -30,20 +30,5 @@ namespace Tests
 
             Assert.IsFalse(isError);
         }
-
-        [TestMethod]
-        public void ShowDialogDoesntThrow()
-        {
-            try
-            {
-                var output = sut.ShowDialog();
-            }
-            catch
-            {
-                isError = true;
-            }
-
-            Assert.IsFalse(isError);
-        }
     }
 }

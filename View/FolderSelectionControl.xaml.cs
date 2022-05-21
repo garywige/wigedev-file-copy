@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using WigeDev.ViewModel.Interfaces;
 
-namespace WigeDev_File_Copy.UserControls
+namespace WigeDev.View
 {
     /// <summary>
     /// Interaction logic for FolderSelectionControl.xaml

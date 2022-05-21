@@ -1,10 +1,9 @@
-﻿<Window x:Class="WigeDev_File_Copy.MainWindow"
+﻿<Window x:Class="WigeDev.View.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:WigeDev_File_Copy"
-        xmlns:uc="clr-namespace:WigeDev_File_Copy.UserControls"
+        xmlns:local="clr-namespace:WigeDev.View"
         mc:Ignorable="d"
         Title="WigeDev File Copy" Height="440" Width="400" MinHeight="440" Background="LightGray" FontSize="16">
    
@@ -16,16 +15,13 @@
             <RowDefinition />
         </Grid.RowDefinitions>
 
-        <uc:FolderSelectionControl x:Name="sourceSelection"/>
+        <local:FolderSelectionControl x:Name="sourceSelection"/>
 
-        <uc:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
+        <local:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
 
-        <StackPanel Grid.Row="2">
-            <Button Content="{Binding Path=CopyCancelButtonContent}" Command="{Binding Path=CopyCancelCommand}" />    
-        </StackPanel>
+        <local:CommandControl x:Name="commandControl" Grid.Row="2" />
 
-
-        <ListBox Name="outputListBox" Grid.Row="3" ItemsSource="{Binding Output}"/>
+        <local:OutputControl x:Name="outputControl" Grid.Row="3" />
 
     </Grid>
 </Window>

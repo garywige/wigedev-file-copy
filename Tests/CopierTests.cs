@@ -144,5 +144,15 @@ namespace Tests
 
             Assert.IsTrue(isChanged);
         }
+
+        [TestMethod]
+        public async Task CopyResetsFilesCopiedOnCancellation()
+        {
+            jobStatus.FilesCopied = 1;
+            sut.Cancel();
+            await sut.Copy();
+            var result = jobStatus.FilesCopied;
+            Assert.AreEqual(0, result);
+        }
     }
 }

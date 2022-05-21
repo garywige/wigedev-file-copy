@@ -55,6 +55,7 @@ namespace WigeDev.Copier.Implementations
             catch(OperationCanceledException)
             {
                 output.Write(messageJobCanceled);
+                setFilesCopied(0);
             }
         }
 

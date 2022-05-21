@@ -45,7 +45,8 @@ namespace WigeDev_File_Copy
                     dest,
                     output,
                     new PathConstructor(),
-                    new CancellationManager()), 
+                    new CancellationManager(),
+                    jobStatus), 
                     jobStatus));
 
             source.PropertyChanged += (s, e) => copyCancelCommand.TestCanExecute();
@@ -56,7 +57,7 @@ namespace WigeDev_File_Copy
                 new FolderSelectionControlViewModel("Source", source, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
                 new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
                 new CommandControlViewModel(jobStatus, copyCancelCommand),
-                new OutputViewModel(output));
+                new OutputViewModel(output, jobStatus));
         }
 
         protected override void OnStartup(StartupEventArgs e)

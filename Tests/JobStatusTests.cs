@@ -51,5 +51,64 @@ namespace Tests
             sut.IsCopying = true;
             Assert.IsTrue(isCopyingChanged);
         }
+
+        [TestMethod]
+        public void FilesCopiedDefaultZero()
+        {
+            var result = sut.FilesCopied;
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void FilesCopiedGetEqualsSet()
+        {
+            sut.FilesCopied = 1;
+            var result = sut.FilesCopied;
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void FilesCopiedPropertyChanged()
+        {
+            bool isChanged = false;
+            sut.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "FilesCopied")
+                    isChanged = true;
+            };
+
+            sut.FilesCopied = 1;
+            Assert.IsTrue(isChanged);
+        }
+
+        [TestMethod]
+        public void TotalFilesDefaultZero()
+        {
+            var result = sut.TotalFiles;
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void TotalFilesGetEqualsSet()
+        {
+            sut.TotalFiles = 1;
+            var result = sut.TotalFiles;
+            Assert.AreEqual(1, result);
+        }
+
+        [TestMethod]
+        public void TotalFilesPropertyChanged()
+        {
+            bool isChanged = false;
+            sut.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "TotalFiles")
+                    isChanged = true;
+            };
+
+            sut.TotalFiles = 1;
+
+            Assert.IsTrue(isChanged);
+        }
     }
 }

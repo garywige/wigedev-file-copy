@@ -1,32 +1,30 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 using WigeDev.ViewModel.Interfaces;
 
-namespace WigeDev_File_Copy
+namespace WigeDev.View
 {
     /// <summary>
-    /// Interaction logic for Main.xaml
+    /// Interaction logic for OutputControl.xaml
     /// </summary>
-    public sealed partial class MainWindow : Window
+    public partial class OutputControl : UserControl
     {
-        private IViewModel viewModel;
-
-        public MainWindow(IViewModel viewModel)
+        public OutputControl()
         {
             InitializeComponent();
-            this.viewModel = viewModel;
-            this.DataContext = this.viewModel;
+        }
 
-            this.viewModel.PropertyChanged += (s, e) =>
+        public void SetViewModel(IOutputViewModel viewModel)
+        {
+            DataContext = viewModel;
+            viewModel.PropertyChanged += (s, e) =>
             {
                 if (e.PropertyName == "Output")
                     outputScrollToBottom();
             };
-            
         }
 
         private void outputScrollToBottom()
-        { 
+        {
             outputListBox.Items.MoveCurrentToLast();
             outputListBox.ScrollIntoView(outputListBox.Items.CurrentItem);
         }

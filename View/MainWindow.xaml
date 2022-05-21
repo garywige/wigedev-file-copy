@@ -1,0 +1,27 @@
+﻿<Window x:Class="WigeDev.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WigeDev.View"
+        mc:Ignorable="d"
+        Title="WigeDev File Copy" Height="440" Width="400" MinHeight="440" Background="LightGray" FontSize="16">
+   
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <local:FolderSelectionControl x:Name="sourceSelection"/>
+
+        <local:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
+
+        <local:CommandControl x:Name="commandControl" Grid.Row="2" />
+
+        <local:OutputControl x:Name="outputControl" Grid.Row="3" />
+
+    </Grid>
+</Window>

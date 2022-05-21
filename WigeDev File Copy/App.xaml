@@ -3,6 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:WigeDev_File_Copy">
     <Application.Resources>
-         
+
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="16" />
+        </Style>
+        <Style TargetType="ListBox">
+            <Setter Property="VerticalAlignment" Value="Stretch" />
+            <Setter Property="Margin" Value="16" />
+            <Setter Property="Background" Value="LightGray" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="FontSize" Value="24" />
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="32" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </Application.Resources>
 </Application>

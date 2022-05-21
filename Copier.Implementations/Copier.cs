@@ -2,6 +2,7 @@
 using WigeDev.Copier.Interfaces;
 using WigeDev.Model.Interfaces;
 using WigeDev.Output.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 
 namespace WigeDev.Copier.Implementations
@@ -17,13 +18,15 @@ namespace WigeDev.Copier.Implementations
         protected IOutput output;
         protected IPathConstructor pathConstructor;
         protected ICancellationManager cancellationManager;
+        protected IJobStatus jobStatus;
 
         public Copier(IFileEnumerator enumerator, 
             ITextField source, 
             ITextField dest, 
             IOutput output, 
             IPathConstructor constructor,
-            ICancellationManager cancellationManager)
+            ICancellationManager cancellationManager,
+            IJobStatus jobStatus)
         {
             this.enumerator = enumerator;
             this.source = source;
@@ -31,6 +34,7 @@ namespace WigeDev.Copier.Implementations
             this.output = output;
             this.pathConstructor = constructor;
             this.cancellationManager = cancellationManager;
+            this.jobStatus = jobStatus;
         }
 
         public void Cancel()
@@ -44,14 +48,28 @@ namespace WigeDev.Copier.Implementations
 
             try
             {
-                foreach (var file in await enumerator.Enumerate(source.Text, cancellationManager))
-                    await copyFile(file);
+                await copyFiles();
 
                 output.Write(messageJobComplete);
             }
             catch(OperationCanceledException)
             {
                 output.Write(messageJobCanceled);
+                setFilesCopied(0);
+            }
+        }
+
+        protected async Task copyFiles()
+        {
+            int fileCount = 0;
+
+            var files = await enumerator.Enumerate(source.Text, cancellationManager);
+            setTotalFiles(files.Count);
+
+            foreach (var file in files)
+            {
+                await copyFile(file);
+                setFilesCopied(++fileCount);
             }
         }
 
@@ -60,5 +78,9 @@ namespace WigeDev.Copier.Implementations
             output.Write(file.Name);
             await file.CopyTo(pathConstructor.Construct(source.Text, dest.Text, file.Name), cancellationManager);
         }
+
+        protected void setTotalFiles(int count) => jobStatus.TotalFiles = count;
+
+        protected void setFilesCopied(int count) => jobStatus.FilesCopied = count;
     }
 }

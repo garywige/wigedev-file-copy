@@ -25,6 +25,8 @@ namespace Tests
 
         public string CopyCancelButtonContent => throw new System.NotImplementedException();
 
+        public double Progress => throw new System.NotImplementedException();
+
         public event PropertyChangedEventHandler? PropertyChanged;
     }
 }

@@ -17,10 +17,12 @@ namespace Tests
         private FakeOutput output;
         private FakePathConstructor pathConstructor;
         private FakeCancellationManager cancellationManager;
+        private FakeJobStatus jobStatus;
 
         [TestInitialize]
         public void Initialize()
         {
+            jobStatus = new();
             cancellationManager = new();
             pathConstructor = new FakePathConstructor();
             output = new FakeOutput();
@@ -28,7 +30,7 @@ namespace Tests
             enumerator = new(sourceFile);
             source = new FakeTextField();
             dest = new FakeTextField();
-            sut = new(enumerator, source, dest, output, pathConstructor, cancellationManager);
+            sut = new(enumerator, source, dest, output, pathConstructor, cancellationManager, jobStatus);
             isError = false;
         }
 
@@ -111,6 +113,46 @@ namespace Tests
             }
 
             Assert.IsFalse(isError);
+        }
+
+        [TestMethod]
+        public async Task CopySetsTotalFiles()
+        {
+            bool isChanged = false;
+            jobStatus.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "TotalFiles")
+                    isChanged = true;
+            };
+
+            await sut.Copy();
+
+            Assert.IsTrue(isChanged);
+        }
+
+        [TestMethod]
+        public async Task CopySetsFilesCopied()
+        {
+            bool isChanged = false;
+            jobStatus.PropertyChanged += (s, e) =>
+            {
+                if (e.PropertyName == "FilesCopied")
+                    isChanged = true;
+            };
+
+            await sut.Copy();
+
+            Assert.IsTrue(isChanged);
+        }
+
+        [TestMethod]
+        public async Task CopyResetsFilesCopiedOnCancellation()
+        {
+            jobStatus.FilesCopied = 1;
+            sut.Cancel();
+            await sut.Copy();
+            var result = jobStatus.FilesCopied;
+            Assert.AreEqual(0, result);
         }
     }
 }

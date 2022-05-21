@@ -6,10 +6,14 @@ namespace WigeDev.ViewModel.Implementations
     public class JobStatus : IJobStatus
     {
         protected bool isCopying;
+        protected int filesCopied;
+        protected int totalFiles;
 
         public JobStatus()
         {
             IsCopying = false;
+            filesCopied = 0;
+            totalFiles = 0;
         }
 
         public bool IsCopying 
@@ -18,10 +22,34 @@ namespace WigeDev.ViewModel.Implementations
             set
             { 
                 isCopying = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("IsCopying"));
+                propertyChanged("IsCopying");
+            }
+        }
+
+        public int FilesCopied
+        {
+            get => filesCopied;
+            set
+            {
+                filesCopied = value;
+                propertyChanged("FilesCopied");
+            }
+        }
+
+        public int TotalFiles
+        {
+            get => totalFiles;
+            set
+            {
+                totalFiles = value;
+                propertyChanged("TotalFiles");
             }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected void propertyChanged(string property) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
+        
     }
 }

@@ -45,15 +45,15 @@ namespace WigeDev_File_Copy
             var propertyChanged = new PropertyChangedEventHandler((s, e) => copyCancelCommand.TestCanExecute());
 
             window = new MainWindow(new ViewModel(
-                source, 
-                dest, 
-                copyCancelCommand, 
+                source,
+                dest,
+                copyCancelCommand,
                 output,
                 propertyChanged,
                 jobStatus
                 ),
-                null,
-                null);
+                new FolderSelectionControlViewModel("Source", source, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
+                new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())));
         }
 
         protected override void OnStartup(StartupEventArgs e)

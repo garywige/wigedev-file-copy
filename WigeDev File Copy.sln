@@ -27,9 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Output.Interfaces", "Output
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cancellation.Interfaces", "Cancellation.Interfaces\Cancellation.Interfaces.csproj", "{1BB0F72B-C06C-44A7-AFD6-C51497A4A77A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Output.Implementations", "Output.Implementations\Output.Implementations.csproj", "{4F00456F-2719-4858-BE9B-C2697EE5A23E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Output.Implementations", "Output.Implementations\Output.Implementations.csproj", "{4F00456F-2719-4858-BE9B-C2697EE5A23E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cancellation.Implementations", "Cancellation.Implementations\Cancellation.Implementations.csproj", "{74ED42C3-2333-49A1-B193-77647F595CB1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cancellation.Implementations", "Cancellation.Implementations\Cancellation.Implementations.csproj", "{74ED42C3-2333-49A1-B193-77647F595CB1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

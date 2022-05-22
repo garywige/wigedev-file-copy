@@ -8,6 +8,9 @@
     <Compile Update="OutputControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="SelectControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Page Update="CommandControl.xaml">
@@ -20,6 +23,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="OutputControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="SelectControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

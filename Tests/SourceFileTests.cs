@@ -12,12 +12,17 @@ namespace Tests
         private SourceFile? sut;
         private bool isError;
         private FakeCancellationManager? cancellationManager;
+        private FakeCopyStrategy copyStrategy;
+        private FakeSettingsManager settingsManager;
 
         [TestInitialize]
         public void Initialize()
         {
+            settingsManager = new();
+            copyStrategy = new();
+            settingsManager.CopyStrategy = copyStrategy;
             fi = new(@"C:\Windows\System32\cmd.exe");
-            sut = new(fi);
+            sut = new(fi, settingsManager);
             isError = false;
             cancellationManager = new();
 
@@ -80,32 +85,11 @@ namespace Tests
         }
 
         [TestMethod]
-        public async Task CopyToNewFileHasSameLength()
+        public async Task CopyToCallsCopyStrategyCopyFile()
         {
             await sut.CopyTo(@"C:\Test\cmd.exe", cancellationManager);
-            var destFi = new FileInfo(@"C:\Test\cmd.exe");
-            Assert.AreEqual(fi.Length, destFi.Length);
-        }
-
-        [TestMethod]
-        public async Task CopyToThrowsExceptionWhenCancelled()
-        { 
-
-            bool isCancelled = false;
-            sut = new SourceFile(new FileInfo(@"C:\Windows\System32\MRT.exe"));
-
-            try
-            {
-                var task = sut.CopyTo(@"C:\Test\cmd.exe", cancellationManager);
-                cancellationManager.Cancel();
-                await task;
-            }
-            catch
-            {
-                isCancelled = true;
-            }
-
-            Assert.IsTrue(isCancelled);
+            var result = copyStrategy.WasCopyFileCalled;
+            Assert.IsTrue(result);
         }
     }
 }

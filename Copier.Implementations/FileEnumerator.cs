@@ -1,11 +1,19 @@
 ﻿using WigeDev.Cancellation.Interfaces;
 using WigeDev.Copier.Interfaces;
 using WigeDev.Copier.Implementations;
+using WigeDev.Settings.Interfaces;
 
 namespace WigeDev.Copier.Implementations
 {
     public class FileEnumerator : IFileEnumerator
     {
+        protected ISettingsManager settingsManager;
+
+        public FileEnumerator(ISettingsManager settingsManager)
+        {
+            this.settingsManager = settingsManager;
+        }
+
         public async Task<IList<ISourceFile>> Enumerate(string sourcePath, ICancellationManager cancellationManager)
         {
             List<ISourceFile> output = new();
@@ -38,7 +46,7 @@ namespace WigeDev.Copier.Implementations
             foreach (var file in Directory.EnumerateFiles(sourcePath))
             {
                 checkForCancellation(cancellationManager);
-                output.Add(SourceFile.Create(new FileInfo(file)));
+                output.Add(SourceFile.Create(new FileInfo(file), settingsManager));
             }
         }
 

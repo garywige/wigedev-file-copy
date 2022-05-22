@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
-using WigeDev.Model.Implementations;
 using WigeDev.Output.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
@@ -11,7 +10,6 @@ using WigeDev.ViewModel.Implementations;
 using WigeDev.View;
 using WigeDev.Settings.Implementations;
 using WigeDev.Copier.Interfaces;
-using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev_File_Copy
 {
@@ -41,6 +39,7 @@ namespace WigeDev_File_Copy
             // SettingsManager
             ObservableCollection<ICopyStrategy> copyStrategies = new();
             copyStrategies.Add(new AllCopyStrategy(output));
+            copyStrategies.Add(new NoneCopyStrategy(output));
             var overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", copyStrategies);
             var settingsManager = new SettingsManager(overwriteVM);
 

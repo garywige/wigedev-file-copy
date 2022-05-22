@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Model.Interfaces\Model.Interfaces.csproj" />
     <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
+    <ProjectReference Include="..\ViewModel.Interfaces\ViewModel.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

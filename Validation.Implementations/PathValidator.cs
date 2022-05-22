@@ -1,5 +1,4 @@
-﻿using WigeDev.Model.Interfaces;
-using System.IO;
+﻿using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Validation.Implementations
 {

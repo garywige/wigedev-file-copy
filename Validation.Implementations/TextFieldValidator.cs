@@ -1,5 +1,5 @@
 ﻿using WigeDev.Validation.Interfaces;
-using WigeDev.Model.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Validation.Implementations
 {

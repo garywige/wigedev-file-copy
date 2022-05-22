@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
-using WigeDev.Model.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 
 namespace Tests

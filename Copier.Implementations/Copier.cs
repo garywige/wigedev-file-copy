@@ -1,6 +1,5 @@
 ﻿using WigeDev.Cancellation.Interfaces;
 using WigeDev.Copier.Interfaces;
-using WigeDev.Model.Interfaces;
 using WigeDev.Output.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 

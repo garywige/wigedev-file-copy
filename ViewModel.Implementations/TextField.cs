@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
-using WigeDev.Model.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
-namespace WigeDev.Model.Implementations
+namespace WigeDev.ViewModel.Implementations
 {
     public class TextField : ITextField
     {

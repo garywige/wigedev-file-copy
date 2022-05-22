@@ -28,8 +28,18 @@ namespace WigeDev.Copier.Implementations
         public static SourceFile Create(FileInfo fi, ISettingsManager settingsManager) =>
             new SourceFile(fi, settingsManager);
 
-        private void createDirectories(string dest) =>
-            (new FileInfo(dest))?.Directory?.Create();
+        private void createDirectories(string dest)
+        {
+            try
+            {
+                (new FileInfo(dest))?.Directory?.Create();
+            }
+            catch
+            {
+
+            }
+        }
+            
        
     }
 }

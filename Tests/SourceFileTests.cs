@@ -91,5 +91,20 @@ namespace Tests
             var result = copyStrategy.WasCopyFileCalled;
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public async Task CopyToDoesntThrowOnAccessError()
+        {
+            try
+            {
+                await sut.CopyTo(@"C:\Windows\System32\TestDirectory\cmd.exe", cancellationManager);
+            }
+            catch
+            {
+                isError = true;
+            }
+
+            Assert.IsFalse(isError);
+        }
     }
 }

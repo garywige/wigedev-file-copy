@@ -39,7 +39,7 @@ namespace WigeDev_File_Copy
             var jobStatus = new JobStatus();
 
             // SettingsManager
-            List<ICopyStrategy> copyStrategies = new List<ICopyStrategy>();
+            ObservableCollection<ICopyStrategy> copyStrategies = new();
             copyStrategies.Add(new AllCopyStrategy(output));
             var overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", copyStrategies);
             var settingsManager = new SettingsManager(overwriteVM);
@@ -67,7 +67,7 @@ namespace WigeDev_File_Copy
                 new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
                 new CommandControlViewModel(jobStatus, copyCancelCommand),
                 new OutputViewModel(output, jobStatus),
-                overwriteVM as ISelectControlViewModel<object>);
+                overwriteVM);
         }
 
         protected override void OnStartup(StartupEventArgs e)

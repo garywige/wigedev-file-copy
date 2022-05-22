@@ -113,5 +113,12 @@ namespace Tests
             var result = output.WasWriteCalled;
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public void ToStringEqualsAllFiles()
+        {
+            var result = sut.ToString();
+            Assert.AreEqual("All Files", result);
+        }
     }
 }

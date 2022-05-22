@@ -39,5 +39,7 @@ namespace WigeDev.Copier.Implementations
                 writeStream?.Dispose();
             }
         }
+
+        public override string ToString() => "All Files";
     }
 }

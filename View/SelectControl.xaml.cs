@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using WigeDev.ViewModel.Interfaces;
+using WigeDev.Copier.Interfaces;
 
 namespace WigeDev.View
 {
@@ -13,15 +14,9 @@ namespace WigeDev.View
             InitializeComponent();
         }
 
-        public void SetViewModel(ISelectControlViewModel<object> viewModel)
+        public void SetViewModel(ISelectControlViewModel<ICopyStrategy> viewModel)
         {
             this.DataContext = viewModel;
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var viewModel = DataContext as ISelectControlViewModel<object>;
-            viewModel.SelectedItem = e.AddedItems[0];
         }
     }
 }

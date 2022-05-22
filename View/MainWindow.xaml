@@ -42,6 +42,10 @@
             </TabItem>
             <TabItem Header="Settings">
                 <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
                     <local:SelectControl x:Name="overwriteSelectControl" />
                 </Grid>
             </TabItem>

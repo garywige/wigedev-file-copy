@@ -8,7 +8,7 @@ namespace Tests
     public class OldCopyStrategyTests : CopyStrategyTestsBase<OldCopyStrategy>
     {
         [TestInitialize]
-        public void Initialize()
+        public new void Initialize()
         {
             base.Initialize();
             sut = new(output);

@@ -17,6 +17,9 @@
         <Style TargetType="local:OutputControl">
             <Setter Property="Margin" Value="16" />
         </Style>
+        <Style TargetType="local:SelectControl">
+            <Setter Property="Margin" Value="16" />
+        </Style>
     </Window.Resources>
    
     <Grid>

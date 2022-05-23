@@ -11,6 +11,7 @@ namespace WigeDev.Copier.Implementations
 
             try
             {
+                if (dest.Exists) dest.Delete();
                 readStream = source.OpenRead();
                 writeStream = dest.OpenWrite();
                 await readStream.CopyToAsync(writeStream, token);

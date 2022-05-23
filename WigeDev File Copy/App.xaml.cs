@@ -40,6 +40,7 @@ namespace WigeDev_File_Copy
             ObservableCollection<ICopyStrategy> copyStrategies = new();
             copyStrategies.Add(new AllCopyStrategy(output));
             copyStrategies.Add(new NoneCopyStrategy(output));
+            copyStrategies.Add(new OldCopyStrategy(output));
             var overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", copyStrategies);
             var settingsManager = new SettingsManager(overwriteVM);
 

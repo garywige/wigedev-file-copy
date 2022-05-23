@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WigeDev.View"
         mc:Ignorable="d"
-        Title="WigeDev File Copy" Height="440" Width="400" MinHeight="440" Background="LightGray" FontSize="16">
+        Title="WigeDev File Copy" Height="500" Width="400" MinHeight="500" Background="LightGray" FontSize="16">
 
     <Window.Resources>
         <Style TargetType="local:FolderSelectionControl">
@@ -17,23 +17,42 @@
         <Style TargetType="local:OutputControl">
             <Setter Property="Margin" Value="16" />
         </Style>
+        <Style TargetType="local:SelectControl">
+            <Setter Property="Margin" Value="16" />
+        </Style>
     </Window.Resources>
    
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
 
-        <local:FolderSelectionControl x:Name="sourceSelection"/>
+        <TabControl>
+            <TabItem Header="Single Copy">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
 
-        <local:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
+                    <local:FolderSelectionControl x:Name="sourceSelection"/>
 
-        <local:CommandControl x:Name="commandControl" Grid.Row="2" />
+                    <local:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
 
-        <local:OutputControl x:Name="outputControl" Grid.Row="3" />
+                    <local:CommandControl x:Name="commandControl" Grid.Row="2" />
+
+                    <local:OutputControl x:Name="outputControl" Grid.Row="3" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Settings">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <local:SelectControl x:Name="overwriteSelectControl" />
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

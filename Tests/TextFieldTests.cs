@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.Model.Implementations;
+using WigeDev.ViewModel.Implementations;
 
 namespace Tests
 {

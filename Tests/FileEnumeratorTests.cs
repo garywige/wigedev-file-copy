@@ -10,11 +10,12 @@ namespace Tests
         private FileEnumerator sut;
         private bool isError;
         private FakeCancellationManager cancellationManager;
+        private FakeSettingsManager settingsManager;
 
         [TestInitialize]
         public void Initialize()
         {
-            sut = new();
+            sut = new(settingsManager);
             isError = false;
             cancellationManager = new();
         }

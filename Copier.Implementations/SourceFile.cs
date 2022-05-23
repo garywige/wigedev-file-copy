@@ -1,15 +1,18 @@
 ﻿using WigeDev.Cancellation.Interfaces;
 using WigeDev.Copier.Interfaces;
+using WigeDev.Settings.Interfaces;
 
 namespace WigeDev.Copier.Implementations
 {
     public class SourceFile : ISourceFile
     {
         protected FileInfo fi;
+        protected ISettingsManager settingsManager;
 
-        public SourceFile(FileInfo fi)
+        public SourceFile(FileInfo fi, ISettingsManager settingsManager)
         {
             this.fi = fi;
+            this.settingsManager = settingsManager;
         }
 
         public string Name => fi.FullName;
@@ -18,41 +21,25 @@ namespace WigeDev.Copier.Implementations
         {
             var token = cancellationManager.Token;
             createDirectories(dest);
-            await copyFile(dest, token);
+            await settingsManager.CopyStrategy.CopyFile(fi, new FileInfo(dest), token);
         }
         
 
-        public static SourceFile Create(FileInfo fi) =>
-            new SourceFile(fi);
+        public static SourceFile Create(FileInfo fi, ISettingsManager settingsManager) =>
+            new SourceFile(fi, settingsManager);
 
-        private void createDirectories(string dest) =>
-            (new FileInfo(dest))?.Directory?.Create();
-        
-
-        private async Task copyFile(string dest, CancellationToken token)
+        private void createDirectories(string dest)
         {
-            FileStream? readStream = null, writeStream = null;
-
             try
             {
-                readStream = fi.OpenRead();
-                writeStream = (new FileInfo(dest)).OpenWrite();
-                await readStream.CopyToAsync(writeStream, token);
-                await writeStream.FlushAsync(token);
+                (new FileInfo(dest))?.Directory?.Create();
             }
-            catch(OperationCanceledException)
-            {
-                throw new OperationCanceledException();
-            }
-            catch(Exception)
+            catch
             {
 
             }
-            finally
-            {
-                readStream?.Close();
-                writeStream?.Close();
-            }
         }
+            
+       
     }
 }

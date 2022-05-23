@@ -1,5 +1,5 @@
 ﻿using System.ComponentModel;
-using WigeDev.Model.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace Tests
 {

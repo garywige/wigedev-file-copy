@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace WigeDev.Model.Interfaces
+namespace WigeDev.ViewModel.Interfaces
 {
     public interface ITextField : INotifyPropertyChanged
     {

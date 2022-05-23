@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Copier.Interfaces\Copier.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

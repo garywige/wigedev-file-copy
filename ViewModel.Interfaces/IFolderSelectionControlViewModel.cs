@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using WigeDev.Model.Interfaces;
 
 namespace WigeDev.ViewModel.Interfaces
 {

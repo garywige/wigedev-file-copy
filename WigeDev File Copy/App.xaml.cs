@@ -3,12 +3,13 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
-using WigeDev.Model.Implementations;
 using WigeDev.Output.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.View;
+using WigeDev.Settings.Implementations;
+using WigeDev.Copier.Interfaces;
 
 namespace WigeDev_File_Copy
 {
@@ -35,12 +36,20 @@ namespace WigeDev_File_Copy
             var output = new BasicOutput(outputList);
             var jobStatus = new JobStatus();
 
+            // SettingsManager
+            ObservableCollection<ICopyStrategy> copyStrategies = new();
+            copyStrategies.Add(new AllCopyStrategy(output));
+            copyStrategies.Add(new NoneCopyStrategy(output));
+            copyStrategies.Add(new OldCopyStrategy(output));
+            var overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", copyStrategies);
+            var settingsManager = new SettingsManager(overwriteVM);
+
             // Command
             var copyCancelCommand = new CopyCancelCommand(
                 new FormValidator(validators),
                 new CopyCancelExecute(
                     new Copier(
-                    new FileEnumerator(),
+                    new FileEnumerator(settingsManager),
                     source,
                     dest,
                     output,
@@ -57,7 +66,8 @@ namespace WigeDev_File_Copy
                 new FolderSelectionControlViewModel("Source", source, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
                 new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
                 new CommandControlViewModel(jobStatus, copyCancelCommand),
-                new OutputViewModel(output, jobStatus));
+                new OutputViewModel(output, jobStatus),
+                overwriteVM);
         }
 
         protected override void OnStartup(StartupEventArgs e)

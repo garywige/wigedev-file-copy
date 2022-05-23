@@ -12,9 +12,6 @@ namespace WigeDev.Copier.Implementations
         
         public override async Task CopyFile(FileInfo source, FileInfo dest, CancellationToken token)
         {
-            if (token.IsCancellationRequested)
-                throw new OperationCanceledException();
-
             if (dest.Exists)
             {
                 output.Write("\tFile already exists at destination...");

@@ -67,7 +67,9 @@ namespace WigeDev_File_Copy
                 new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
                 new CommandControlViewModel(jobStatus, copyCancelCommand),
                 new OutputViewModel(output, jobStatus),
-                overwriteVM);
+                overwriteVM,
+                null,
+                null);
         }
 
         protected override void OnStartup(StartupEventArgs e)

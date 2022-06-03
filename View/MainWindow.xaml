@@ -38,14 +38,22 @@
 
                     <local:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
 
-                    <local:CommandControl x:Name="commandControl" Grid.Row="2" />
+                    <local:CommandControl x:Name="copyCommandControl" Grid.Row="2" />
 
                     <local:OutputControl x:Name="outputControl" Grid.Row="3" />
                 </Grid>
             </TabItem>
             <TabItem Header="Batch Copy">
                 <Grid>
-                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+
+                    <local:CommandControl x:Name="startBatchCommandControl" />
+
+                    <local:CommandControl x:Name="addJobCommandControl" Grid.Row="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">

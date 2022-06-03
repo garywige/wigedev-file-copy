@@ -20,6 +20,9 @@
         <Style TargetType="local:SelectControl">
             <Setter Property="Margin" Value="16" />
         </Style>
+        <Style TargetType="local:BatchListControl">
+            <Setter Property="Margin" Value="16" />
+        </Style>
     </Window.Resources>
    
     <Grid>
@@ -54,6 +57,8 @@
                     <local:CommandControl x:Name="startBatchCommandControl" />
 
                     <local:CommandControl x:Name="addJobCommandControl" Grid.Row="1" />
+
+                    <local:BatchListControl x:Name="batchListControl" Grid.Row="2" />
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">

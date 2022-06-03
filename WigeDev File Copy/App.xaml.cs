@@ -69,6 +69,7 @@ namespace WigeDev_File_Copy
                 new OutputViewModel(output, jobStatus),
                 overwriteVM,
                 null,
+                null,
                 null);
         }
 

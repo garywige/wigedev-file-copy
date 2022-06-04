@@ -7,6 +7,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel>
-        <Button Content="{Binding Path=CopyCancelButtonContent}" Command="{Binding Path=CopyCancelCommand}" />
+        <Button Content="{Binding Path=ButtonContent}" Command="{Binding Path=Command}" />
     </StackPanel>
 </UserControl>

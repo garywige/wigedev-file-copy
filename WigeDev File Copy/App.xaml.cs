@@ -66,11 +66,11 @@ namespace WigeDev_File_Copy
             window = new MainWindow(
                 new FolderSelectionControlViewModel("Source", source, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
                 new FolderSelectionControlViewModel("Destination", dest, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
-                new CommandControlViewModel(jobStatus, copyCancelCommand),
+                new CopyCancelCommandControlViewModel(jobStatus, copyCancelCommand),
                 new OutputViewModel(output, jobStatus),
                 overwriteVM,
                 null,
-                null,
+                new CommandControlViewModel("Add Job", null),
                 new BatchListControlViewModel(new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>())));
         }
 

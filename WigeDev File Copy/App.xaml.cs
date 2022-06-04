@@ -70,7 +70,7 @@ namespace WigeDev_File_Copy
                 overwriteVM,
                 null,
                 null,
-                null);
+                new BatchListControlViewModel(null));
         }
 
         protected override void OnStartup(StartupEventArgs e)

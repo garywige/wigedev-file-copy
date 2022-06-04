@@ -1,20 +1,14 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Ookii.Dialogs.WinForms" Version="4.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Copier.Interfaces\Copier.Interfaces.csproj" />
     <ProjectReference Include="..\Execute.Interfaces\Execute.Interfaces.csproj" />
-    <ProjectReference Include="..\Output.Interfaces\Output.Interfaces.csproj" />
-    <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
     <ProjectReference Include="..\ViewModel.Interfaces\ViewModel.Interfaces.csproj" />
   </ItemGroup>
 

@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
 using WigeDev.Copier.Interfaces;
+using WigeDev.Execute.Implementations;
 using WigeDev.Output.Implementations;
 using WigeDev.Settings.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.View;
-using WigeDev.ViewModel.Interfaces;
 using WigeDev.ViewModel.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev_File_Copy
 {

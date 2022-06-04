@@ -1,6 +1,6 @@
 ﻿using System.Windows.Input;
 using WigeDev.Validation.Interfaces;
-using WigeDev.ViewModel.Interfaces;
+using WigeDev.Execute.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {

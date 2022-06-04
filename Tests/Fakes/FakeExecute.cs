@@ -1,4 +1,4 @@
-﻿using WigeDev.ViewModel.Interfaces;
+﻿using WigeDev.Execute.Interfaces;
 
 namespace Tests
 {

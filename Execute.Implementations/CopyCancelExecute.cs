@@ -1,7 +1,8 @@
-﻿using WigeDev.ViewModel.Interfaces;
+﻿using WigeDev.Execute.Interfaces;
 using WigeDev.Copier.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
-namespace WigeDev.ViewModel.Implementations
+namespace WigeDev.Execute.Implementations
 {
     public class CopyCancelExecute : IExecute
     {

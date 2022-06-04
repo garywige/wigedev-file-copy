@@ -1,4 +1,4 @@
-﻿namespace WigeDev.ViewModel.Interfaces
+﻿namespace WigeDev.Execute.Interfaces
 {
     public interface IExecute
     {

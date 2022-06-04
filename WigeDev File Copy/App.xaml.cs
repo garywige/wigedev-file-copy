@@ -3,13 +3,14 @@ using System.Collections.ObjectModel;
 using System.Windows;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
+using WigeDev.Copier.Interfaces;
 using WigeDev.Output.Implementations;
+using WigeDev.Settings.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
-using WigeDev.ViewModel.Implementations;
 using WigeDev.View;
-using WigeDev.Settings.Implementations;
-using WigeDev.Copier.Interfaces;
+using WigeDev.ViewModel.Interfaces;
+using WigeDev.ViewModel.Implementations;
 
 namespace WigeDev_File_Copy
 {
@@ -70,7 +71,7 @@ namespace WigeDev_File_Copy
                 overwriteVM,
                 null,
                 null,
-                new BatchListControlViewModel(null));
+                new BatchListControlViewModel(new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>())));
         }
 
         protected override void OnStartup(StartupEventArgs e)

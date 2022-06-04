@@ -70,7 +70,7 @@ namespace WigeDev_File_Copy
                 new OutputViewModel(output, jobStatus),
                 overwriteVM,
                 null,
-                new CommandControlViewModel("Add Job", null),
+                new CommandControlViewModel("Add Job", new Command(() => true, null)),
                 new BatchListControlViewModel(new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>())));
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using WigeDev.ViewModel.Interfaces;
 
@@ -20,9 +21,10 @@ namespace WigeDev.ViewModel.Implementations
         { 
             get => items[index];
             set
-            { 
+            {
+                var oldValue = items[index];
                 items[index] = value;
-                collectionChanged();
+                collectionChanged(NotifyCollectionChangedAction.Replace, createItemList(value), createItemList(oldValue));
             }
         }
 
@@ -36,13 +38,13 @@ namespace WigeDev.ViewModel.Implementations
         {
             grow(1);
             items[items.Length - 1] = item;
-            collectionChanged();
+            collectionChanged(NotifyCollectionChangedAction.Add, createItemList(item));
         }
 
         public void Clear()
         {
             items = new T[0];
-            collectionChanged();
+            collectionChanged(NotifyCollectionChangedAction.Reset);
         }
 
         public bool Contains(T item) => items.Contains(item);
@@ -74,7 +76,8 @@ namespace WigeDev.ViewModel.Implementations
 
             for(int i = index; i < items.Length; i++)
                 items[i] = i == index ? item : copy[i - 1];
-            collectionChanged();
+
+            collectionChanged(NotifyCollectionChangedAction.Add, createItemList(item));
         }
 
         public bool Remove(T item)
@@ -87,18 +90,28 @@ namespace WigeDev.ViewModel.Implementations
 
         public void RemoveAt(int index)
         {
+            var oldValue = items[index];
+
             var arr = new T[items.Length - 1];
             for (int i = 0; i < arr.Length; i++)
                 arr[i] = i < index ? items[i] : items[i + 1];
             items = arr;
-            collectionChanged();
+            collectionChanged(NotifyCollectionChangedAction.Remove, createItemList(oldValue));
         }
 
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
-        protected void collectionChanged()
+        protected void collectionChanged(NotifyCollectionChangedAction action, IList changedItems = null, IList oldItems = null)
         {
-            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(NotifyCollectionChangedAction.Reset));
+            var args = action switch
+            {
+                NotifyCollectionChangedAction.Replace => new NotifyCollectionChangedEventArgs(action, changedItems, oldItems),
+                NotifyCollectionChangedAction.Add => new NotifyCollectionChangedEventArgs(action, changedItems),
+                NotifyCollectionChangedAction.Remove => new NotifyCollectionChangedEventArgs(action, changedItems),
+                NotifyCollectionChangedAction.Reset => new NotifyCollectionChangedEventArgs(action)
+            };
+
+            CollectionChanged?.Invoke(this, args);
         }
 
         protected void grow(int increment)
@@ -106,6 +119,13 @@ namespace WigeDev.ViewModel.Implementations
             var arr = new T[items.Length + increment];
             CopyTo(arr, 0);
             items = arr;
+        }
+
+        protected IList createItemList(T value)
+        {
+            var list = new List<T>();
+            list.Add(value);
+            return list;
         }
     }
 }

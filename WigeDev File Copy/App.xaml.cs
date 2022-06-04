@@ -28,12 +28,12 @@ namespace WigeDev_File_Copy
             var dest = new TextField();
 
             // Validators
-            var validators = new List<IValidator>();
-            validators.Add(new PathValidator(source));
-            validators.Add(new PathValidator(dest));
+            var validators = new IValidator[2];
+            validators[0] = new PathValidator(source);
+            validators[1] = new PathValidator(dest);
 
             // Output
-            var outputList = new ObservableCollection<string>();
+            var outputList = new NotifyList<string>(new NotifyListEnumerator<string>());
             var output = new BasicOutput(outputList);
             var jobStatus = new JobStatus();
 

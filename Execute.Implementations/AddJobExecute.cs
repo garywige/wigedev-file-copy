@@ -1,15 +1,18 @@
 ﻿using WigeDev.Execute.Interfaces;
 using WigeDev.View.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Execute.Implementations
 {
-    public class AddJobExecute<T> : IExecute where T : IOutputWindowAdapter, new()
+    public class AddJobExecute : IExecute
     {
-        protected IWindowFactory<T> windowFactory;
+        protected IWindowFactory<IOutputWindowAdapter> windowFactory;
+        protected IList<ICopyJobControlViewModel> jobList;
 
-        public AddJobExecute(IWindowFactory<T> factory)
+        public AddJobExecute(IWindowFactory<IOutputWindowAdapter> factory, IList<ICopyJobControlViewModel> jobList)
         {
             windowFactory = factory;
+            this.jobList = jobList;
         }
 
         public void Execute()
@@ -17,7 +20,7 @@ namespace WigeDev.Execute.Implementations
             var window = windowFactory.CreateWindow();
             if(window.ShowDialog() == true)
             {
-                //TODO: process dialog output
+                jobList.Add(window.Output as ICopyJobControlViewModel);
             }
         }
     }

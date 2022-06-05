@@ -2,9 +2,9 @@
 
 namespace Tests
 {
-    public class FakeOutputWindowFactory : IWindowFactory<FakeOutputWindowAdapter>
+    public class FakeOutputWindowFactory : IWindowFactory<IOutputWindowAdapter>
     {
-        public FakeOutputWindowAdapter CreateWindow()
+        public IOutputWindowAdapter CreateWindow()
         {
             WasCreateWindowCalled = true;
             var window = new FakeOutputWindowAdapter();

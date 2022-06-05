@@ -1,20 +1,30 @@
-﻿using WigeDev.View.Interfaces;
+﻿using System;
+using WigeDev.View.Interfaces;
+
 
 namespace WigeDev.View.Implementations
 {
     public class OutputWindowAdapter : IOutputWindowAdapter
     {
+        protected Action<object?> show;
+        protected Func<object?, bool?> showDialog;
+
+        public OutputWindowAdapter(Action<object?> show, Func<object?, bool?> showDialog)
+        {
+            this.show = show;
+            this.showDialog = showDialog;
+        }
+
         public object? Output => null;
 
         public void Show()
         {
-            // TODO: window.Show();
+            show?.Invoke(Output);
         }
 
         public bool? ShowDialog()
         {
-            // TODO: window.ShowDialog();
-            return null;
+            return showDialog?.Invoke(Output);
         }
     }
 }

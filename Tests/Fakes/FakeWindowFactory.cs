@@ -2,15 +2,15 @@
 
 namespace Tests
 {
-    public class FakeWindowFactory : IWindowFactory<FakeWindowAdapter>
+    public class FakeWindowFactory : IWindowFactory<IOutputWindowAdapter>
     {
         public bool WasCreateWindowCalled { get; set; } = false;
         public bool WasShowDialogCalled { get; set; } = false;
 
-        public FakeWindowAdapter CreateWindow()
+        public IOutputWindowAdapter CreateWindow()
         { 
             WasCreateWindowCalled = true;
-            var window = new FakeWindowAdapter();
+            var window = new FakeOutputWindowAdapter();
             window.ShowDialogCalled += (s, e) =>
             {
                 WasShowDialogCalled = true;

@@ -6,14 +6,14 @@ namespace Tests
     [TestClass]
     public class AddJobExecuteTests
     {
-        private AddJobExecute<FakeOutputWindowAdapter> sut;
+        private AddJobExecute sut;
         private FakeOutputWindowFactory factory;
 
         [TestInitialize]
         public void Initialize()
         {
             factory = new();
-            sut = new(factory);
+            sut = new(factory, null);
         }
 
         [TestMethod]

@@ -62,6 +62,12 @@ namespace WigeDev_File_Copy
             source.PropertyChanged += (s, e) => copyCancelCommand.TestCanExecute();
             dest.PropertyChanged += (s, e) => copyCancelCommand.TestCanExecute();
 
+            // batch job list
+            var jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
+
+            // AddJobExecute
+            var addJobExecute = new AddJobExecute(null, jobList);
+
             // Main Window
             window = new MainWindow(
                 new FolderSelectionControlViewModel("Source", source, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
@@ -70,8 +76,8 @@ namespace WigeDev_File_Copy
                 new OutputViewModel(output, jobStatus),
                 overwriteVM,
                 null,
-                new CommandControlViewModel("Add Job", new Command(() => true, null)),
-                new BatchListControlViewModel(new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>())));
+                new CommandControlViewModel("Add Job", new Command(() => true, () => addJobExecute.Execute())),
+                new BatchListControlViewModel(jobList));
         }
 
         protected override void OnStartup(StartupEventArgs e)

@@ -8,6 +8,7 @@ using WigeDev.Output.Implementations;
 using WigeDev.Settings.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
+using WigeDev.View.Implementations;
 using WigeDev.View.Windows;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
@@ -45,7 +46,7 @@ namespace WigeDev_File_Copy
             var overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", copyStrategies);
             var settingsManager = new SettingsManager(overwriteVM);
 
-            // Command
+            // CopyCancelCommand
             var copyCancelCommand = new CopyCancelCommand(
                 new FormValidator(validators),
                 new CopyCancelExecute(
@@ -66,7 +67,19 @@ namespace WigeDev_File_Copy
             var jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
 
             // AddJobExecute
-            var addJobExecute = new AddJobExecute(null, jobList);
+            var addJobExecute = new AddJobExecute(new OutputWindowFactory(
+                o => { }, 
+                o => 
+                {
+                    // TODO: view model and pass output
+                    var window = new AddJobWindow();
+                    if(window.ShowDialog() == true)
+                    {
+                        return true;
+                    }
+                    return false; 
+                }), 
+                jobList);
 
             // Main Window
             window = new MainWindow(

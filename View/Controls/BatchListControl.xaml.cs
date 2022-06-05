@@ -1,7 +1,7 @@
 ﻿using System.Windows.Controls;
 using WigeDev.ViewModel.Interfaces;
 
-namespace WigeDev.View
+namespace WigeDev.View.Controls
 {
     /// <summary>
     /// Interaction logic for BatchListControl.xaml

@@ -4,23 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WigeDev.View"
+        xmlns:controls="clr-namespace:WigeDev.View.Controls"
         mc:Ignorable="d"
         Title="WigeDev File Copy" Height="500" Width="400" MinHeight="500" Background="LightGray" FontSize="16">
 
     <Window.Resources>
-        <Style TargetType="local:FolderSelectionControl">
+        <Style TargetType="controls:FolderSelectionControl">
             <Setter Property="Margin" Value="16" />
         </Style>
-        <Style TargetType="local:CommandControl">
+        <Style TargetType="controls:CommandControl">
             <Setter Property="Margin" Value="16" />
         </Style>
-        <Style TargetType="local:OutputControl">
+        <Style TargetType="controls:OutputControl">
             <Setter Property="Margin" Value="16" />
         </Style>
-        <Style TargetType="local:SelectControl">
+        <Style TargetType="controls:SelectControl">
             <Setter Property="Margin" Value="16" />
         </Style>
-        <Style TargetType="local:BatchListControl">
+        <Style TargetType="controls:BatchListControl">
             <Setter Property="Margin" Value="16" />
         </Style>
     </Window.Resources>
@@ -37,13 +38,13 @@
                         <RowDefinition />
                     </Grid.RowDefinitions>
 
-                    <local:FolderSelectionControl x:Name="sourceSelection"/>
+                    <controls:FolderSelectionControl x:Name="sourceSelection"/>
 
-                    <local:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
+                    <controls:FolderSelectionControl x:Name="destinationSelection" Grid.Row="1" />
 
-                    <local:CommandControl x:Name="copyCommandControl" Grid.Row="2" />
+                    <controls:CommandControl x:Name="copyCommandControl" Grid.Row="2" />
 
-                    <local:OutputControl x:Name="outputControl" Grid.Row="3" />
+                    <controls:OutputControl x:Name="outputControl" Grid.Row="3" />
                 </Grid>
             </TabItem>
             <TabItem Header="Batch Copy">
@@ -54,11 +55,11 @@
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <local:CommandControl x:Name="startBatchCommandControl" />
+                    <controls:CommandControl x:Name="startBatchCommandControl" />
 
-                    <local:CommandControl x:Name="addJobCommandControl" Grid.Row="1" />
+                    <controls:CommandControl x:Name="addJobCommandControl" Grid.Row="1" />
 
-                    <local:BatchListControl x:Name="batchListControl" Grid.Row="2" />
+                    <controls:BatchListControl x:Name="batchListControl" Grid.Row="2" />
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">
@@ -67,7 +68,7 @@
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
                     </Grid.RowDefinitions>
-                    <local:SelectControl x:Name="overwriteSelectControl" />
+                    <controls:SelectControl x:Name="overwriteSelectControl" />
                 </Grid>
             </TabItem>
         </TabControl>

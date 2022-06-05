@@ -2,36 +2,36 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="BatchListControl.xaml.cs">
+    <Compile Update="Controls\BatchListControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="CommandControl.xaml.cs">
+    <Compile Update="Controls\CommandControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="OutputControl.xaml.cs">
+    <Compile Update="Controls\OutputControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="SelectControl.xaml.cs">
+    <Compile Update="Controls\SelectControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="BatchListControl.xaml">
+    <Page Update="Controls\BatchListControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="CommandControl.xaml">
+    <Page Update="Controls\CommandControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="FolderSelectionControl.xaml">
+    <Page Update="Controls\FolderSelectionControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="OutputControl.xaml">
+    <Page Update="Controls\OutputControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="SelectControl.xaml">
+    <Page Update="Controls\SelectControl.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

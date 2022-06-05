@@ -2,7 +2,7 @@
 using WigeDev.ViewModel.Interfaces;
 using WigeDev.Copier.Interfaces;
 
-namespace WigeDev.View
+namespace WigeDev.View.Controls
 {
     /// <summary>
     /// Interaction logic for SelectControl.xaml

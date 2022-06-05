@@ -14,6 +14,7 @@ namespace WigeDev.View.Implementations
         public bool? ShowDialog()
         {
             // TODO: window.ShowDialog();
+            return null;
         }
     }
 }

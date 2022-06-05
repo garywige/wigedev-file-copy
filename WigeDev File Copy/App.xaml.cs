@@ -8,7 +8,7 @@ using WigeDev.Output.Implementations;
 using WigeDev.Settings.Implementations;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
-using WigeDev.View;
+using WigeDev.View.Windows;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
 

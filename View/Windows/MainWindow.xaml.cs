@@ -2,7 +2,7 @@
 using WigeDev.ViewModel.Interfaces;
 using WigeDev.Copier.Interfaces;
 
-namespace WigeDev.View
+namespace WigeDev.View.Windows
 {
     /// <summary>
     /// Interaction logic for Main.xaml

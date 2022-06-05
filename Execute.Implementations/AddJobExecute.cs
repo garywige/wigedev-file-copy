@@ -3,7 +3,7 @@ using WigeDev.View.Interfaces;
 
 namespace WigeDev.Execute.Implementations
 {
-    public class AddJobExecute<T> : IExecute where T : IWindowAdapter, new()
+    public class AddJobExecute<T> : IExecute where T : IOutputWindowAdapter, new()
     {
         protected IWindowFactory<T> windowFactory;
 
@@ -15,7 +15,10 @@ namespace WigeDev.Execute.Implementations
         public void Execute()
         {
             var window = windowFactory.CreateWindow();
-            window.ShowDialog();
+            if(window.ShowDialog() == true)
+            {
+                //TODO: process dialog output
+            }
         }
     }
 }

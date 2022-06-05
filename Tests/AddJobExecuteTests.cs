@@ -6,8 +6,8 @@ namespace Tests
     [TestClass]
     public class AddJobExecuteTests
     {
-        private AddJobExecute<FakeWindowAdapter> sut;
-        private FakeWindowFactory factory;
+        private AddJobExecute<FakeOutputWindowAdapter> sut;
+        private FakeOutputWindowFactory factory;
 
         [TestInitialize]
         public void Initialize()

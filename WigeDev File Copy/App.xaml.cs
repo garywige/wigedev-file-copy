@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Input;
 using System.Windows;
@@ -102,18 +103,29 @@ namespace WigeDev_File_Copy
         {
             var addJobExecute = new AddJobExecute(new OutputWindowFactory(
                 o => { },
-                o =>
-                {
-                    // TODO: view model and pass output
-                    var window = new AddJobWindow();
-                    if (window.ShowDialog() == true)
-                    {
-                        return true;
-                    }
-                    return false;
-                }),
+                addJobShowDialog),
                 jobList);
             return new CommandControlViewModel("Add Job", new Command(() => true, () => addJobExecute.Execute()));
+        }
+
+        private bool? addJobShowDialog(object? output)
+        {
+            var window = new AddJobWindow(
+                        initFolderSelectionControlVM("Source", sourceTF),
+                        initFolderSelectionControlVM("Destination", destTF),
+                        new CommandControlViewModel("Add", new Command(
+                            () => true,
+                            () => { }
+                            )),
+                        new CommandControlViewModel("Cancel", new Command(
+                            () => true,
+                            () => { }
+                            )));
+            if (window.ShowDialog() == true)
+            {
+                return true;
+            }
+            return false;
         }
 
         private IBatchListControlViewModel initBatchListCVM()

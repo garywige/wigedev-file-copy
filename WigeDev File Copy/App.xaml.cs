@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using System.Windows.Input;
@@ -110,13 +111,17 @@ namespace WigeDev_File_Copy
 
         private bool? addJobShowDialog(object? output)
         {
+            EventHandler? textChanged = null;
+            sourceTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
+            destTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
+
             var window = new AddJobWindow(
                         initFolderSelectionControlVM("Source", sourceTF),
                         initFolderSelectionControlVM("Destination", destTF),
-                        new CommandControlViewModel("Add", new Command(
-                            () => true,
+                        new CommandControlViewModel("Add", new CECCommand(new Command(
+                            () => validators.Where(v => !v.IsValid).Count() == 0,
                             () => { }
-                            )),
+                            ), ref textChanged)),
                         new CommandControlViewModel("Cancel", new Command(
                             () => true,
                             () => { }

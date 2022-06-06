@@ -6,12 +6,20 @@
         xmlns:local="clr-namespace:WigeDev.View.Windows"
         xmlns:controls="clr-namespace:WigeDev.View.Controls"
         mc:Ignorable="d"
-        Title="AddJobWindow" Height="450" Width="800">
+        Title="Add Job" Height="300" Width="400" FontSize="16" ResizeMode="NoResize">
+    <Window.Resources>
+        <Style TargetType="controls:FolderSelectionControl">
+            <Setter Property="Margin" Value="16" />
+        </Style>
+        <Style TargetType="controls:CommandControl">
+            <Setter Property="Margin" Value="16" />
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
         <controls:FolderSelectionControl x:Name="sourceControl"/>

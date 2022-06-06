@@ -20,11 +20,11 @@
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
 
-                        <TextBlock Grid.RowSpan="2" Text="{Binding Source}" />
+                        <Label Grid.ColumnSpan="2" Content="{Binding Path=Source}" />
 
-                        <Button Content="Edit" Grid.Row="1" Command="{Binding EditCommand}" />
+                        <Button Content="Edit" Grid.Row="1" Command="{Binding Path=EditCommand}" />
 
-                        <Button Content="Delete" Grid.Row="1" Grid.Column="1" Command="{Binding DeleteCommand}" />
+                        <Button Content="Delete" Grid.Row="1" Grid.Column="1" Command="{Binding Path=DeleteCommand}" />
 
                     </Grid>
                 </DataTemplate>

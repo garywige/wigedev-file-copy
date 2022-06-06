@@ -131,7 +131,9 @@ namespace WigeDev_File_Copy
 
             addCommand.SetExecute(() =>
             {
-                //TODO: add job to batch list
+                window.Close();
+                var copyJobVM = new CopyJobControlViewModel(sourceTF.Text, destTF.Text, null, null);
+                jobList.Add(copyJobVM);
             });
 
             cancelCommand.SetExecute(() =>

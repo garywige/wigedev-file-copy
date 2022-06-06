@@ -8,6 +8,9 @@
     <Compile Update="Controls\CommandControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Controls\CopyJobControl.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Controls\OutputControl.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -20,6 +23,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\CommandControl.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Controls\CopyJobControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Controls\FolderSelectionControl.xaml">

@@ -10,23 +10,7 @@
         <ListBox ItemsSource="{Binding Items}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition />
-                            <RowDefinition />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-
-                        <Label Grid.ColumnSpan="2" Content="{Binding Path=Source}" />
-
-                        <Button Content="Edit" Grid.Row="1" Command="{Binding Path=EditCommand}" />
-
-                        <Button Content="Delete" Grid.Row="1" Grid.Column="1" Command="{Binding Path=DeleteCommand}" />
-
-                    </Grid>
+                    <local:CopyJobControl />
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>

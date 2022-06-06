@@ -1,23 +1,22 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.ObjectModel;
-using System.Collections.Generic;
-using System.Windows.Input;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
 using WigeDev.Copier.Interfaces;
 using WigeDev.Execute.Implementations;
 using WigeDev.Output.Implementations;
+using WigeDev.Output.Interfaces;
 using WigeDev.Settings.Implementations;
+using WigeDev.Settings.Interfaces;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.View.Implementations;
 using WigeDev.View.Windows;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using WigeDev.Output.Interfaces;
-using WigeDev.Settings.Interfaces;
 
 namespace WigeDev_File_Copy
 {
@@ -115,17 +114,31 @@ namespace WigeDev_File_Copy
             sourceTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
             destTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
 
+            var addCommand = new SetExecuteCommand(new CECCommand(new Command(
+                            () => validators.Where(v => !v.IsValid).Count() == 0,
+                            () => { }
+                            ), ref textChanged));
+
+            var cancelCommand = new SetExecuteCommand(new Command(
+                () => true,
+                () => { }));
+
             var window = new AddJobWindow(
                         initFolderSelectionControlVM("Source", sourceTF),
                         initFolderSelectionControlVM("Destination", destTF),
-                        new CommandControlViewModel("Add", new CECCommand(new Command(
-                            () => validators.Where(v => !v.IsValid).Count() == 0,
-                            () => { }
-                            ), ref textChanged)),
-                        new CommandControlViewModel("Cancel", new Command(
-                            () => true,
-                            () => { }
-                            )));
+                        new CommandControlViewModel("Add", addCommand),
+                        new CommandControlViewModel("Cancel", cancelCommand));
+
+            addCommand.SetExecute(() =>
+            {
+                //TODO: add job to batch list
+            });
+
+            cancelCommand.SetExecute(() =>
+            {
+                window.Close();
+            });
+
             if (window.ShowDialog() == true)
             {
                 return true;

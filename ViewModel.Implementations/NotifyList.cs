@@ -96,18 +96,19 @@ namespace WigeDev.ViewModel.Implementations
             for (int i = 0; i < arr.Length; i++)
                 arr[i] = i < index ? items[i] : items[i + 1];
             items = arr;
-            collectionChanged(NotifyCollectionChangedAction.Remove, createItemList(oldValue));
+            
+            collectionChanged(NotifyCollectionChangedAction.Remove, createItemList(oldValue), null, index);
         }
 
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
-        protected void collectionChanged(NotifyCollectionChangedAction action, IList changedItems = null, IList oldItems = null)
+        protected void collectionChanged(NotifyCollectionChangedAction action, IList changedItems = null, IList oldItems = null, int index = 0)
         {
             var args = action switch
             {
                 NotifyCollectionChangedAction.Replace => new NotifyCollectionChangedEventArgs(action, changedItems, oldItems),
                 NotifyCollectionChangedAction.Add => new NotifyCollectionChangedEventArgs(action, changedItems),
-                NotifyCollectionChangedAction.Remove => new NotifyCollectionChangedEventArgs(action, changedItems),
+                NotifyCollectionChangedAction.Remove => new NotifyCollectionChangedEventArgs(action, changedItems, index),
                 NotifyCollectionChangedAction.Reset => new NotifyCollectionChangedEventArgs(action)
             };
 

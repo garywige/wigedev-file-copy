@@ -131,9 +131,13 @@ namespace WigeDev_File_Copy
 
             addCommand.SetExecute(() =>
             {
+                var deleteCommand = new SetExecuteCommand(new Command(() => true, () => { }));
+
                 window.Close();
-                var copyJobVM = new CopyJobControlViewModel(sourceTF.Text, destTF.Text, null, null);
+                var copyJobVM = new CopyJobControlViewModel(sourceTF.Text, destTF.Text, null, deleteCommand);
                 jobList.Add(copyJobVM);
+
+                deleteCommand.SetExecute(() => jobList.Remove(copyJobVM));
             });
 
             cancelCommand.SetExecute(() =>

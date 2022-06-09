@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.View.Windows
@@ -20,6 +21,12 @@ namespace WigeDev.View.Windows
             destinationControl.SetViewModel(destVM);
             addCommand.SetViewModel(addCommandVM);
             cancelCommand.SetViewModel(cancelCommandVM);
+        }
+
+        public bool? ShowEditDialog()
+        {
+            this.Title = "Edit Job";
+            return this.ShowDialog();
         }
     }
 }

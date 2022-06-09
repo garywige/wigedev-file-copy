@@ -29,7 +29,7 @@ namespace WigeDev_File_Copy
         private IJobStatus jobStatus;
         private ITextField sourceTF;
         private ITextField destTF;
-        private IValidator[] validators;
+        private FormValidator formValidator;
         private IOutput output;
         private ISelectControlViewModel<ICopyStrategy> overwriteVM;
         private ISettingsManager settingsManager;
@@ -108,42 +108,68 @@ namespace WigeDev_File_Copy
             return new CommandControlViewModel("Add Job", new Command(() => true, () => addJobExecute.Execute()));
         }
 
-        private bool? addJobShowDialog(object? output)
+        private SetExecuteCommand initAddJobAddCommand()
         {
             EventHandler? textChanged = null;
             sourceTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
             destTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
+            var isFormValid = () => formValidator.IsValid;
+            return new SetExecuteCommand(new CECCommand(new Command(
+                isFormValid,
+                () => { }),
+                ref textChanged));
 
-            var addCommand = new SetExecuteCommand(new CECCommand(new Command(
-                            () => validators.Where(v => !v.IsValid).Count() == 0,
-                            () => { }
-                            ), ref textChanged));
+        }
 
-            var cancelCommand = new SetExecuteCommand(new Command(
+        private SetExecuteCommand initAddJobCancelCommand()
+        {
+            return new SetExecuteCommand(new Command(
                 () => true,
                 () => { }));
+        }
 
-            var window = new AddJobWindow(
-                        initFolderSelectionControlVM("Source", sourceTF),
-                        initFolderSelectionControlVM("Destination", destTF),
-                        new CommandControlViewModel("Add", addCommand),
-                        new CommandControlViewModel("Cancel", cancelCommand));
-
-            addCommand.SetExecute(() =>
+        private Action addJobAddCommandExecute(Window window)
+        {
+            return () =>
             {
                 var deleteCommand = new SetExecuteCommand(new Command(() => true, () => { }));
+
+                var editCommand = new Command(() => formValidator.IsValid,
+                    null // TODO: encapsulate this section of code so we can recurse :P
+                    ); ;
 
                 window.Close();
                 var copyJobVM = new CopyJobControlViewModel(sourceTF.Text, destTF.Text, null, deleteCommand);
                 jobList.Add(copyJobVM);
 
                 deleteCommand.SetExecute(() => jobList.Remove(copyJobVM));
-            });
+            };
+        }
 
-            cancelCommand.SetExecute(() =>
+        private Action addJobCancelCommandExecute(Window window)
+        {
+            return () =>
             {
                 window.Close();
-            });
+            };
+        }
+
+        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand)
+        {
+            return new AddJobWindow(
+                        initFolderSelectionControlVM("Source", sourceTF),
+                        initFolderSelectionControlVM("Destination", destTF),
+                        new CommandControlViewModel("Add", addCommand),
+                        new CommandControlViewModel("Cancel", cancelCommand));
+        }
+
+        private bool? addJobShowDialog(object? output)
+        {
+            var addCommand = initAddJobAddCommand();
+            var cancelCommand = initAddJobCancelCommand();
+            var window = initAddJobWindow(addCommand, cancelCommand);
+            addCommand.SetExecute(addJobAddCommandExecute(window));
+            cancelCommand.SetExecute(addJobCancelCommandExecute(window));
 
             if (window.ShowDialog() == true)
             {
@@ -165,7 +191,7 @@ namespace WigeDev_File_Copy
         private ICommand initCopyCancelCommand()
         {
             var copyCancelCommand = new CopyCancelCommand(
-                new FormValidator(validators),
+                formValidator,
                 new CopyCancelExecute(
                     new Copier(
                     new FileEnumerator(settingsManager),
@@ -191,9 +217,10 @@ namespace WigeDev_File_Copy
 
         private void initValidators()
         {
-            validators = new IValidator[2];
+            var validators = new IValidator[2];
             validators[0] = new PathValidator(sourceTF);
             validators[1] = new PathValidator(destTF);
+            formValidator = new(validators);
         }
 
         private void initOutput()

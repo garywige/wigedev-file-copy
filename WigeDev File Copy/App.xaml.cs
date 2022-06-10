@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
-using System.Linq;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using WigeDev.Cancellation.Implementations;
@@ -69,43 +69,19 @@ namespace WigeDev_File_Copy
                 initBatchListCVM());
         }
 
-        private IFolderSelectionControlViewModel initFolderSelectionControlVM(string labelContent, ITextField textField)
+        private IList<ICopyStrategy> initCopyStrategies()
         {
-            return new FolderSelectionControlViewModel(labelContent, textField, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter()));
-        }
-
-        private ICommandControlViewModel initCopyCancelCommandControlVM(ICommand command)
-        {
-            return new CopyCancelCommandControlViewModel(jobStatus, command);
-        }
-
-        private IOutputViewModel initOutputVM()
-        {
-            return new OutputViewModel(output, jobStatus);
-        }
-
-        private void initOverwriteVM()
-        {
-
             ObservableCollection<ICopyStrategy> copyStrategies = new();
             copyStrategies.Add(new AllCopyStrategy(output));
             copyStrategies.Add(new NoneCopyStrategy(output));
             copyStrategies.Add(new OldCopyStrategy(output));
-            overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", copyStrategies);
+            return copyStrategies;
         }
 
         private ICommandControlViewModel initStartBatchCCVM()
         {
+            // TODO
             return null;
-        }
-
-        private ICommandControlViewModel initAddJobCCVM()
-        {
-            var addJobExecute = new AddJobExecute(new OutputWindowFactory(
-                o => { },
-                addJobShowDialog),
-                jobList);
-            return new CommandControlViewModel("Add Job", new Command(() => true, () => addJobExecute.Execute()));
         }
 
         private SetExecuteCommand initAddJobAddCommand()
@@ -121,47 +97,22 @@ namespace WigeDev_File_Copy
 
         }
 
-        private SetExecuteCommand initAddJobCancelCommand()
-        {
-            return new SetExecuteCommand(new Command(
-                () => true,
-                () => { }));
-        }
-
-        private Action addJobAddCommandExecute(Window window)
-        {
-            return () =>
+        private Action addJobAddCommandExecute(Window window) =>
+            () =>
             {
                 var deleteCommand = new SetExecuteCommand(new Command(() => true, () => { }));
 
                 var editCommand = new Command(() => formValidator.IsValid,
-                    null // TODO: encapsulate this section of code so we can recurse :P
-                    ); ;
+                    null // TODO
+                    );
 
                 window.Close();
-                var copyJobVM = new CopyJobControlViewModel(sourceTF.Text, destTF.Text, null, deleteCommand);
+                var copyJobVM = new CopyJobControlViewModel(sourceTF.Text, destTF.Text, editCommand, deleteCommand);
                 jobList.Add(copyJobVM);
 
                 deleteCommand.SetExecute(() => jobList.Remove(copyJobVM));
             };
-        }
-
-        private Action addJobCancelCommandExecute(Window window)
-        {
-            return () =>
-            {
-                window.Close();
-            };
-        }
-
-        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand)
-        {
-            return new AddJobWindow(
-                        initFolderSelectionControlVM("Source", sourceTF),
-                        initFolderSelectionControlVM("Destination", destTF),
-                        new CommandControlViewModel("Add", addCommand),
-                        new CommandControlViewModel("Cancel", cancelCommand));
-        }
+        
 
         private bool? addJobShowDialog(object? output)
         {
@@ -170,22 +121,7 @@ namespace WigeDev_File_Copy
             var window = initAddJobWindow(addCommand, cancelCommand);
             addCommand.SetExecute(addJobAddCommandExecute(window));
             cancelCommand.SetExecute(addJobCancelCommandExecute(window));
-
-            if (window.ShowDialog() == true)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private IBatchListControlViewModel initBatchListCVM()
-        {
-            return new BatchListControlViewModel(jobList);
-        }
-
-        private void initBatchJobList()
-        {
-            jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
+            return window.ShowDialog() == true;
         }
 
         private ICommand initCopyCancelCommand()
@@ -229,14 +165,24 @@ namespace WigeDev_File_Copy
             output = new BasicOutput(outputList);
         }
 
-        private void initJobStatus()
-        {
-            jobStatus = new JobStatus();
-        }
+        private void initJobStatus() => jobStatus = new JobStatus();
+        private void initSettingsManager() => settingsManager = new SettingsManager(overwriteVM);
+        private void initBatchJobList() => jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
+        private IBatchListControlViewModel initBatchListCVM() => new BatchListControlViewModel(jobList);
+        private Action addJobCancelCommandExecute(Window window) => () => window.Close();
+        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(initFolderSelectionControlVM("Source", sourceTF), initFolderSelectionControlVM("Destination", destTF),new CommandControlViewModel("Add", addCommand),new CommandControlViewModel("Cancel", cancelCommand));
+        private SetExecuteCommand initAddJobCancelCommand() => new SetExecuteCommand(new Command(() => true, () => { }));
+        private IFolderSelectionControlViewModel initFolderSelectionControlVM(string labelContent, ITextField textField) =>
+            new FolderSelectionControlViewModel(labelContent, textField, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter()));
+        private ICommandControlViewModel initCopyCancelCommandControlVM(ICommand command) => new CopyCancelCommandControlViewModel(jobStatus, command);
+        private IOutputViewModel initOutputVM() => new OutputViewModel(output, jobStatus);
+        private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", initCopyStrategies());
 
-        private void initSettingsManager()
-        {
-            settingsManager = new SettingsManager(overwriteVM);
-        }
+        private ICommandControlViewModel initAddJobCCVM() =>
+            new CommandControlViewModel("Add Job", new Command(() => true, () => (new AddJobExecute(new OutputWindowFactory(
+                o => { },
+                addJobShowDialog),
+                jobList)).Execute()));
+
     }
 }

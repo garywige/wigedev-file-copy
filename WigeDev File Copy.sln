@@ -33,9 +33,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Settings.Interfaces", "Sett
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Settings.Implementations", "Settings.Implementations\Settings.Implementations.csproj", "{049078F4-09BE-4722-B5D2-2A9826161273}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Execute.Interfaces", "Execute.Interfaces\Execute.Interfaces.csproj", "{C46FF472-E309-44DA-A9D4-999B93B0F659}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Execute.Interfaces", "Execute.Interfaces\Execute.Interfaces.csproj", "{C46FF472-E309-44DA-A9D4-999B93B0F659}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Execute.Implementations", "Execute.Implementations\Execute.Implementations.csproj", "{C9592A4F-56D5-4619-8642-205F40C87DAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Execute.Implementations", "Execute.Implementations\Execute.Implementations.csproj", "{C9592A4F-56D5-4619-8642-205F40C87DAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Init.Interfaces", "Init.Interfaces\Init.Interfaces.csproj", "{47F825E1-40EC-4122-8B29-44C21949A96A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Init.Implementations", "Init.Implementations\Init.Implementations.csproj", "{DE640025-34BA-4A17-80C2-B63D825E9D8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -111,6 +115,14 @@ Global
 		{C9592A4F-56D5-4619-8642-205F40C87DAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9592A4F-56D5-4619-8642-205F40C87DAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9592A4F-56D5-4619-8642-205F40C87DAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47F825E1-40EC-4122-8B29-44C21949A96A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F825E1-40EC-4122-8B29-44C21949A96A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F825E1-40EC-4122-8B29-44C21949A96A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F825E1-40EC-4122-8B29-44C21949A96A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE640025-34BA-4A17-80C2-B63D825E9D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE640025-34BA-4A17-80C2-B63D825E9D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE640025-34BA-4A17-80C2-B63D825E9D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE640025-34BA-4A17-80C2-B63D825E9D8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -58,7 +58,7 @@ namespace WigeDev_File_Copy
                 overwriteVM,
                 null, // TODO
                 new AddJobCCVMInitializer(addJobShowDialog, jobList).Initialize(),
-                initBatchListCVM());
+                new BatchListCVMInitializer(jobList).Initialize());
         }
         
         private bool? addJobShowDialog(object? output)
@@ -71,7 +71,6 @@ namespace WigeDev_File_Copy
             return window.ShowDialog() == true;
         }
 
-        private IBatchListControlViewModel initBatchListCVM() => new BatchListControlViewModel(jobList);
         private Action addJobCancelCommandExecute(Window window) => () => window.Close();
         private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(initFolderSelectionControlVM("Source", textFields["source"]), initFolderSelectionControlVM("Destination", textFields["destination"]),new CommandControlViewModel("Add", addCommand),new CommandControlViewModel("Cancel", cancelCommand));
         private SetExecuteCommand initAddJobCancelCommand() => new SetExecuteCommand(new Command(() => true, () => { }));

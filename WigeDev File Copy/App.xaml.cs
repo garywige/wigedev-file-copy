@@ -45,7 +45,7 @@ namespace WigeDev_File_Copy
             textFields = new TextFieldInitializer().Initialize();
             validator = new ValidatorInitializer(textFields["source"], textFields["destination"]).Initialize();
             output = new OutputInitializer().Initialize();
-            initJobStatus();
+            jobStatus = new JobStatusInitializer().Initialize();
             initOverwriteVM();
             initSettingsManager();
             initBatchJobList();
@@ -57,15 +57,9 @@ namespace WigeDev_File_Copy
                 initCopyCancelCommandControlVM(new CopyCancelCommandInitializer(validator, settingsManager, textFields["source"], textFields["destination"], output, jobStatus).Initialize()),
                 initOutputVM(),
                 overwriteVM,
-                initStartBatchCCVM(),
+                null, // TODO
                 new AddJobCCVMInitializer(addJobShowDialog, jobList).Initialize(),
                 initBatchListCVM());
-        }
-
-        private ICommandControlViewModel initStartBatchCCVM()
-        {
-            // TODO
-            return null;
         }
         
         private bool? addJobShowDialog(object? output)
@@ -78,7 +72,6 @@ namespace WigeDev_File_Copy
             return window.ShowDialog() == true;
         }
 
-        private void initJobStatus() => jobStatus = new JobStatus();
         private void initSettingsManager() => settingsManager = new SettingsManager(overwriteVM);
         private void initBatchJobList() => jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
         private IBatchListControlViewModel initBatchListCVM() => new BatchListControlViewModel(jobList);

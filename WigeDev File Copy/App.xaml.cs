@@ -5,7 +5,6 @@ using System.Windows.Input;
 using WigeDev.Copier.Interfaces;
 using WigeDev.Init.Implementations;
 using WigeDev.Output.Interfaces;
-using WigeDev.Settings.Implementations;
 using WigeDev.Settings.Interfaces;
 using WigeDev.Validation.Interfaces;
 using WigeDev.View.Windows;
@@ -48,7 +47,7 @@ namespace WigeDev_File_Copy
             jobStatus = new JobStatusInitializer().Initialize();
             initOverwriteVM();
             settingsManager = new SettingsManagerInitializer(overwriteVM).Initialize();
-            initBatchJobList();
+            jobList = new BatchJobListInitializer().Initialize();
 
             // Main Window
             return new MainWindow(
@@ -72,7 +71,6 @@ namespace WigeDev_File_Copy
             return window.ShowDialog() == true;
         }
 
-        private void initBatchJobList() => jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
         private IBatchListControlViewModel initBatchListCVM() => new BatchListControlViewModel(jobList);
         private Action addJobCancelCommandExecute(Window window) => () => window.Close();
         private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(initFolderSelectionControlVM("Source", textFields["source"]), initFolderSelectionControlVM("Destination", textFields["destination"]),new CommandControlViewModel("Add", addCommand),new CommandControlViewModel("Cancel", cancelCommand));

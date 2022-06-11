@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
 using WigeDev.Copier.Interfaces;
 using WigeDev.Execute.Implementations;
+using WigeDev.Init.Implementations;
 using WigeDev.Output.Implementations;
 using WigeDev.Output.Interfaces;
 using WigeDev.Settings.Implementations;
@@ -17,8 +16,6 @@ using WigeDev.View.Implementations;
 using WigeDev.View.Windows;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using WigeDev.Init.Implementations;
-using WigeDev.Init.Interfaces;
 
 namespace WigeDev_File_Copy
 {
@@ -63,7 +60,7 @@ namespace WigeDev_File_Copy
             return new MainWindow(
                 initFolderSelectionControlVM("Source", sourceTF),
                 initFolderSelectionControlVM("Destination", destTF),
-                initCopyCancelCommandControlVM(initCopyCancelCommand()),
+                initCopyCancelCommandControlVM(new CopyCancelCommandInitializer(formValidator, settingsManager, sourceTF, destTF, output, jobStatus).Initialize()),
                 initOutputVM(),
                 overwriteVM,
                 initStartBatchCCVM(),
@@ -85,27 +82,6 @@ namespace WigeDev_File_Copy
             addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(formValidator, window, sourceTF, destTF, jobList).Initialize());
             cancelCommand.SetExecute(addJobCancelCommandExecute(window));
             return window.ShowDialog() == true;
-        }
-
-        private ICommand initCopyCancelCommand()
-        {
-            var copyCancelCommand = new CopyCancelCommand(
-                formValidator,
-                new CopyCancelExecute(
-                    new Copier(
-                    new FileEnumerator(settingsManager),
-                    sourceTF,
-                    destTF,
-                    output,
-                    new PathConstructor(),
-                    new CancellationManager(),
-                    jobStatus),
-                    jobStatus));
-
-            sourceTF.PropertyChanged += (s, e) => copyCancelCommand.TestCanExecute();
-            destTF.PropertyChanged += (s, e) => copyCancelCommand.TestCanExecute();
-
-            return copyCancelCommand;
         }
 
         private void initTextFields()

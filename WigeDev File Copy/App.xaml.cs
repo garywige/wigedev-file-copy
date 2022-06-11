@@ -16,6 +16,7 @@ using WigeDev.View.Implementations;
 using WigeDev.View.Windows;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
+using System.Collections.Generic;
 
 namespace WigeDev_File_Copy
 {
@@ -26,8 +27,7 @@ namespace WigeDev_File_Copy
     {
         private Window window;
         private IJobStatus jobStatus;
-        private ITextField source;
-        private ITextField dest;
+        private IDictionary<string, ITextField> textFields;
         private IValidator validator;
         private IOutput output;
         private ISelectControlViewModel<ICopyStrategy> overwriteVM;
@@ -48,8 +48,8 @@ namespace WigeDev_File_Copy
 
         private Window initializeWindow()
         {
-            initTextFields();
-            validator = new ValidatorInitializer(source, dest).Initialize();
+            textFields = new TextFieldInitializer().Initialize();
+            validator = new ValidatorInitializer(textFields["source"], textFields["destination"]).Initialize();
             initOutput();
             initJobStatus();
             initOverwriteVM();
@@ -58,9 +58,9 @@ namespace WigeDev_File_Copy
 
             // Main Window
             return new MainWindow(
-                initFolderSelectionControlVM("Source", source),
-                initFolderSelectionControlVM("Destination", dest),
-                initCopyCancelCommandControlVM(new CopyCancelCommandInitializer(validator, settingsManager, source, dest, output, jobStatus).Initialize()),
+                initFolderSelectionControlVM("Source", textFields["source"]),
+                initFolderSelectionControlVM("Destination", textFields["destination"]),
+                initCopyCancelCommandControlVM(new CopyCancelCommandInitializer(validator, settingsManager, textFields["source"], textFields["destination"], output, jobStatus).Initialize()),
                 initOutputVM(),
                 overwriteVM,
                 initStartBatchCCVM(),
@@ -76,18 +76,12 @@ namespace WigeDev_File_Copy
         
         private bool? addJobShowDialog(object? output)
         {
-            var addCommand = new AddJobAddCommandInitializer(source, dest, validator).Initialize();
+            var addCommand = new AddJobAddCommandInitializer(textFields["source"], textFields["destination"], validator).Initialize();
             var cancelCommand = initAddJobCancelCommand();
             var window = initAddJobWindow(addCommand, cancelCommand);
-            addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, source, dest, jobList).Initialize());
+            addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList).Initialize());
             cancelCommand.SetExecute(addJobCancelCommandExecute(window));
             return window.ShowDialog() == true;
-        }
-
-        private void initTextFields()
-        {
-            source = new TextField();
-            dest = new TextField();
         }
 
         private void initOutput()
@@ -101,7 +95,7 @@ namespace WigeDev_File_Copy
         private void initBatchJobList() => jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
         private IBatchListControlViewModel initBatchListCVM() => new BatchListControlViewModel(jobList);
         private Action addJobCancelCommandExecute(Window window) => () => window.Close();
-        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(initFolderSelectionControlVM("Source", source), initFolderSelectionControlVM("Destination", dest),new CommandControlViewModel("Add", addCommand),new CommandControlViewModel("Cancel", cancelCommand));
+        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(initFolderSelectionControlVM("Source", textFields["source"]), initFolderSelectionControlVM("Destination", textFields["destination"]),new CommandControlViewModel("Add", addCommand),new CommandControlViewModel("Cancel", cancelCommand));
         private SetExecuteCommand initAddJobCancelCommand() => new SetExecuteCommand(new Command(() => true, () => { }));
         private IFolderSelectionControlViewModel initFolderSelectionControlVM(string labelContent, ITextField textField) =>
             new FolderSelectionControlViewModel(labelContent, textField, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter()));

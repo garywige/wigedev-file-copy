@@ -4,7 +4,6 @@ using System.Windows;
 using System.Windows.Input;
 using WigeDev.Copier.Interfaces;
 using WigeDev.Init.Implementations;
-using WigeDev.Output.Implementations;
 using WigeDev.Output.Interfaces;
 using WigeDev.Settings.Implementations;
 using WigeDev.Settings.Interfaces;
@@ -45,7 +44,7 @@ namespace WigeDev_File_Copy
         {
             textFields = new TextFieldInitializer().Initialize();
             validator = new ValidatorInitializer(textFields["source"], textFields["destination"]).Initialize();
-            initOutput();
+            output = new OutputInitializer().Initialize();
             initJobStatus();
             initOverwriteVM();
             initSettingsManager();
@@ -77,12 +76,6 @@ namespace WigeDev_File_Copy
             addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList).Initialize());
             cancelCommand.SetExecute(addJobCancelCommandExecute(window));
             return window.ShowDialog() == true;
-        }
-
-        private void initOutput()
-        {
-            var outputList = new NotifyList<string>(new NotifyListEnumerator<string>());
-            output = new BasicOutput(outputList);
         }
 
         private void initJobStatus() => jobStatus = new JobStatus();

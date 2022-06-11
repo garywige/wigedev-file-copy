@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net6.0-windows</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
   </PropertyGroup>
@@ -11,6 +11,8 @@
     <ProjectReference Include="..\Copier.Interfaces\Copier.Interfaces.csproj" />
     <ProjectReference Include="..\Init.Interfaces\Init.Interfaces.csproj" />
     <ProjectReference Include="..\Output.Interfaces\Output.Interfaces.csproj" />
+    <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
+    <ProjectReference Include="..\ViewModel.Implementations\ViewModel.Implementations.csproj" />
   </ItemGroup>
 
 </Project>

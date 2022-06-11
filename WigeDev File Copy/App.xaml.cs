@@ -77,19 +77,6 @@ namespace WigeDev_File_Copy
             return null;
         }
 
-        private SetExecuteCommand initAddJobAddCommand()
-        {
-            EventHandler? textChanged = null;
-            sourceTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
-            destTF.PropertyChanged += (s, e) => textChanged?.Invoke(this, e);
-            var isFormValid = () => formValidator.IsValid;
-            return new SetExecuteCommand(new CECCommand(new Command(
-                isFormValid,
-                () => { }),
-                ref textChanged));
-
-        }
-
         private Action addJobAddCommandExecute(Window window) =>
             () =>
             {
@@ -109,7 +96,7 @@ namespace WigeDev_File_Copy
 
         private bool? addJobShowDialog(object? output)
         {
-            var addCommand = initAddJobAddCommand();
+            var addCommand = new AddJobAddCommandInitializer(sourceTF, destTF, formValidator).Initialize();
             var cancelCommand = initAddJobCancelCommand();
             var window = initAddJobWindow(addCommand, cancelCommand);
             addCommand.SetExecute(addJobAddCommandExecute(window));

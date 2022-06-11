@@ -12,6 +12,8 @@
     <ProjectReference Include="..\Cancellation.Implementations\Cancellation.Implementations.csproj" />
     <ProjectReference Include="..\Copier.Implementations\Copier.Implementations.csproj" />
     <ProjectReference Include="..\Execute.Implementations\Execute.Implementations.csproj" />
+    <ProjectReference Include="..\Init.Implementations\Init.Implementations.csproj" />
+    <ProjectReference Include="..\Init.Interfaces\Init.Interfaces.csproj" />
     <ProjectReference Include="..\Output.Implementations\Output.Implementations.csproj" />
     <ProjectReference Include="..\Settings.Implementations\Settings.Implementations.csproj" />
     <ProjectReference Include="..\Validation.Implementations\Validation.Implementations.csproj" />

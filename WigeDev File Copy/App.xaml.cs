@@ -54,7 +54,7 @@ namespace WigeDev_File_Copy
                 new FolderSelectionCVMInitializer("Source", textFields["source"], jobStatus).Initialize(),
                 new FolderSelectionCVMInitializer("Destination", textFields["destination"], jobStatus).Initialize(),
                 new CopyCancelCCVMInitializer(jobStatus, new CopyCancelCommandInitializer(validator, settingsManager, textFields["source"], textFields["destination"], output, jobStatus).Initialize()).Initialize(),
-                initOutputVM(),
+                new OutputVMInitializer(output, jobStatus).Initialize(),
                 overwriteVM,
                 null, // TODO
                 new AddJobCCVMInitializer(addJobShowDialog, jobList).Initialize(),
@@ -72,7 +72,6 @@ namespace WigeDev_File_Copy
         }
 
         private Action addJobCancelCommandExecute(Window window) => () => window.Close();
-        private IOutputViewModel initOutputVM() => new OutputViewModel(output, jobStatus);
         private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", (new CopyStrategyInitializer(output)).Initialize());
 
     }

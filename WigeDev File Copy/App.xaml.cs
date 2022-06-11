@@ -47,7 +47,7 @@ namespace WigeDev_File_Copy
             output = new OutputInitializer().Initialize();
             jobStatus = new JobStatusInitializer().Initialize();
             initOverwriteVM();
-            initSettingsManager();
+            settingsManager = new SettingsManagerInitializer(overwriteVM).Initialize();
             initBatchJobList();
 
             // Main Window
@@ -72,7 +72,6 @@ namespace WigeDev_File_Copy
             return window.ShowDialog() == true;
         }
 
-        private void initSettingsManager() => settingsManager = new SettingsManager(overwriteVM);
         private void initBatchJobList() => jobList = new NotifyList<ICopyJobControlViewModel>(new NotifyListEnumerator<ICopyJobControlViewModel>());
         private IBatchListControlViewModel initBatchListCVM() => new BatchListControlViewModel(jobList);
         private Action addJobCancelCommandExecute(Window window) => () => window.Close();

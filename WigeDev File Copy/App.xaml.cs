@@ -76,30 +76,13 @@ namespace WigeDev_File_Copy
             // TODO
             return null;
         }
-
-        private Action addJobAddCommandExecute(Window window) =>
-            () =>
-            {
-                var deleteCommand = new SetExecuteCommand(new Command(() => true, () => { }));
-
-                var editCommand = new Command(() => formValidator.IsValid,
-                    null // TODO
-                    );
-
-                window.Close();
-                var copyJobVM = new CopyJobControlViewModel(sourceTF.Text, destTF.Text, editCommand, deleteCommand);
-                jobList.Add(copyJobVM);
-
-                deleteCommand.SetExecute(() => jobList.Remove(copyJobVM));
-            };
         
-
         private bool? addJobShowDialog(object? output)
         {
             var addCommand = new AddJobAddCommandInitializer(sourceTF, destTF, formValidator).Initialize();
             var cancelCommand = initAddJobCancelCommand();
             var window = initAddJobWindow(addCommand, cancelCommand);
-            addCommand.SetExecute(addJobAddCommandExecute(window));
+            addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(formValidator, window, sourceTF, destTF, jobList).Initialize());
             cancelCommand.SetExecute(addJobCancelCommandExecute(window));
             return window.ShowDialog() == true;
         }

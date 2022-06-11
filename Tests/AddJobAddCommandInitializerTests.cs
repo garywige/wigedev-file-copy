@@ -1,25 +1,18 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WigeDev.Init.Implementations;
+using WigeDev.ViewModel.Implementations;
 
 namespace Tests
 {
     [TestClass]
-    public class AddJobAddCommandInitializerTests
+    public class AddJobAddCommandInitializerTests : InitializerTestsBase<SetExecuteCommand>
     {
-        private AddJobAddCommandInitializer sut;
 
         [TestInitialize]
         public void Initialize()
         {
             var textField = new FakeTextField();
-            sut = new(textField, textField, new FakeValidator());
-        }
-
-        [TestMethod]
-        public void InitializeIsNotNull()
-        {
-            var result = sut.Initialize();
-            Assert.IsNotNull(result);
+            sut = new AddJobAddCommandInitializer(textField, textField, new FakeValidator());
         }
     }
 }

@@ -65,18 +65,13 @@ namespace WigeDev_File_Copy
         {
             var addCommand = new AddJobAddCommandInitializer(textFields["source"], textFields["destination"], validator).Initialize();
             var cancelCommand = new AddJobCancelCommandInitializer().Initialize();
-            var window = initAddJobWindow(addCommand, cancelCommand);
+            var window = new AddJobWindowInitializer(textFields, jobStatus, addCommand, cancelCommand).Initialize();
             addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList).Initialize());
             cancelCommand.SetExecute(addJobCancelCommandExecute(window));
             return window.ShowDialog() == true;
         }
 
         private Action addJobCancelCommandExecute(Window window) => () => window.Close();
-        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(
-            new FolderSelectionCVMInitializer("Source", textFields["source"], jobStatus).Initialize(), 
-            new FolderSelectionCVMInitializer("Destination", textFields["destination"], jobStatus).Initialize(),
-            new CommandControlViewModel("Add", addCommand),
-            new CommandControlViewModel("Cancel", cancelCommand));
         private ICommandControlViewModel initCopyCancelCommandControlVM(ICommand command) => new CopyCancelCommandControlViewModel(jobStatus, command);
         private IOutputViewModel initOutputVM() => new OutputViewModel(output, jobStatus);
         private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", (new CopyStrategyInitializer(output)).Initialize());

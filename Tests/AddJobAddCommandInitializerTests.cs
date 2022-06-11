@@ -9,7 +9,7 @@ namespace Tests
     {
 
         [TestInitialize]
-        public void Initialize()
+        public override void Initialize()
         {
             var textField = new FakeTextField();
             sut = new AddJobAddCommandInitializer(textField, textField, new FakeValidator());

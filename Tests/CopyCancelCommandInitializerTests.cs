@@ -8,7 +8,7 @@ namespace Tests
     public class CopyCancelCommandInitializerTests : InitializerTestsBase<ICommand>
     {
         [TestInitialize]
-        public void Initialize()
+        public override void Initialize()
         {
             sut = new CopyCancelCommandInitializer(
                 new FakeValidator(),

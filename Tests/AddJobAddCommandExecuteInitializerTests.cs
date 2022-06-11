@@ -10,7 +10,7 @@ namespace Tests
     public class AddJobAddCommandExecuteInitializerTests : InitializerTestsBase<Action>
     {
         [TestInitialize]
-        public void Initialize()
+        public override void Initialize()
         {
             var textField = new FakeTextField();
             sut = new AddJobAddCommandExecuteInitializer(new FakeValidator(), null, textField, textField, new List<ICopyJobControlViewModel>());

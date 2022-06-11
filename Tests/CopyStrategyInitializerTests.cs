@@ -9,7 +9,7 @@ namespace Tests
     public class CopyStrategyInitializerTests : InitializerTestsBase<IList<ICopyStrategy>>
     {
         [TestInitialize]
-        public void Initialize()
+        public override void Initialize()
         {
             sut = new CopyStrategyInitializer(new FakeOutput());
         }

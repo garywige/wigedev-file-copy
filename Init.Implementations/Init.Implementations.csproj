@@ -14,6 +14,7 @@
     <ProjectReference Include="..\Execute.Implementations\Execute.Implementations.csproj" />
     <ProjectReference Include="..\Init.Interfaces\Init.Interfaces.csproj" />
     <ProjectReference Include="..\Output.Interfaces\Output.Interfaces.csproj" />
+    <ProjectReference Include="..\Validation.Implementations\Validation.Implementations.csproj" />
     <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
     <ProjectReference Include="..\ViewModel.Implementations\ViewModel.Implementations.csproj" />
   </ItemGroup>

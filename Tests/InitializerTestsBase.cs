@@ -7,6 +7,8 @@ namespace Tests
     {
         protected IInitializer<T> sut;
 
+        public abstract void Initialize();
+
         [TestMethod]
         public void InitializeIsNotNull()
         {

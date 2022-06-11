@@ -45,7 +45,7 @@ namespace WigeDev_File_Copy
             validator = new ValidatorInitializer(textFields["source"], textFields["destination"]).Initialize();
             output = new OutputInitializer().Initialize();
             jobStatus = new JobStatusInitializer().Initialize();
-            initOverwriteVM();
+            overwriteVM = new OverwriteVMInitializer(output).Initialize();
             settingsManager = new SettingsManagerInitializer(overwriteVM).Initialize();
             jobList = new BatchJobListInitializer().Initialize();
 
@@ -67,12 +67,8 @@ namespace WigeDev_File_Copy
             var cancelCommand = new AddJobCancelCommandInitializer().Initialize();
             var window = new AddJobWindowInitializer(textFields, jobStatus, addCommand, cancelCommand).Initialize();
             addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList).Initialize());
-            cancelCommand.SetExecute(addJobCancelCommandExecute(window));
+            cancelCommand.SetExecute(() => window.Close());
             return window.ShowDialog() == true;
         }
-
-        private Action addJobCancelCommandExecute(Window window) => () => window.Close();
-        private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", (new CopyStrategyInitializer(output)).Initialize());
-
     }
 }

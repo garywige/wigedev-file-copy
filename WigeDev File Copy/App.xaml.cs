@@ -1,22 +1,17 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using WigeDev.Cancellation.Implementations;
-using WigeDev.Copier.Implementations;
 using WigeDev.Copier.Interfaces;
-using WigeDev.Execute.Implementations;
 using WigeDev.Init.Implementations;
 using WigeDev.Output.Implementations;
 using WigeDev.Output.Interfaces;
 using WigeDev.Settings.Implementations;
 using WigeDev.Settings.Interfaces;
-using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
-using WigeDev.View.Implementations;
 using WigeDev.View.Windows;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.Generic;
 
 namespace WigeDev_File_Copy
 {
@@ -64,7 +59,7 @@ namespace WigeDev_File_Copy
                 initOutputVM(),
                 overwriteVM,
                 initStartBatchCCVM(),
-                initAddJobCCVM(),
+                new AddJobCCVMInitializer(addJobShowDialog, jobList).Initialize(),
                 initBatchListCVM());
         }
 
@@ -102,12 +97,6 @@ namespace WigeDev_File_Copy
         private ICommandControlViewModel initCopyCancelCommandControlVM(ICommand command) => new CopyCancelCommandControlViewModel(jobStatus, command);
         private IOutputViewModel initOutputVM() => new OutputViewModel(output, jobStatus);
         private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", (new CopyStrategyInitializer(output)).Initialize());
-
-        private ICommandControlViewModel initAddJobCCVM() =>
-            new CommandControlViewModel("Add Job", new Command(() => true, () => (new AddJobExecute(new OutputWindowFactory(
-                o => { },
-                addJobShowDialog),
-                jobList)).Execute()));
 
     }
 }

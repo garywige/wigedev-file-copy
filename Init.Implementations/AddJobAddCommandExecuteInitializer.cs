@@ -35,7 +35,11 @@ namespace WigeDev.Init.Implementations
                 var deleteCommand = new SetExecuteCommand(new Command(() => true, () => { }));
 
                 var editCommand = new Command(() => validator.IsValid,
-                    null // TODO
+                    () =>
+                    {
+                        var window = new EditJobWindowInitializer(null).Initialize();
+                        window.ShowDialog();
+                    }
                     );
 
                 window?.Close();

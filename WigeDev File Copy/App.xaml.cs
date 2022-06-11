@@ -51,8 +51,8 @@ namespace WigeDev_File_Copy
 
             // Main Window
             return new MainWindow(
-                initFolderSelectionControlVM("Source", textFields["source"]),
-                initFolderSelectionControlVM("Destination", textFields["destination"]),
+                new FolderSelectionCVMInitializer("Source", textFields["source"], jobStatus).Initialize(),
+                new FolderSelectionCVMInitializer("Destination", textFields["destination"], jobStatus).Initialize(),
                 initCopyCancelCommandControlVM(new CopyCancelCommandInitializer(validator, settingsManager, textFields["source"], textFields["destination"], output, jobStatus).Initialize()),
                 initOutputVM(),
                 overwriteVM,
@@ -72,9 +72,11 @@ namespace WigeDev_File_Copy
         }
 
         private Action addJobCancelCommandExecute(Window window) => () => window.Close();
-        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(initFolderSelectionControlVM("Source", textFields["source"]), initFolderSelectionControlVM("Destination", textFields["destination"]),new CommandControlViewModel("Add", addCommand),new CommandControlViewModel("Cancel", cancelCommand));
-        private IFolderSelectionControlViewModel initFolderSelectionControlVM(string labelContent, ITextField textField) =>
-            new FolderSelectionControlViewModel(labelContent, textField, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter()));
+        private Window initAddJobWindow(ICommand addCommand, ICommand cancelCommand) => new AddJobWindow(
+            new FolderSelectionCVMInitializer("Source", textFields["source"], jobStatus).Initialize(), 
+            new FolderSelectionCVMInitializer("Destination", textFields["destination"], jobStatus).Initialize(),
+            new CommandControlViewModel("Add", addCommand),
+            new CommandControlViewModel("Cancel", cancelCommand));
         private ICommandControlViewModel initCopyCancelCommandControlVM(ICommand command) => new CopyCancelCommandControlViewModel(jobStatus, command);
         private IOutputViewModel initOutputVM() => new OutputViewModel(output, jobStatus);
         private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", (new CopyStrategyInitializer(output)).Initialize());

@@ -17,6 +17,8 @@ using WigeDev.View.Implementations;
 using WigeDev.View.Windows;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
+using WigeDev.Init.Implementations;
+using WigeDev.Init.Interfaces;
 
 namespace WigeDev_File_Copy
 {
@@ -69,14 +71,7 @@ namespace WigeDev_File_Copy
                 initBatchListCVM());
         }
 
-        private IList<ICopyStrategy> initCopyStrategies()
-        {
-            ObservableCollection<ICopyStrategy> copyStrategies = new();
-            copyStrategies.Add(new AllCopyStrategy(output));
-            copyStrategies.Add(new NoneCopyStrategy(output));
-            copyStrategies.Add(new OldCopyStrategy(output));
-            return copyStrategies;
-        }
+        private IList<ICopyStrategy> initCopyStrategies() => (new CopyStrategyInitializer(output)).Initialize();
 
         private ICommandControlViewModel initStartBatchCCVM()
         {

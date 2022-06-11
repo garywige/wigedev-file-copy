@@ -71,8 +71,6 @@ namespace WigeDev_File_Copy
                 initBatchListCVM());
         }
 
-        private IList<ICopyStrategy> initCopyStrategies() => (new CopyStrategyInitializer(output)).Initialize();
-
         private ICommandControlViewModel initStartBatchCCVM()
         {
             // TODO
@@ -171,7 +169,7 @@ namespace WigeDev_File_Copy
             new FolderSelectionControlViewModel(labelContent, textField, jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter()));
         private ICommandControlViewModel initCopyCancelCommandControlVM(ICommand command) => new CopyCancelCommandControlViewModel(jobStatus, command);
         private IOutputViewModel initOutputVM() => new OutputViewModel(output, jobStatus);
-        private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", initCopyStrategies());
+        private void initOverwriteVM() => overwriteVM = new OverwriteSelectControlViewModel<ICopyStrategy>("Overwrite Mode", (new CopyStrategyInitializer(output)).Initialize());
 
         private ICommandControlViewModel initAddJobCCVM() =>
             new CommandControlViewModel("Add Job", new Command(() => true, () => (new AddJobExecute(new OutputWindowFactory(

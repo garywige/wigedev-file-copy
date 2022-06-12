@@ -5,6 +5,8 @@ using WigeDev.View.Implementations;
 using WigeDev.ViewModel.Interfaces;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.Validation.Interfaces;
+using WigeDev.Cancellation.Implementations;
+using WigeDev.Copier.Implementations;
 
 namespace WigeDev.Init.Implementations
 {
@@ -24,15 +26,26 @@ namespace WigeDev.Init.Implementations
             var overwriteVM = new OverwriteVMInitializer(output).Initialize();
             var settingsManager = new SettingsManagerInitializer(overwriteVM).Initialize();
             jobList = new BatchJobListInitializer().Initialize();
+            var cancellationManager = new CancellationManager();
+            var fileEnumerator = new FileEnumerator(settingsManager);
+            var pathConstructor = new PathConstructor();
 
             // Main Window
             return new MainWindow(
                 new FolderSelectionCVMInitializer("Source", textFields["source"], jobStatus).Initialize(),
                 new FolderSelectionCVMInitializer("Destination", textFields["destination"], jobStatus).Initialize(),
-                new CopyCancelCCVMInitializer(jobStatus, new CopyCancelCommandInitializer(validator, settingsManager, textFields["source"], textFields["destination"], output, jobStatus).Initialize()).Initialize(),
+                new CopyCancelCCVMInitializer(jobStatus, new CopyCancelCommandInitializer(
+                    validator, 
+                    textFields["source"], 
+                    textFields["destination"], 
+                    output, 
+                    jobStatus,
+                    cancellationManager,
+                    fileEnumerator,
+                    pathConstructor).Initialize()).Initialize(),
                 new OutputVMInitializer(output, jobStatus).Initialize(),
                 overwriteVM,
-                null, // TODO
+                new StartBatchCCVMInitializer(jobStatus, cancellationManager, jobList, fileEnumerator, pathConstructor).Initialize(),
                 new AddJobCCVMInitializer(addJobShowDialog, jobList).Initialize(),
                 new BatchListCVMInitializer(jobList).Initialize());
         }

@@ -32,7 +32,11 @@ namespace Tests
 
         public void CopyTo(T[] array, int arrayIndex) => list.CopyTo(array, arrayIndex);
 
-        public IEnumerator<T> GetEnumerator() => list.GetEnumerator();
+        public IEnumerator<T> GetEnumerator()
+        {
+            GetEnumeratorCalled = true;
+            return list.GetEnumerator();
+        }
 
         public int IndexOf(T item) => list.IndexOf(item);
 
@@ -43,5 +47,7 @@ namespace Tests
         public void RemoveAt(int index) => list.RemoveAt(index);
 
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
+
+        public bool GetEnumeratorCalled { get; private set; } = false;
     }
 }

@@ -43,6 +43,8 @@ namespace Tests
         [TestMethod]
         public void ExecuteCallsCancelWhenCalledTwice()
         {
+            copier.CopyDelay = true;
+
             sut.Execute();
             sut.Execute();
             Assert.IsTrue(copier.WasCancelCalled);

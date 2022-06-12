@@ -4,9 +4,6 @@ namespace WigeDev.View.Implementations
 {
     public class EditJobWindowFactory : IWindowFactory<EditJobWindowAdapter>
     {
-        public EditJobWindowAdapter CreateWindow()
-        {
-            throw new System.NotImplementedException();
-        }
+        public EditJobWindowAdapter CreateWindow() => new EditJobWindowAdapter();
     }
 }

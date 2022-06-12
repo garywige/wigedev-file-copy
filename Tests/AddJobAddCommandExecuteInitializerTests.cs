@@ -13,7 +13,8 @@ namespace Tests
         public override void Initialize()
         {
             var textField = new FakeTextField();
-            sut = new AddJobAddCommandExecuteInitializer(new FakeValidator(), null, textField, textField, new List<ICopyJobControlViewModel>());
+            sut = new AddJobAddCommandExecuteInitializer(new FakeValidator(), null, textField, textField, new List<ICopyJobControlViewModel>(),
+                new FakeEditJobWindowFactory());
         }
     }
 }

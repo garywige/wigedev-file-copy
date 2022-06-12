@@ -3,6 +3,8 @@ using WigeDev.ViewModel.Implementations;
 using WigeDev.Validation.Interfaces;
 using System.Windows;
 using WigeDev.ViewModel.Interfaces;
+using WigeDev.View.Interfaces;
+using WigeDev.View.Implementations;
 
 namespace WigeDev.Init.Implementations
 {
@@ -13,19 +15,22 @@ namespace WigeDev.Init.Implementations
         protected ITextField source;
         protected ITextField dest;
         protected IList<ICopyJobControlViewModel> jobList;
+        protected IWindowFactory<EditJobWindowAdapter> windowFactory;
 
         public AddJobAddCommandExecuteInitializer(
             IValidator validator, 
             Window window,
             ITextField source,
             ITextField dest,
-            IList<ICopyJobControlViewModel> jobList)
+            IList<ICopyJobControlViewModel> jobList,
+            IWindowFactory<EditJobWindowAdapter> windowFactory)
         {
             this.validator = validator;
             this.window = window;
             this.source = source;
             this.dest = dest;
             this.jobList = jobList;
+            this.windowFactory = windowFactory;
         }
 
         public Action Initialize()
@@ -37,7 +42,7 @@ namespace WigeDev.Init.Implementations
                 var editCommand = new Command(() => validator.IsValid,
                     () =>
                     {
-                        var window = new EditJobWindowInitializer(null).Initialize();
+                        var window = new EditJobWindowInitializer(windowFactory).Initialize();
                         window.ShowDialog();
                     }
                     );

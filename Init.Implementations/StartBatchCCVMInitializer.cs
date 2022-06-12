@@ -32,9 +32,13 @@ namespace WigeDev.Init.Implementations
 
         public ICommandControlViewModel Initialize()
         {
-            return new StartBatchCommandControlViewModel(jobStatus, new Command(
-                () => true, 
-                new StartBatchExecute(jobStatus, new BatchCopier(cancellationManager, jobList, fileEnumerator, pathConstructor)).Execute));
+            jobList.CollectionChanged += (s, e) => jobListCollectionChanged?.Invoke(this, new EventArgs());
+
+            return new StartBatchCommandControlViewModel(jobStatus, new CECCommand(new Command(
+                () => jobList.Count > 0,
+                new StartBatchExecute(jobStatus, new BatchCopier(cancellationManager, jobList, fileEnumerator, pathConstructor)).Execute), ref jobListCollectionChanged));
         }
+
+        protected EventHandler jobListCollectionChanged;
     }
 }

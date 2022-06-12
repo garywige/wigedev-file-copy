@@ -11,7 +11,7 @@ namespace Tests
         [TestInitialize]
         public override void Initialize()
         {
-            sut = new AddJobCCVMInitializer(null, new List<ICopyJobControlViewModel>());
+            sut = new AddJobCCVMInitializer(null, new List<ICopyJobControlViewModel>(), new FakeJobStatus());
         }
     }
 }

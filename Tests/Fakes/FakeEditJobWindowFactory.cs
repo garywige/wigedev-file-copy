@@ -7,7 +7,7 @@ namespace Tests
     {
         public EditJobWindowAdapter CreateWindow()
         {
-            return new EditJobWindowAdapter();
+            return new EditJobWindowAdapter(null, null, null, null);
         }
     }
 }

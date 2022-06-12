@@ -43,5 +43,27 @@ namespace Tests
             var result = sut.DeleteCommand;
             Assert.IsNotNull(result);
         }
+
+        [TestMethod]
+        public void SourceSetCallsPropertyChanged()
+        {
+            bool isChanged = false;
+            sut.PropertyChanged += (s, e) => isChanged = true;
+
+            sut.Source = "test";
+
+            Assert.IsTrue(isChanged);
+        }
+
+        [TestMethod]
+        public void DestinationSetCallsPropertyChanged()
+        {
+            bool isChanged = false;
+            sut.PropertyChanged += (s, e) => isChanged = true;
+
+            sut.Destination = "test";
+
+            Assert.IsTrue(isChanged);
+        }
     }
 }

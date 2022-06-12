@@ -3,6 +3,7 @@ using System.Windows;
 using WigeDev.View.Windows;
 using WigeDev.View.Implementations;
 using WigeDev.ViewModel.Interfaces;
+using WigeDev.ViewModel.Implementations;
 using WigeDev.Validation.Interfaces;
 
 namespace WigeDev.Init.Implementations
@@ -41,7 +42,13 @@ namespace WigeDev.Init.Implementations
             var addCommand = new AddJobAddCommandInitializer(textFields["source"], textFields["destination"], validator).Initialize();
             var cancelCommand = new AddJobCancelCommandInitializer().Initialize();
             var window = new AddJobWindowInitializer(textFields, jobStatus, addCommand, cancelCommand).Initialize();
-            addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList, new EditJobWindowFactory()).Initialize());
+            addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList, 
+                new EditJobWindowFactory(
+                    new FolderSelectionControlViewModel("Source", textFields["source"], jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
+                    new FolderSelectionControlViewModel("Destination", textFields["destination"], jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())), 
+                    new CommandControlViewModel("Save", new SetExecuteCommand(new Command(() => validator.IsValid, () => { }))), 
+                    new CommandControlViewModel("Cancel", new SetExecuteCommand(new Command(() => true, () => { })))
+                    )).Initialize());
             cancelCommand.SetExecute(() => window.Close());
             return window.ShowDialog() == true;
         }

@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Copier.Interfaces\Copier.Interfaces.csproj" />
+    <ProjectReference Include="..\ViewModel.Implementations\ViewModel.Implementations.csproj" />
     <ProjectReference Include="..\ViewModel.Interfaces\ViewModel.Interfaces.csproj" />
   </ItemGroup>
 

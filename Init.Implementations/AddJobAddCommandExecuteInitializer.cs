@@ -39,17 +39,27 @@ namespace WigeDev.Init.Implementations
             {
                 var deleteCommand = new SetExecuteCommand(new Command(() => true, () => { }));
 
-                var editCommand = new Command(() => validator.IsValid,
-                    () =>
-                    {
-                        var window = new EditJobWindowInitializer(windowFactory).Initialize();
-                        window.ShowDialog();
-                    }
-                    );
+                var editCommand = new SetExecuteCommand(new Command(() => validator.IsValid,
+                    () => { }
+                    ));
 
                 window?.Close();
                 var copyJobVM = new CopyJobControlViewModel(source.Text, dest.Text, editCommand, deleteCommand);
                 jobList.Add(copyJobVM);
+
+                editCommand.SetExecute(() =>
+                {
+                    // Set fields to match job params
+                    source.Text = copyJobVM.Source;
+                    dest.Text = copyJobVM.Destination;
+
+                    var window = new EditJobWindowInitializer(windowFactory).Initialize();
+                    if(window.ShowDialog() == true)
+                    {
+                        copyJobVM.Source = source.Text;
+                        copyJobVM.Destination = dest.Text;
+                    }
+                });
 
                 deleteCommand.SetExecute(() => jobList.Remove(copyJobVM));
             };

@@ -11,7 +11,7 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            sut = new EditJobWindowFactory();
+            sut = new EditJobWindowFactory(null, null, null, null);
         }
 
         [TestMethod]

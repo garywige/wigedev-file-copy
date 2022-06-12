@@ -9,14 +9,6 @@ namespace WigeDev.ViewModel.Implementations
     {
         protected T[] items = new T[0];
 
-        protected IEnumerator<T> enumerator;
-
-        public NotifyList(INotifyListEnumerator<T> enumerator)
-        {
-            enumerator.List = this;
-            this.enumerator = enumerator;
-        }
-
         public T this[int index] 
         { 
             get => items[index];
@@ -55,7 +47,12 @@ namespace WigeDev.ViewModel.Implementations
                 array[arrayIndex + i] = items[i];
         }
 
-        public IEnumerator<T> GetEnumerator() => enumerator;
+        public IEnumerator<T> GetEnumerator()
+        {
+            var enumerator = new NotifyListEnumerator<T>();
+            enumerator.List = this;
+            return enumerator;
+        }
 
         public int IndexOf(T item)
         {

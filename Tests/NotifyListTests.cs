@@ -12,7 +12,7 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            sut = new(new FakeNotifyListEnumerator<int>());
+            sut = new();
         }
 
         [TestMethod]

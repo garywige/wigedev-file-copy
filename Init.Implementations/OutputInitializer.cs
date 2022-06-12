@@ -8,6 +8,6 @@ namespace WigeDev.Init.Implementations
     public class OutputInitializer : IInitializer<IOutput>
     {
         public IOutput Initialize() =>
-            new BasicOutput(new NotifyList<string>(new NotifyListEnumerator<string>()));
+            new BasicOutput(new NotifyList<string>());
     }
 }

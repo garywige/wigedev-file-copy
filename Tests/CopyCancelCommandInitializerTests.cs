@@ -12,11 +12,13 @@ namespace Tests
         {
             sut = new CopyCancelCommandInitializer(
                 new FakeValidator(),
-                new FakeSettingsManager(),
                 new FakeTextField(),
                 new FakeTextField(),
                 new FakeOutput(),
-                new FakeJobStatus());
+                new FakeJobStatus(),
+                new FakeCancellationManager(),
+                new FakeFileEnumerator(new FakeSourceFile()),
+                new FakePathConstructor());
         }
     }
 }

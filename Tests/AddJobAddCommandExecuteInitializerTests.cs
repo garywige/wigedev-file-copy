@@ -14,7 +14,7 @@ namespace Tests
         {
             var textField = new FakeTextField();
             sut = new AddJobAddCommandExecuteInitializer(new FakeValidator(), null, textField, textField, new List<ICopyJobControlViewModel>(),
-                new FakeEditJobWindowFactory());
+                new FakeEditJobWindowFactory(), new FakeJobStatus());
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Tests
         private FakeFileEnumerator fileEnumerator;
         private FakePathConstructor pathConstructor;
         private FakeSourceFile sourceFile;
+        private FakeCopyJobViewModel copyJob;
 
         [TestInitialize]
         public void Initialize()
@@ -22,8 +23,9 @@ namespace Tests
             sourceFile = new();
             pathConstructor = new();
             fileEnumerator = new(sourceFile);
+            copyJob = new();
             jobList = new(new ObservableCollection<ICopyJobControlViewModel>());
-            jobList.Add(new FakeCopyJobViewModel());
+            jobList.Add(copyJob);
             cancellationManager = new();
             sut = new(cancellationManager, jobList, fileEnumerator, pathConstructor);
         }
@@ -72,6 +74,15 @@ namespace Tests
             await sut.Copy();
 
             var result = sourceFile.WasCopyToCalled;
+            Assert.IsTrue(result);
+        }
+
+        [TestMethod]
+        public async Task CopySetsProgress()
+        {
+            await sut.Copy();
+
+            var result = copyJob.WasProgressSet;
             Assert.IsTrue(result);
         }
     }

@@ -8,6 +8,7 @@ namespace WigeDev.ViewModel.Implementations
     {
         protected string source;
         protected string destination;
+        protected double progress;
 
         public CopyJobControlViewModel(string source, string destination, ICommand editCommand, ICommand deleteCommand)
         {
@@ -40,6 +41,16 @@ namespace WigeDev.ViewModel.Implementations
         public ICommand EditCommand { get; protected set; }
 
         public ICommand DeleteCommand { get; protected set; }
+
+        public double Progress
+        {
+            get => progress;
+            set
+            {
+                progress = value;
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Progress"));
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
     }

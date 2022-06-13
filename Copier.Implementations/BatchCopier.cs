@@ -29,11 +29,26 @@ namespace WigeDev.Copier.Implementations
         {
             foreach(var job in jobList)
             {
-                foreach (var file in await fileEnumerator.Enumerate(job.Source, cancellationManager))
+                resetProgress(job);
+                var files = await fileEnumerator.Enumerate(job.Source, cancellationManager);
+                var totalFiles = files.Count;
+                int filesCopied = 0;
+                foreach (var file in files)
                 {
                     await file.CopyTo(pathConstructor.Construct(job.Source, job.Destination, file.Name), cancellationManager);
+                    updateProgress(job, ++filesCopied, totalFiles);
                 }
             }
+        }
+
+        protected void resetProgress(ICopyJobControlViewModel copyJob)
+        {
+            copyJob.Progress = 0;
+        }
+
+        protected void updateProgress(ICopyJobControlViewModel copyJob, double copied, int total)
+        {
+            copyJob.Progress = copied / total * 100;
         }
     }
 }

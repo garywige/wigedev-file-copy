@@ -65,5 +65,32 @@ namespace Tests
 
             Assert.IsTrue(isChanged);
         }
+
+        [TestMethod]
+        public void ProgressReturnsZeroByDefault()
+        {
+            var result = sut.Progress;
+            Assert.AreEqual(0, result);
+        }
+
+        [TestMethod]
+        public void ProgressGetEqualsSetValue()
+        {
+            double testValue = 69;
+            sut.Progress = testValue;
+            var result = sut.Progress;
+            Assert.AreEqual(testValue, result);
+        }
+
+        [TestMethod]
+        public void ProgressPropertyChanged()
+        {
+            bool isChanged = false;
+            sut.PropertyChanged += (s, e) => isChanged = true;
+
+            sut.Progress = 10;
+
+            Assert.IsTrue(isChanged);
+        }
     }
 }

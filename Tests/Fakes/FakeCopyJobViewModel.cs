@@ -14,6 +14,14 @@ namespace Tests
 
         public ICommand DeleteCommand => throw new System.NotImplementedException();
 
+        public double Progress 
+        {
+            get => 0;
+            set => WasProgressSet = true;
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        public bool WasProgressSet { get; private set; } = false;
     }
 }

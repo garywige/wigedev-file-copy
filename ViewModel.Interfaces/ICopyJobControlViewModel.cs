@@ -9,5 +9,6 @@ namespace WigeDev.ViewModel.Interfaces
         public string Destination { get; }
         public ICommand EditCommand { get; }
         public ICommand DeleteCommand { get; }
+        public double Progress { get; set; }
     }
 }

@@ -61,7 +61,7 @@ namespace WigeDev.Init.Implementations
                     new FolderSelectionControlViewModel("Destination", textFields["destination"], jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())), 
                     new CommandControlViewModel("Save", new SetExecuteCommand(new Command(() => validator.IsValid, () => { }))), 
                     new CommandControlViewModel("Cancel", new SetExecuteCommand(new Command(() => true, () => { })))
-                    )).Initialize());
+                    ), jobStatus).Initialize());
             cancelCommand.SetExecute(() => window.Close());
             return window.ShowDialog() == true;
         }

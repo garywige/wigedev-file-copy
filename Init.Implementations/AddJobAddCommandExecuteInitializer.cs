@@ -16,6 +16,7 @@ namespace WigeDev.Init.Implementations
         protected ITextField dest;
         protected IList<ICopyJobControlViewModel> jobList;
         protected IWindowFactory<EditJobWindowAdapter> windowFactory;
+        protected IJobStatus jobStatus;
 
         public AddJobAddCommandExecuteInitializer(
             IValidator validator, 
@@ -23,7 +24,8 @@ namespace WigeDev.Init.Implementations
             ITextField source,
             ITextField dest,
             IList<ICopyJobControlViewModel> jobList,
-            IWindowFactory<EditJobWindowAdapter> windowFactory)
+            IWindowFactory<EditJobWindowAdapter> windowFactory,
+            IJobStatus jobStatus)
         {
             this.validator = validator;
             this.window = window;
@@ -31,17 +33,20 @@ namespace WigeDev.Init.Implementations
             this.dest = dest;
             this.jobList = jobList;
             this.windowFactory = windowFactory;
+            this.jobStatus = jobStatus;
         }
 
         public Action Initialize()
         {
+            jobStatus.PropertyChanged += (s, e) => jobStatusPropertyChanged?.Invoke(this, new EventArgs());
+
             return () =>
             {
-                var deleteCommand = new SetExecuteCommand(new Command(() => true, () => { }));
+                var deleteCommand = new SetExecuteCommand(new CECCommand(new Command(() => !jobStatus.IsCopying, () => { }), ref jobStatusPropertyChanged));
 
-                var editCommand = new SetExecuteCommand(new Command(() => validator.IsValid,
+                var editCommand = new SetExecuteCommand(new CECCommand(new Command(() => !jobStatus.IsCopying,
                     () => { }
-                    ));
+                    ), ref jobStatusPropertyChanged));
 
                 window?.Close();
                 var copyJobVM = new CopyJobControlViewModel(source.Text, dest.Text, editCommand, deleteCommand);
@@ -64,5 +69,7 @@ namespace WigeDev.Init.Implementations
                 deleteCommand.SetExecute(() => jobList.Remove(copyJobVM));
             };
         }
+
+        protected EventHandler jobStatusPropertyChanged;
     }
 }

@@ -8,7 +8,7 @@ namespace WigeDev.Init.Implementations
     {
         public ICommandControlViewModel Initialize()
         {
-            return new LoadCCVM();
+            return new CommandControlViewModel("Load Batch", new Command(() => true, () => { }));
         }
     }
 }

@@ -8,7 +8,7 @@ namespace WigeDev.Init.Implementations
     {
         public ICommandControlViewModel Initialize()
         {
-            return new SaveCCVM();
+            return new CommandControlViewModel("Save Batch", new Command(() => true, () => { }));
         }
     }
 }

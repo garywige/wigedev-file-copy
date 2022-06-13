@@ -19,12 +19,16 @@
     <ProjectReference Include="..\Cancellation.Interfaces\Cancellation.Interfaces.csproj" />
     <ProjectReference Include="..\Copier.Implementations\Copier.Implementations.csproj" />
     <ProjectReference Include="..\Copier.Interfaces\Copier.Interfaces.csproj" />
+    <ProjectReference Include="..\Execute.Implementations\Execute.Implementations.csproj" />
+    <ProjectReference Include="..\Execute.Interfaces\Execute.Interfaces.csproj" />
+    <ProjectReference Include="..\Init.Implementations\Init.Implementations.csproj" />
     <ProjectReference Include="..\Output.Implementations\Output.Implementations.csproj" />
     <ProjectReference Include="..\Output.Interfaces\Output.Interfaces.csproj" />
     <ProjectReference Include="..\Settings.Implementations\Settings.Implementations.csproj" />
     <ProjectReference Include="..\Validation.Implementations\Validation.Implementations.csproj" />
     <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
     <ProjectReference Include="..\ViewModel.Implementations\ViewModel.Implementations.csproj" />
+    <ProjectReference Include="..\View\View.csproj" />
   </ItemGroup>
 
 </Project>

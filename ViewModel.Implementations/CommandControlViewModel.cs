@@ -6,29 +6,16 @@ namespace WigeDev.ViewModel.Implementations
 {
     public class CommandControlViewModel : ICommandControlViewModel
     {
-        protected IJobStatus jobStatus;
-
-        public CommandControlViewModel(IJobStatus jobStatus, ICommand copyCancelCommand)
+        public CommandControlViewModel(string buttonContent, ICommand command)
         {
-            this.jobStatus = jobStatus;
-            CopyCancelButtonContent = "Copy";
-            CopyCancelCommand = copyCancelCommand;
-            jobStatus.PropertyChanged += jobStatusPropertyChanged;
+            ButtonContent = buttonContent;
+            Command = command;
         }
 
-        public string CopyCancelButtonContent { get; protected set; }
+        public string ButtonContent { get; protected set; }
 
-        public ICommand CopyCancelCommand { get; protected set; }
+        public ICommand Command { get; protected set; }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void jobStatusPropertyChanged(object? sender, PropertyChangedEventArgs args)
-        {
-            if (args.PropertyName == "IsCopying")
-            {
-                CopyCancelButtonContent = jobStatus.IsCopying ? "Cancel" : "Copy";
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("CopyCancelButtonContent"));
-            }
-        }
     }
 }

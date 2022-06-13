@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Copier.Interfaces\Copier.Interfaces.csproj" />
+    <ProjectReference Include="..\Execute.Interfaces\Execute.Interfaces.csproj" />
     <ProjectReference Include="..\Output.Interfaces\Output.Interfaces.csproj" />
     <ProjectReference Include="..\Validation.Interfaces\Validation.Interfaces.csproj" />
     <ProjectReference Include="..\ViewModel.Interfaces\ViewModel.Interfaces.csproj" />

@@ -1,5 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.ViewModel.Implementations;
+using WigeDev.Execute.Implementations;
 
 namespace Tests
 {
@@ -43,6 +43,8 @@ namespace Tests
         [TestMethod]
         public void ExecuteCallsCancelWhenCalledTwice()
         {
+            copier.CopyDelay = true;
+
             sut.Execute();
             sut.Execute();
             Assert.IsTrue(copier.WasCancelCalled);

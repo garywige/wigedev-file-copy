@@ -4,10 +4,7 @@
              xmlns:local="clr-namespace:WigeDev_File_Copy">
     <Application.Resources>
 
-        <Style TargetType="Button">
-            <Setter Property="Padding" Value="16" />
-            <Setter Property="FontSize" Value="24" />
-        </Style>
+        
         <Style TargetType="TextBox">
             <Setter Property="Height" Value="32" />
             <Setter Property="VerticalContentAlignment" Value="Center" />

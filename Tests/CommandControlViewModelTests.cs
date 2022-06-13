@@ -7,81 +7,26 @@ namespace Tests
     public class CommandControlViewModelTests
     {
         private CommandControlViewModel sut;
-        private bool isError;
-        private FakeJobStatus jobStatus;
-        private FakeCommand copyCancelCommand;
+        private string buttonContent;
 
         [TestInitialize]
         public void Initialize()
         {
-            jobStatus = new();
-            copyCancelCommand = new();
-            sut = new(jobStatus, copyCancelCommand);
-            isError = false;
+            buttonContent = "test";
+            sut = new(buttonContent, new FakeCommand());
         }
 
         [TestMethod]
-        public void CopyCancelButtonContentDoesntThrow()
+        public void ButtonContentReturnsConstructorValue()
         {
-            try
-            {
-                var output = sut.CopyCancelButtonContent;
-            }
-            catch
-            {
-                isError = true;
-            }
-
-            Assert.IsFalse(isError);
+            var result = sut.ButtonContent;
+            Assert.AreEqual(buttonContent, result);
         }
 
         [TestMethod]
-        public void CopyCancelButtonContentDefaultCopy()
+        public void CommandIsNotNull()
         {
-            var result = sut.CopyCancelButtonContent;
-            Assert.AreEqual("Copy", result);
-        }
-
-        [TestMethod]
-        public void CopyCancelButtonContentCancelWhenCopying()
-        {
-            jobStatus.IsCopying = true;
-            var result = sut.CopyCancelButtonContent;
-            Assert.AreEqual("Cancel", result);
-        }
-
-        [TestMethod]
-        public void CopyCancelButtonContentPropertyChanged()
-        {
-            bool isChanged = false;
-            sut.PropertyChanged += (s, e) =>
-            {
-                if (e.PropertyName == "CopyCancelButtonContent")
-                    isChanged = true;
-            };
-            jobStatus.IsCopying = true;
-            Assert.IsTrue(isChanged);
-        }
-
-        [TestMethod]
-        public void CopyCancelCommandDoesntThrow()
-        {
-            try
-            {
-                var output = sut.CopyCancelCommand;
-            }
-            catch
-            {
-                isError = true;
-            }
-
-            Assert.IsFalse(isError);
-        }
-
-        [TestMethod]
-        public void CopyCancelCommandNotNull()
-        {
-            var result = sut.CopyCancelCommand;
+            var result = sut.Command;
             Assert.IsNotNull(result);
         }
     }

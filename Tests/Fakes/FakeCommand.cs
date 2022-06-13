@@ -9,12 +9,16 @@ namespace Tests
 
         public bool CanExecute(object? parameter)
         {
-            throw new NotImplementedException();
+            WasCanExecuteCalled = true;
+            return true;
         }
 
         public void Execute(object? parameter)
         {
-            throw new NotImplementedException();
+            WasExecuteCalled = true;
         }
+
+        public bool WasCanExecuteCalled { get; private set; } = false;
+        public bool WasExecuteCalled { get; private set; } = false;
     }
 }

@@ -9,14 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Cancellation.Implementations\Cancellation.Implementations.csproj" />
-    <ProjectReference Include="..\Copier.Implementations\Copier.Implementations.csproj" />
-    <ProjectReference Include="..\Output.Implementations\Output.Implementations.csproj" />
-    <ProjectReference Include="..\Settings.Implementations\Settings.Implementations.csproj" />
-    <ProjectReference Include="..\Validation.Implementations\Validation.Implementations.csproj" />
-    <ProjectReference Include="..\ViewModel.Implementations\ViewModel.Implementations.csproj" />
-    <ProjectReference Include="..\ViewModel.Interfaces\ViewModel.Interfaces.csproj" />
-    <ProjectReference Include="..\View\View.csproj" />
+    <ProjectReference Include="..\Init.Implementations\Init.Implementations.csproj" />
   </ItemGroup>
 
 </Project>

@@ -5,7 +5,7 @@ namespace WigeDev.ViewModel.Interfaces
 {
     public interface ICommandControlViewModel : INotifyPropertyChanged
     {
-        public string CopyCancelButtonContent { get; }
-        public ICommand CopyCancelCommand { get; }
+        public string ButtonContent { get; }
+        public ICommand Command { get; }
     }
 }

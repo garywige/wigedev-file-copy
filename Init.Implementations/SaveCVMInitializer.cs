@@ -6,9 +6,29 @@ namespace WigeDev.Init.Implementations
 {
     public class SaveCVMInitializer : IInitializer<ICommandControlViewModel>
     {
-        public ICommandControlViewModel Initialize()
+        protected IJobStatus jobStatus;
+        protected INotifyList<ICopyJobControlViewModel> jobList;
+
+        public SaveCVMInitializer(IJobStatus jobStatus, INotifyList<ICopyJobControlViewModel> jobList)
         {
-            return new CommandControlViewModel("Save Batch", new Command(() => true, () => { }));
+            this.jobStatus = jobStatus;
+            jobStatus.PropertyChanged += (s, e) => canExecuteChanged?.Invoke(this, new EventArgs());
+            this.jobList = jobList;
+            jobList.CollectionChanged += (s, e) => canExecuteChanged?.Invoke(this, new EventArgs());
         }
+
+        public ICommandControlViewModel Initialize() =>
+            new CommandControlViewModel(
+                "Save Batch", 
+                new CECCommand(
+                    new Command(
+                        () => !jobStatus.IsCopying && jobList.Count != 0, 
+                        () => { }), 
+                    ref canExecuteChanged
+                    )
+                );
+        
+
+        protected EventHandler canExecuteChanged;
     }
 }

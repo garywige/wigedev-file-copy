@@ -35,7 +35,16 @@ namespace WigeDev.Copier.Implementations
                 int filesCopied = 0;
                 foreach (var file in files)
                 {
-                    await file.CopyTo(pathConstructor.Construct(job.Source, job.Destination, file.Name), cancellationManager);
+                    try
+                    {
+                        await file.CopyTo(pathConstructor.Construct(job.Source, job.Destination, file.Name), cancellationManager);
+                    }
+                    catch(OperationCanceledException)
+                    {
+                        resetProgress(job);
+                        return;
+                    }
+
                     updateProgress(job, ++filesCopied, totalFiles);
                 }
             }

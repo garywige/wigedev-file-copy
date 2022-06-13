@@ -85,5 +85,23 @@ namespace Tests
             var result = copyJob.WasProgressSet;
             Assert.IsTrue(result);
         }
+
+        [TestMethod]
+        public async Task CopyDoesntThrowOnCancellation()
+        {
+            bool isError = false;
+
+            try
+            {
+                sut.Cancel();
+                await sut.Copy();
+            }
+            catch
+            {
+                isError = true;
+            }
+
+            Assert.IsFalse(isError);
+        }
     }
 }

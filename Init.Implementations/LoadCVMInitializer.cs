@@ -1,5 +1,6 @@
 ﻿using WigeDev.Init.Interfaces;
 using WigeDev.ViewModel.Interfaces;
+using WigeDev.ViewModel.Implementations;
 
 namespace WigeDev.Init.Implementations
 {
@@ -7,7 +8,7 @@ namespace WigeDev.Init.Implementations
     {
         public ICommandControlViewModel Initialize()
         {
-            throw new NotImplementedException();
+            return new LoadCCVM();
         }
     }
 }

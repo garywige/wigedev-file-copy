@@ -17,7 +17,9 @@ namespace WigeDev.View.Windows
             ISelectControlViewModel<ICopyStrategy> overwriteVM,
             ICommandControlViewModel startBatchCommandControlVM,
             ICommandControlViewModel addJobCommandControlVM,
-            IBatchListControlViewModel batchListControlVM)
+            IBatchListControlViewModel batchListControlVM,
+            ICommandControlViewModel saveCVM,
+            ICommandControlViewModel loadCVM)
         {
             InitializeComponent();
             sourceSelection.SetViewModel(sourceViewModel);
@@ -28,6 +30,8 @@ namespace WigeDev.View.Windows
             startBatchCommandControl.SetViewModel(startBatchCommandControlVM);
             addJobCommandControl.SetViewModel(addJobCommandControlVM);
             batchListControl.SetViewModel(batchListControlVM);
+            saveCommandControl.SetViewModel(saveCVM);
+            loadCommandControl.SetViewModel(loadCVM);
         }
     }
 }

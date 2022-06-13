@@ -47,7 +47,9 @@ namespace WigeDev.Init.Implementations
                 overwriteVM,
                 new StartBatchCCVMInitializer(jobStatus, cancellationManager, jobList, fileEnumerator, pathConstructor).Initialize(),
                 new AddJobCCVMInitializer(addJobShowDialog, jobList, jobStatus).Initialize(),
-                new BatchListCVMInitializer(jobList).Initialize());
+                new BatchListCVMInitializer(jobList).Initialize(),
+                new SaveCVMInitializer().Initialize(),
+                new LoadCVMInitializer().Initialize());
         }
 
         protected bool? addJobShowDialog(object? output)

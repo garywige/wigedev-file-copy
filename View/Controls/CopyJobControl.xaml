@@ -14,6 +14,7 @@
     
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition />
         </Grid.RowDefinitions>
@@ -22,11 +23,29 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Label Grid.ColumnSpan="2" Content="{Binding Path=Source}" Margin="16, 0" />
+        <ProgressBar Grid.ColumnSpan="2" Height="4" Value="{Binding Path=Progress}"/>
 
-        <Button Content="Edit" Grid.Row="1" Command="{Binding Path=EditCommand}" />
+        <Grid Grid.Row="1" Grid.ColumnSpan="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
-        <Button Content="Delete" Grid.Row="1" Grid.Column="1" Command="{Binding Path=DeleteCommand}" />
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            
+            <Label FontWeight="Bold" Margin="16, 0">S:</Label>
+            <Label Grid.Column="1" Content="{Binding Path=Source}"/>
+
+            <Label Grid.Row="1" FontWeight="Bold" Margin="16, 0">D:</Label>
+            <Label Grid.Row="1" Grid.Column="1" Content="{Binding Path=Destination}"/>
+        </Grid>
+
+        <Button Content="Edit" Grid.Row="2" Command="{Binding Path=EditCommand}" />
+
+        <Button Content="Delete" Grid.Row="2" Grid.Column="1" Command="{Binding Path=DeleteCommand}" />
 
     </Grid>
 </UserControl>

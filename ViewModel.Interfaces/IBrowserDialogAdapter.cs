@@ -1,6 +1,6 @@
 ﻿namespace WigeDev.ViewModel.Interfaces
 {
-    public interface IFolderBrowserDialogAdapter
+    public interface IBrowserDialogAdapter
     {
         public string SelectedPath { get; }
         public bool ShowDialog();

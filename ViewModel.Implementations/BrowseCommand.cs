@@ -6,9 +6,9 @@ namespace WigeDev.ViewModel.Implementations
     public class BrowseCommand : IBrowseCommand
     {
         protected string folderPath;
-        protected IFolderBrowserDialogAdapter dialog;
+        protected IBrowserDialogAdapter dialog;
 
-        public BrowseCommand(IFolderBrowserDialogAdapter dialog)
+        public BrowseCommand(IBrowserDialogAdapter dialog)
         {
             folderPath = String.Empty;
             this.dialog = dialog;

@@ -2,7 +2,7 @@
 
 namespace Tests
 {
-    public class FakeFolderBrowserDialog : IFolderBrowserDialogAdapter
+    public class FakeFolderBrowserDialog : IBrowserDialogAdapter
     {
         public FakeFolderBrowserDialog()
         {

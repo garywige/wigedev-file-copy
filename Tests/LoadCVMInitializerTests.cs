@@ -10,7 +10,7 @@ namespace Tests
         [TestInitialize]
         public override void Initialize()
         {
-            sut = new LoadCVMInitializer();
+            sut = new LoadCVMInitializer(new FakeJobStatus());
         }
     }
 }

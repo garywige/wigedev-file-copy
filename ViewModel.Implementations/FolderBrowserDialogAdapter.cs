@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace WigeDev.ViewModel.Implementations
 {
-    public class FolderBrowserDialogAdapter : IFolderBrowserDialogAdapter
+    public class FolderBrowserDialogAdapter : IBrowserDialogAdapter
     {
         public FolderBrowserDialogAdapter()
         {

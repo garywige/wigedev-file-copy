@@ -31,6 +31,8 @@ namespace WigeDev.Init.Implementations
             var fileEnumerator = new FileEnumerator(settingsManager);
             var pathConstructor = new PathConstructor();
 
+            string filter = "WCF File (*.wcf)|*.wfc";
+
             // Main Window
             return new MainWindow(
                 new FolderSelectionCVMInitializer("Source", textFields["source"], jobStatus).Initialize(),
@@ -49,8 +51,8 @@ namespace WigeDev.Init.Implementations
                 new StartBatchCCVMInitializer(jobStatus, cancellationManager, jobList, fileEnumerator, pathConstructor).Initialize(),
                 new AddJobCCVMInitializer(addJobShowDialog, jobList, jobStatus).Initialize(),
                 new BatchListCVMInitializer(jobList).Initialize(),
-                new SaveCVMInitializer(jobStatus, jobList, new SaveFileDialogAdapter(), new JobListFileSaver()).Initialize(),
-                new LoadCVMInitializer(jobStatus).Initialize());
+                new SaveCVMInitializer(jobStatus, jobList, new SaveFileDialogAdapter(filter, "Save Batch"), new JobListFileSaver()).Initialize(),
+                new LoadCVMInitializer(jobStatus, new OpenFileDialogAdapter(filter, "Load Batch"), null, jobList).Initialize());
         }
 
         protected bool? addJobShowDialog(object? output)

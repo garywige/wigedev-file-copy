@@ -4,9 +4,9 @@ using WigeDev.ViewModel.Implementations;
 namespace Tests
 {
     [TestClass]
-    public class FileBrowserDialogAdapterTests
+    public class OpenFileDialogAdapterTests
     {
-        private SaveFileDialogAdapter sut;
+        private OpenFileDialogAdapter sut;
 
         [TestInitialize]
         public void Initialize()
@@ -15,10 +15,10 @@ namespace Tests
         }
 
         [TestMethod]
-        public void SelectedPathEmptyStringDefault()
+        public void SelectedPathReturnsEmptyStringDefault()
         {
             var result = sut.SelectedPath;
-            Assert.AreEqual("", result);
+            Assert.AreEqual(string.Empty, result);
         }
     }
 }

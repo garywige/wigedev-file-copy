@@ -1,17 +1,28 @@
 ﻿using WigeDev.Init.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 using WigeDev.ViewModel.Implementations;
+using WigeDev.FileSystem.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {
     public class LoadCVMInitializer : IInitializer<ICommandControlViewModel>
     {
         protected IJobStatus jobStatus;
+        protected IBrowserDialogAdapter browserDialogAdapter;
+        protected IFileLoader<INotifyList<ICopyJobControlViewModel>> fileLoader;
+        protected INotifyList<ICopyJobControlViewModel> jobList;
 
-        public LoadCVMInitializer(IJobStatus jobStatus)
+        public LoadCVMInitializer(
+            IJobStatus jobStatus, 
+            IBrowserDialogAdapter browserDialogAdapter, 
+            IFileLoader<INotifyList<ICopyJobControlViewModel>> fileLoader,
+            INotifyList<ICopyJobControlViewModel> jobList)
         {
             this.jobStatus = jobStatus;
             jobStatus.PropertyChanged += (s, e) => canExecuteChanged?.Invoke(this, new EventArgs());
+            this.browserDialogAdapter = browserDialogAdapter;
+            this.fileLoader = fileLoader;
+            this.jobList = jobList;
         }
 
         public ICommandControlViewModel Initialize()
@@ -20,8 +31,8 @@ namespace WigeDev.Init.Implementations
                 "Load Batch", 
                 new CECCommand(
                     new Command(
-                        () => !jobStatus.IsCopying, 
-                        () => { }
+                        canExecute, 
+                        execute
                         ),
                     ref canExecuteChanged
                     )
@@ -29,5 +40,15 @@ namespace WigeDev.Init.Implementations
         }
 
         protected EventHandler canExecuteChanged;
+
+        protected bool canExecute() => !jobStatus.IsCopying;
+
+        protected void execute()
+        {
+            if(browserDialogAdapter.ShowDialog())
+            {
+                fileLoader.Load(jobList, browserDialogAdapter.SelectedPath);
+            }
+        }
     }
 }

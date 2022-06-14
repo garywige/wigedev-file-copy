@@ -1,6 +1,7 @@
 ﻿using WigeDev.Init.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 using WigeDev.ViewModel.Implementations;
+using WigeDev.FileSystem.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {
@@ -9,14 +10,16 @@ namespace WigeDev.Init.Implementations
         protected IJobStatus jobStatus;
         protected INotifyList<ICopyJobControlViewModel> jobList;
         protected IBrowserDialogAdapter browserDialogAdapter;
+        protected IFileSaver<INotifyList<ICopyJobControlViewModel>> fileSaver;
 
-        public SaveCVMInitializer(IJobStatus jobStatus, INotifyList<ICopyJobControlViewModel> jobList, IBrowserDialogAdapter browserDialogAdapter)
+        public SaveCVMInitializer(IJobStatus jobStatus, INotifyList<ICopyJobControlViewModel> jobList, IBrowserDialogAdapter browserDialogAdapter, IFileSaver<INotifyList<ICopyJobControlViewModel>> fileSaver)
         {
             this.jobStatus = jobStatus;
             jobStatus.PropertyChanged += (s, e) => canExecuteChanged?.Invoke(this, new EventArgs());
             this.jobList = jobList;
             jobList.CollectionChanged += (s, e) => canExecuteChanged?.Invoke(this, new EventArgs());
             this.browserDialogAdapter = browserDialogAdapter;
+            this.fileSaver = fileSaver;
         }
 
         public ICommandControlViewModel Initialize() =>
@@ -29,7 +32,7 @@ namespace WigeDev.Init.Implementations
                         {
                             if(browserDialogAdapter.ShowDialog())
                             {
-                                var path = browserDialogAdapter.SelectedPath;
+                                fileSaver.Save(jobList, browserDialogAdapter.SelectedPath);
                             }
                         }), 
                     ref canExecuteChanged

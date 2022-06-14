@@ -7,6 +7,7 @@ using WigeDev.ViewModel.Implementations;
 using WigeDev.Validation.Interfaces;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
+using WigeDev.FileSystem.Implementations;
 
 namespace WigeDev.Init.Implementations
 {
@@ -48,7 +49,7 @@ namespace WigeDev.Init.Implementations
                 new StartBatchCCVMInitializer(jobStatus, cancellationManager, jobList, fileEnumerator, pathConstructor).Initialize(),
                 new AddJobCCVMInitializer(addJobShowDialog, jobList, jobStatus).Initialize(),
                 new BatchListCVMInitializer(jobList).Initialize(),
-                new SaveCVMInitializer(jobStatus, jobList, new SaveFileDialogAdapter()).Initialize(),
+                new SaveCVMInitializer(jobStatus, jobList, new SaveFileDialogAdapter(), new JobListFileSaver()).Initialize(),
                 new LoadCVMInitializer(jobStatus).Initialize());
         }
 

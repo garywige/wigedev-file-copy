@@ -16,6 +16,7 @@ namespace Tests
                 new FakeNotifyList<ICopyJobControlViewModel>(
                     new ObservableCollection<ICopyJobControlViewModel>()
                     ),
+                null,
                 null
                 );
         }

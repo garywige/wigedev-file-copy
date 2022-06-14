@@ -27,19 +27,23 @@ namespace WigeDev.Init.Implementations
                 "Save Batch", 
                 new CECCommand(
                     new Command(
-                        () => !jobStatus.IsCopying && jobList.Count != 0, 
-                        () => 
-                        {
-                            if(browserDialogAdapter.ShowDialog())
-                            {
-                                fileSaver.Save(jobList, browserDialogAdapter.SelectedPath);
-                            }
-                        }), 
+                        canExecute, 
+                        execute), 
                     ref canExecuteChanged
                     )
                 );
         
 
         protected EventHandler canExecuteChanged;
+
+        protected bool canExecute() => !jobStatus.IsCopying && jobList.Count != 0;
+
+        protected void execute()
+        {
+            if (browserDialogAdapter.ShowDialog())
+            {
+                fileSaver.Save(jobList, browserDialogAdapter.SelectedPath);
+            }
+        }
     }
 }

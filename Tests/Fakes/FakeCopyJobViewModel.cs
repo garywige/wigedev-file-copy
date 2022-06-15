@@ -6,9 +6,9 @@ namespace Tests
 {
     public class FakeCopyJobViewModel : ICopyJobControlViewModel
     {
-        public string Source => "C:\\source";
+        public string Source { get; set; } = "C:\\source";
 
-        public string Destination => "C:\\destination";
+        public string Destination { get; set; } = "C:\\destination";
 
         public ICommand EditCommand => throw new System.NotImplementedException();
 

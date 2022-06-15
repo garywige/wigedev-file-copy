@@ -52,7 +52,7 @@ namespace WigeDev.Init.Implementations
                 new AddJobCCVMInitializer(addJobShowDialog, jobList, jobStatus).Initialize(),
                 new BatchListCVMInitializer(jobList).Initialize(),
                 new SaveCVMInitializer(jobStatus, jobList, new SaveFileDialogAdapter(filter, "Save Batch"), new JobListFileSaver()).Initialize(),
-                new LoadCVMInitializer(jobStatus, new OpenFileDialogAdapter(filter, "Load Batch"), null, jobList).Initialize());
+                new LoadCVMInitializer(jobStatus, new OpenFileDialogAdapter(filter, "Load Batch"), new JobListFileLoader(null), jobList).Initialize());
         }
 
         protected bool? addJobShowDialog(object? output)

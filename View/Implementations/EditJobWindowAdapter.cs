@@ -37,5 +37,7 @@ namespace WigeDev.View.Implementations
 
             return window.ShowEditDialog();
         }
+
+        public void Close() { }
     }
 }

@@ -15,6 +15,11 @@ namespace Tests
             return false;
         }
 
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
         public delegate void ShowDialogCalledEvent(object? sender, EventArgs args);
         public event ShowDialogCalledEvent ShowDialogCalled;
     }

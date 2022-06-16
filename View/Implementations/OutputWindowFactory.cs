@@ -7,15 +7,17 @@ namespace WigeDev.View.Implementations
     {
         protected Action<object?> show;
         protected Func<object?, bool?> showDialog;
+        protected Action close;
 
-        public OutputWindowFactory(Action<object?> show, Func<object?, bool?> showDialog)
+        public OutputWindowFactory(Action<object?> show, Func<object?, bool?> showDialog, Action close)
         {
             this.show = show;
             this.showDialog = showDialog;
+            this.close = close;
         }
 
         public IOutputWindowAdapter CreateWindow() =>
-            new OutputWindowAdapter(show, showDialog);
+            new OutputWindowAdapter(show, showDialog, close);
         
     }
 }

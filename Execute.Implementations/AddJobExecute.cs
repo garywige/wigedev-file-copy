@@ -22,6 +22,8 @@ namespace WigeDev.Execute.Implementations
             {
                 jobList.Add(window.Output as ICopyJobControlViewModel);
             }
+
+            window.Close();
         }
     }
 }

@@ -8,11 +8,16 @@ namespace WigeDev.View.Implementations
     {
         protected Action<object?> show;
         protected Func<object?, bool?> showDialog;
+        protected Action close;
 
-        public OutputWindowAdapter(Action<object?> show, Func<object?, bool?> showDialog)
+        public OutputWindowAdapter(
+            Action<object?> show, 
+            Func<object?, bool?> showDialog,
+            Action close)
         {
             this.show = show;
             this.showDialog = showDialog;
+            this.close = close;
         }
 
         public object? Output => null;
@@ -26,5 +31,7 @@ namespace WigeDev.View.Implementations
         {
             return showDialog?.Invoke(Output);
         }
+
+        public void Close() => close();
     }
 }

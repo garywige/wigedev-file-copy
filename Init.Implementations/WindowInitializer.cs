@@ -33,15 +33,18 @@ namespace WigeDev.Init.Implementations
 
             string filter = "WCF File (*.wcf)|*.wfc";
 
+            textFields["source"].PropertyChanged += (s, e) => textFieldChanged?.Invoke(this, new EventArgs());
+            textFields["destination"].PropertyChanged += (s, e) => textFieldChanged?.Invoke(this, new EventArgs());
+
             // Main Window
             return new MainWindow(
                 new FolderSelectionCVMInitializer("Source", textFields["source"], jobStatus).Initialize(),
                 new FolderSelectionCVMInitializer("Destination", textFields["destination"], jobStatus).Initialize(),
                 new CopyCancelCCVMInitializer(jobStatus, new CopyCancelCommandInitializer(
-                    validator, 
-                    textFields["source"], 
-                    textFields["destination"], 
-                    output, 
+                    validator,
+                    textFields["source"],
+                    textFields["destination"],
+                    output,
                     jobStatus,
                     cancellationManager,
                     fileEnumerator,
@@ -49,17 +52,30 @@ namespace WigeDev.Init.Implementations
                 new OutputVMInitializer(output, jobStatus).Initialize(),
                 overwriteVM,
                 new StartBatchCCVMInitializer(jobStatus, cancellationManager, jobList, fileEnumerator, pathConstructor).Initialize(),
-                new AddJobCCVMInitializer(addJobShowDialog, jobList, jobStatus).Initialize(),
+                new AddJobCCVMInitializer(addJobShowDialog, () => { }, jobList, jobStatus).Initialize(),
                 new BatchListCVMInitializer(jobList).Initialize(),
                 new SaveCVMInitializer(jobStatus, jobList, new SaveFileDialogAdapter(filter, "Save Batch"), new JobListFileSaver()).Initialize(),
                 new LoadCVMInitializer(
-                    jobStatus, 
+                    jobStatus,
                     new OpenFileDialogAdapter(
-                        filter, 
-                        "Load Batch"), 
+                        filter,
+                        "Load Batch"),
                     new JobListFileLoader(
-                        new CopyJobCVMFactory(null, null)), 
-                    jobList).Initialize());
+                        new CopyJobCVMFactory(
+                            new CECCommand(
+                                new Command(
+                                    () => !jobStatus.IsCopying,
+                                    () =>
+                                    {
+                                        var factory = createEditJobWindowFactory();
+                                        var dialog = factory.CreateWindow();
+                                        dialog.ShowDialog();
+                                    }), 
+                                ref textFieldChanged),
+                            new Command(
+                                    () => !jobStatus.IsCopying,
+                                    () => { }))), 
+                        jobList).Initialize());
         }
 
         protected bool? addJobShowDialog(object? output)
@@ -67,15 +83,27 @@ namespace WigeDev.Init.Implementations
             var addCommand = new AddJobAddCommandInitializer(textFields["source"], textFields["destination"], validator).Initialize();
             var cancelCommand = new AddJobCancelCommandInitializer().Initialize();
             var window = new AddJobWindowInitializer(textFields, jobStatus, addCommand, cancelCommand).Initialize();
-            addCommand.SetExecute(new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList, 
-                new EditJobWindowFactory(
-                    new FolderSelectionControlViewModel("Source", textFields["source"], jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
-                    new FolderSelectionControlViewModel("Destination", textFields["destination"], jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())), 
-                    new CommandControlViewModel("Save", new SetExecuteCommand(new Command(() => validator.IsValid, () => { }))), 
-                    new CommandControlViewModel("Cancel", new SetExecuteCommand(new Command(() => true, () => { })))
-                    ), jobStatus).Initialize());
+            addCommand.SetExecute(addCommandExecute(window));
             cancelCommand.SetExecute(() => window.Close());
-            return window.ShowDialog() == true;
+            return window.ShowDialog() == true; 
         }
+
+        protected Action addCommandExecute(Window window)
+        {
+            return new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList,
+                createEditJobWindowFactory(), jobStatus).Initialize();
+        }
+
+        protected EditJobWindowFactory createEditJobWindowFactory()
+        {
+            return new EditJobWindowFactory(
+                    new FolderSelectionControlViewModel("Source", textFields["source"], jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
+                    new FolderSelectionControlViewModel("Destination", textFields["destination"], jobStatus, new BrowseCommand(new FolderBrowserDialogAdapter())),
+                    new CommandControlViewModel("Save", new SetExecuteCommand(new Command(() => validator.IsValid, () => { }))),
+                    new CommandControlViewModel("Cancel", new SetExecuteCommand(new Command(() => true, () => { })))
+                    );
+        }
+
+        protected EventHandler textFieldChanged;
     }
 }

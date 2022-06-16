@@ -26,6 +26,11 @@ namespace Tests
             return adapter.ShowDialog();
         }
 
+        public void Close()
+        {
+            throw new NotImplementedException();
+        }
+
         public delegate void ShowDialogCalledEvent(object? sender, EventArgs args);
         public event ShowDialogCalledEvent ShowDialogCalled;
     }

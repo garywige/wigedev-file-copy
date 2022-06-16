@@ -9,15 +9,18 @@ namespace WigeDev.Init.Implementations
     public class AddJobCCVMInitializer : IInitializer<ICommandControlViewModel>
     {
         protected Func<object?, bool?> showDialog;
+        protected Action close;
         protected IList<ICopyJobControlViewModel> jobList;
         protected IJobStatus jobStatus;
 
         public AddJobCCVMInitializer(
             Func<object?, bool?> showDialog,
+            Action close,
             IList<ICopyJobControlViewModel> jobList,
             IJobStatus jobStatus)
         {
             this.showDialog = showDialog;
+            this.close = close;
             this.jobList = jobList;
             this.jobStatus = jobStatus;
         }
@@ -28,7 +31,8 @@ namespace WigeDev.Init.Implementations
 
             return new CommandControlViewModel("Add Job", new CECCommand(new Command(() => !jobStatus.IsCopying, () => (new AddJobExecute(new OutputWindowFactory(
                 o => { },
-                showDialog),
+                showDialog,
+                close),
                 jobList)).Execute()), ref jobStatusPropertyChanged));
         }
 

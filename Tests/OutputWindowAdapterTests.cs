@@ -11,22 +11,27 @@ namespace Tests
         private bool isError;
         private bool wasShowActionCalled;
         private bool wasShowDialogFuncCalled;
+        private bool wasCloseCalled;
         private Action<object?> show;
         private Func<object?, bool?> showDialog;
+        private Action close;
 
         [TestInitialize]
         public void Initialize()
         {
             wasShowActionCalled = false;
             wasShowDialogFuncCalled = false;
+            wasCloseCalled = false;
+
             show = o => wasShowActionCalled = true;
             showDialog = o =>
             {
                 wasShowDialogFuncCalled = true;
                 return false;
             };
+            close = () => wasCloseCalled = true;
 
-            sut = new(show, showDialog);
+            sut = new(show, showDialog, close);
             isError = false;
         }
 
@@ -49,6 +54,13 @@ namespace Tests
         {
             sut.ShowDialog();
             Assert.IsTrue(wasShowDialogFuncCalled);
+        }
+
+        [TestMethod]
+        public void CloseCallsAction()
+        {
+            sut.Close();
+            Assert.IsTrue(wasCloseCalled);
         }
     }
 }

@@ -10,19 +10,23 @@ namespace Tests
         private OutputWindowFactory sut;
         private bool wasShowCalled;
         private bool wasShowDialogCalled;
+        private bool wasCloseCalled;
 
         [TestInitialize]
         public void Initialize()
         {
             wasShowCalled = false;
             wasShowDialogCalled = false;
+            wasCloseCalled = false;
             sut = new(
                 o => wasShowCalled = true,
                 o =>
                 {
                     wasShowDialogCalled = true;
                     return false;
-                });
+                },
+                () => wasCloseCalled = true
+                );
         }
 
         [TestMethod]
@@ -46,6 +50,14 @@ namespace Tests
             var window = sut.CreateWindow();
             window.ShowDialog();
             Assert.IsTrue(wasShowDialogCalled);
+        }
+
+        [TestMethod]
+        public void CloseActionCalled()
+        {
+            var window = sut.CreateWindow();
+            window.Close();
+            Assert.IsTrue(wasCloseCalled);
         }
     }
 }

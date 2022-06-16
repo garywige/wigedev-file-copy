@@ -1,8 +1,8 @@
-﻿using WigeDev.Init.Interfaces;
-using WigeDev.Settings.Interfaces;
+﻿using WigeDev.Copier.Interfaces;
+using WigeDev.Init.Interfaces;
 using WigeDev.Settings.Implementations;
+using WigeDev.Settings.Interfaces;
 using WigeDev.ViewModel.Interfaces;
-using WigeDev.Copier.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {

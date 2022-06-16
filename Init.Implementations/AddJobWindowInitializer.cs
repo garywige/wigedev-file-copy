@@ -1,9 +1,9 @@
-﻿using WigeDev.Init.Interfaces;
-using System.Windows;
-using WigeDev.View.Windows;
-using WigeDev.ViewModel.Interfaces;
-using WigeDev.ViewModel.Implementations;
+﻿using System.Windows;
 using System.Windows.Input;
+using WigeDev.Init.Interfaces;
+using WigeDev.View.Windows;
+using WigeDev.ViewModel.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {

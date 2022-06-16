@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.ObjectModel;
 
 namespace Tests
 {

@@ -1,6 +1,6 @@
-﻿using WigeDev.Execute.Interfaces;
+﻿using WigeDev.Copier.Interfaces;
+using WigeDev.Execute.Interfaces;
 using WigeDev.ViewModel.Interfaces;
-using WigeDev.Copier.Interfaces;
 
 namespace WigeDev.Execute.Implementations
 {
@@ -20,7 +20,7 @@ namespace WigeDev.Execute.Implementations
             if (!jobStatus.IsCopying)
             {
                 jobStatus.IsCopying = true;
-                await copier.Copy(); 
+                await copier.Copy();
             }
             else copier.Cancel();
 

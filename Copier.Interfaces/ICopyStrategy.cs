@@ -1,6 +1,4 @@
-﻿using WigeDev.Cancellation.Interfaces;
-
-namespace WigeDev.Copier.Interfaces
+﻿namespace WigeDev.Copier.Interfaces
 {
     public interface ICopyStrategy
     {

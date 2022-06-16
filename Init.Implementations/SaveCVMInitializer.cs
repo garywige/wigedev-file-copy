@@ -1,7 +1,7 @@
-﻿using WigeDev.Init.Interfaces;
-using WigeDev.ViewModel.Interfaces;
+﻿using WigeDev.FileSystem.Interfaces;
+using WigeDev.Init.Interfaces;
 using WigeDev.ViewModel.Implementations;
-using WigeDev.FileSystem.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {
@@ -24,15 +24,15 @@ namespace WigeDev.Init.Implementations
 
         public ICommandControlViewModel Initialize() =>
             new CommandControlViewModel(
-                "Save Batch", 
+                "Save Batch",
                 new CECCommand(
                     new Command(
-                        canExecute, 
-                        execute), 
+                        canExecute,
+                        execute),
                     ref canExecuteChanged
                     )
                 );
-        
+
 
         protected EventHandler canExecuteChanged;
 

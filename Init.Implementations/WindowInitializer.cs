@@ -1,13 +1,13 @@
-﻿using WigeDev.Init.Interfaces;
-using System.Windows;
-using WigeDev.View.Windows;
-using WigeDev.View.Implementations;
-using WigeDev.ViewModel.Interfaces;
-using WigeDev.ViewModel.Implementations;
-using WigeDev.Validation.Interfaces;
+﻿using System.Windows;
 using WigeDev.Cancellation.Implementations;
 using WigeDev.Copier.Implementations;
 using WigeDev.FileSystem.Implementations;
+using WigeDev.Init.Interfaces;
+using WigeDev.Validation.Interfaces;
+using WigeDev.View.Implementations;
+using WigeDev.View.Windows;
+using WigeDev.ViewModel.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {
@@ -70,11 +70,11 @@ namespace WigeDev.Init.Implementations
                                         var factory = createEditJobWindowFactory();
                                         var dialog = factory.CreateWindow();
                                         dialog.ShowDialog();
-                                    }), 
+                                    }),
                                 ref textFieldChanged),
                             new Command(
                                     () => !jobStatus.IsCopying,
-                                    () => { }))), 
+                                    () => { }))),
                         jobList).Initialize());
         }
 
@@ -85,7 +85,7 @@ namespace WigeDev.Init.Implementations
             var window = new AddJobWindowInitializer(textFields, jobStatus, addCommand, cancelCommand).Initialize();
             addCommand.SetExecute(addCommandExecute(window));
             cancelCommand.SetExecute(() => window.Close());
-            return window.ShowDialog() == true; 
+            return window.ShowDialog() == true;
         }
 
         protected Action addCommandExecute(Window window)

@@ -1,6 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Specialized;
+using System.ComponentModel;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.Specialized;
 
 namespace WigeDev.ViewModel.Implementations
 {

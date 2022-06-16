@@ -14,7 +14,7 @@ namespace WigeDev.ViewModel.Implementations
             this.dialog = dialog;
         }
 
-        public string FolderPath 
+        public string FolderPath
         {
             get => folderPath;
             protected set

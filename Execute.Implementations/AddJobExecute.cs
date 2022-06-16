@@ -18,7 +18,7 @@ namespace WigeDev.Execute.Implementations
         public void Execute()
         {
             var window = windowFactory.CreateWindow();
-            if(window.ShowDialog() == true)
+            if (window.ShowDialog() == true)
             {
                 jobList.Add(window.Output as ICopyJobControlViewModel);
             }

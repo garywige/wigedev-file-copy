@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.ViewModel.Interfaces;
-using WigeDev.Init.Implementations;
 using System.Collections.ObjectModel;
+using WigeDev.Init.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace Tests
 {
@@ -12,9 +12,9 @@ namespace Tests
         public override void Initialize()
         {
             sut = new LoadCVMInitializer(
-                new FakeJobStatus(), 
-                new FakeFolderBrowserDialog(), 
-                null, 
+                new FakeJobStatus(),
+                new FakeFolderBrowserDialog(),
+                null,
                 new FakeNotifyList<ICopyJobControlViewModel>(new ObservableCollection<ICopyJobControlViewModel>()));
         }
     }

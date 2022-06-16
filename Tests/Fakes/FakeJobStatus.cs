@@ -24,7 +24,7 @@ namespace Tests
             }
         }
 
-        public int FilesCopied 
+        public int FilesCopied
         {
             get => filesCopied;
             set
@@ -34,7 +34,7 @@ namespace Tests
             }
         }
 
-        public int TotalFiles 
+        public int TotalFiles
         {
             get => totalFiles;
             set

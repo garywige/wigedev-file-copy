@@ -59,7 +59,7 @@ namespace Tests
 
             Assert.IsFalse(isError);
         }
-        
+
         [TestMethod]
         public void TextFieldIsNotNull()
         {

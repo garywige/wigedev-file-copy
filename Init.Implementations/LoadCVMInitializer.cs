@@ -1,7 +1,7 @@
-﻿using WigeDev.Init.Interfaces;
-using WigeDev.ViewModel.Interfaces;
+﻿using WigeDev.FileSystem.Interfaces;
+using WigeDev.Init.Interfaces;
 using WigeDev.ViewModel.Implementations;
-using WigeDev.FileSystem.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {
@@ -13,8 +13,8 @@ namespace WigeDev.Init.Implementations
         protected INotifyList<ICopyJobControlViewModel> jobList;
 
         public LoadCVMInitializer(
-            IJobStatus jobStatus, 
-            IBrowserDialogAdapter browserDialogAdapter, 
+            IJobStatus jobStatus,
+            IBrowserDialogAdapter browserDialogAdapter,
             IFileLoader<INotifyList<ICopyJobControlViewModel>> fileLoader,
             INotifyList<ICopyJobControlViewModel> jobList)
         {
@@ -28,10 +28,10 @@ namespace WigeDev.Init.Implementations
         public ICommandControlViewModel Initialize()
         {
             return new CommandControlViewModel(
-                "Load Batch", 
+                "Load Batch",
                 new CECCommand(
                     new Command(
-                        canExecute, 
+                        canExecute,
                         execute
                         ),
                     ref canExecuteChanged
@@ -45,7 +45,7 @@ namespace WigeDev.Init.Implementations
 
         protected void execute()
         {
-            if(browserDialogAdapter.ShowDialog())
+            if (browserDialogAdapter.ShowDialog())
             {
                 fileLoader.Load(jobList, browserDialogAdapter.SelectedPath);
             }

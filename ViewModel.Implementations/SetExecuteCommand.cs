@@ -21,7 +21,7 @@ namespace WigeDev.ViewModel.Implementations
 
         public void Execute(object? parameter)
         {
-            if(this.execute != null)
+            if (this.execute != null)
                 this.execute();
             else
                 command.Execute(parameter);

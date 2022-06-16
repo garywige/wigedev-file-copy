@@ -1,6 +1,6 @@
 ﻿using WigeDev.Init.Interfaces;
-using WigeDev.Validation.Interfaces;
 using WigeDev.Validation.Implementations;
+using WigeDev.Validation.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations

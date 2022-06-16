@@ -8,7 +8,7 @@ namespace WigeDev.FileSystem.Implementations
         public Task Save(INotifyList<ICopyJobControlViewModel> data, string filePath)
         {
             var file = new FileInfo(filePath);
-            if(file.Exists) file.Delete();
+            if (file.Exists) file.Delete();
 
             using var writer = file.CreateText();
 

@@ -18,7 +18,7 @@ namespace WigeDev.ViewModel.Implementations
             DeleteCommand = deleteCommand;
         }
 
-        public string Source 
+        public string Source
         {
             get => source;
             set

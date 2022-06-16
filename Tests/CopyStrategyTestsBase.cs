@@ -1,8 +1,8 @@
-﻿using WigeDev.Copier.Interfaces;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.IO;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
+using System.IO;
 using System.Threading.Tasks;
+using WigeDev.Copier.Interfaces;
 
 namespace Tests
 {

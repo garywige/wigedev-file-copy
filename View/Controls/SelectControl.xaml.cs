@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
-using WigeDev.ViewModel.Interfaces;
 using WigeDev.Copier.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.View.Controls
 {

@@ -1,7 +1,7 @@
-﻿using WigeDev.Copier.Interfaces;
-using WigeDev.Init.Interfaces;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using WigeDev.Copier.Implementations;
+using WigeDev.Copier.Interfaces;
+using WigeDev.Init.Interfaces;
 using WigeDev.Output.Interfaces;
 
 namespace WigeDev.Init.Implementations

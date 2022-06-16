@@ -1,5 +1,5 @@
-﻿using WigeDev.Execute.Interfaces;
-using WigeDev.Copier.Interfaces;
+﻿using WigeDev.Copier.Interfaces;
+using WigeDev.Execute.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Execute.Implementations
@@ -16,8 +16,8 @@ namespace WigeDev.Execute.Implementations
         }
 
         public async void Execute()
-        {   
-            if(!jobStatus.IsCopying)
+        {
+            if (!jobStatus.IsCopying)
             {
                 jobStatus.IsCopying = true;
                 await copier.Copy();

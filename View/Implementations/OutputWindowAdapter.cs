@@ -11,7 +11,7 @@ namespace WigeDev.View.Implementations
         protected Action close;
 
         public OutputWindowAdapter(
-            Action<object?> show, 
+            Action<object?> show,
             Func<object?, bool?> showDialog,
             Action close)
         {

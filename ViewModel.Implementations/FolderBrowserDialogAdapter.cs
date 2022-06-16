@@ -1,5 +1,5 @@
-﻿using WigeDev.ViewModel.Interfaces;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {
@@ -15,7 +15,7 @@ namespace WigeDev.ViewModel.Implementations
         public bool ShowDialog()
         {
             FolderBrowserDialog dialog = new();
-            if(dialog.ShowDialog() == DialogResult.OK)
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 SelectedPath = dialog.SelectedPath;
                 return true;

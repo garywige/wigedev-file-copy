@@ -1,5 +1,5 @@
-﻿using WigeDev.View.Interfaces;
-using System;
+﻿using System;
+using WigeDev.View.Interfaces;
 
 namespace Tests
 {

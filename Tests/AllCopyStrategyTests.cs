@@ -1,8 +1,6 @@
-﻿using WigeDev.Copier.Implementations;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
-using System.IO;
-using System;
+using WigeDev.Copier.Implementations;
 
 namespace Tests
 {

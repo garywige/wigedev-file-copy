@@ -1,5 +1,5 @@
-﻿using WigeDev.ViewModel.Interfaces;
-using System.Windows.Input;
+﻿using System.Windows.Input;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {

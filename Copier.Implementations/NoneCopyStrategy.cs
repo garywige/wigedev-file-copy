@@ -1,5 +1,4 @@
-﻿using WigeDev.Copier.Interfaces;
-using WigeDev.Output.Interfaces;
+﻿using WigeDev.Output.Interfaces;
 
 namespace WigeDev.Copier.Implementations
 {
@@ -9,7 +8,7 @@ namespace WigeDev.Copier.Implementations
 
         public NoneCopyStrategy(IOutput output) =>
             this.output = output;
-        
+
         public override async Task CopyFile(FileInfo source, FileInfo dest, CancellationToken token)
         {
             if (dest.Exists)

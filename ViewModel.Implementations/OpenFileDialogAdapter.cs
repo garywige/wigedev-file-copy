@@ -1,5 +1,5 @@
-﻿using WigeDev.ViewModel.Interfaces;
-using System.Windows.Forms;
+﻿using System.Windows.Forms;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {

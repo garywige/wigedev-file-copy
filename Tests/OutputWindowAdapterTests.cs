@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.View.Implementations;
 using System;
+using WigeDev.View.Implementations;
 
 namespace Tests
 {

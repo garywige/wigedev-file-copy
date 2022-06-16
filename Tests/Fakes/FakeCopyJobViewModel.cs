@@ -14,7 +14,7 @@ namespace Tests
 
         public ICommand DeleteCommand => throw new System.NotImplementedException();
 
-        public double Progress 
+        public double Progress
         {
             get => 0;
             set => WasProgressSet = true;

@@ -1,7 +1,7 @@
-﻿using WigeDev.Init.Interfaces;
-using WigeDev.ViewModel.Interfaces;
+﻿using System.Windows.Input;
+using WigeDev.Init.Interfaces;
 using WigeDev.ViewModel.Implementations;
-using System.Windows.Input;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {

@@ -13,13 +13,13 @@ namespace Tests
 
         public void Cancel()
         {
-            WasCancelCalled=true;
+            WasCancelCalled = true;
         }
 
         public async Task Copy()
         {
             WasCopyCalled = true;
-            if(CopyDelay) await Task.Delay(100);
+            if (CopyDelay) await Task.Delay(100);
         }
 
         public bool WasCopyCalled { get; private set; }

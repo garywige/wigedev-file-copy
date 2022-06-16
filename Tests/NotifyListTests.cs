@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.ViewModel.Implementations;
 using System.Collections;
+using WigeDev.ViewModel.Implementations;
 
 namespace Tests
 {
@@ -127,9 +127,9 @@ namespace Tests
 
             bool isEqual = true;
 
-            for(int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
-                if(arr[i] != i)
+                if (arr[i] != i)
                     isEqual = false;
             }
 
@@ -162,10 +162,10 @@ namespace Tests
             sut.Insert(1, 1);
 
             bool isEqual = true;
-            for(int i = 0; i < 3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                if(sut[i] != i)
-                    isEqual=false;
+                if (sut[i] != i)
+                    isEqual = false;
             }
 
             Assert.IsTrue(isEqual);

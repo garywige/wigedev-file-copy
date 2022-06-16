@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.ViewModel.Implementations;
-using System.Collections.ObjectModel;
 using System.Collections;
+using System.Collections.ObjectModel;
+using WigeDev.ViewModel.Implementations;
 
 namespace Tests
 {
@@ -100,7 +100,7 @@ namespace Tests
             sut.List = list;
             sut.List.Add(1337);
             sut.MoveNext();
-            
+
             sut.Reset();
 
             var result = sut.Current;

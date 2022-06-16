@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.ObjectModel;
 using WigeDev.Init.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.ObjectModel;
 
 namespace Tests
 {
@@ -12,7 +12,7 @@ namespace Tests
         public override void Initialize()
         {
             sut = new SaveCVMInitializer(
-                new FakeJobStatus(), 
+                new FakeJobStatus(),
                 new FakeNotifyList<ICopyJobControlViewModel>(
                     new ObservableCollection<ICopyJobControlViewModel>()
                     ),

@@ -12,13 +12,13 @@ namespace WigeDev.ViewModel.Implementations
             text = String.Empty;
         }
 
-        public string Text 
-        { 
+        public string Text
+        {
             get => text;
             set
-            { 
-                text = value; 
-                if(PropertyChanged != null)
+            {
+                text = value;
+                if (PropertyChanged != null)
                 {
                     PropertyChanged(this, new PropertyChangedEventArgs("Text"));
                 }

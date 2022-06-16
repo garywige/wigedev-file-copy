@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.Settings.Implementations;
-using WigeDev.Copier.Interfaces;
 using System.Collections.Generic;
+using WigeDev.Copier.Interfaces;
+using WigeDev.Settings.Implementations;
 
 namespace Tests
 {

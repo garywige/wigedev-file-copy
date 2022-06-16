@@ -1,10 +1,10 @@
-﻿using WigeDev.Init.Interfaces;
-using WigeDev.ViewModel.Implementations;
+﻿using System.Windows;
+using WigeDev.Init.Interfaces;
 using WigeDev.Validation.Interfaces;
-using System.Windows;
-using WigeDev.ViewModel.Interfaces;
-using WigeDev.View.Interfaces;
 using WigeDev.View.Implementations;
+using WigeDev.View.Interfaces;
+using WigeDev.ViewModel.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {
@@ -63,10 +63,10 @@ namespace WigeDev.Init.Implementations
                         ref jobStatusPropertyChanged));
         }
 
-        protected Action deleteCommandExecute(ICopyJobControlViewModel copyJob) => 
+        protected Action deleteCommandExecute(ICopyJobControlViewModel copyJob) =>
             () => jobList.Remove(copyJob);
 
-        protected Action editCommandExecute(ICopyJobControlViewModel copyJob) => 
+        protected Action editCommandExecute(ICopyJobControlViewModel copyJob) =>
             () =>
             {
                 // Set fields to match job params
@@ -80,7 +80,7 @@ namespace WigeDev.Init.Implementations
                     copyJob.Destination = dest.Text;
                 }
             };
-        
+
         protected EventHandler jobStatusPropertyChanged;
     }
 }

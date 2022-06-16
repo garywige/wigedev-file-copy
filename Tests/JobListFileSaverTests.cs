@@ -1,10 +1,10 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Threading.Tasks;
 using WigeDev.FileSystem.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.ObjectModel;
-using System;
-using System.Threading.Tasks;
-using System.IO;
 
 namespace Tests
 {
@@ -19,7 +19,7 @@ namespace Tests
         public void Initialize()
         {
             var file = new FileInfo(filePath);
-            if(file.Exists) file.Delete();
+            if (file.Exists) file.Delete();
 
             jobList = new(new ObservableCollection<ICopyJobControlViewModel>());
             sut = new();
@@ -58,7 +58,7 @@ namespace Tests
             var dest = reader.ReadLine();
             reader.Close();
 
-            if(source != job.Source || dest != job.Destination)
+            if (source != job.Source || dest != job.Destination)
                 isEqual = false;
 
             Assert.IsTrue(isEqual);

@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.ObjectModel;
 using WigeDev.Init.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.ObjectModel;
 
 namespace Tests
 {

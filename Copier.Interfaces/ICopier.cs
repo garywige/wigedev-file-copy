@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace WigeDev.Copier.Interfaces
+﻿namespace WigeDev.Copier.Interfaces
 {
     public interface ICopier
     {

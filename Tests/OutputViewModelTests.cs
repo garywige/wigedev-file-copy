@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WigeDev.ViewModel.Implementations;
-using System.Collections.Generic;
 
 namespace Tests
 {
@@ -71,7 +70,7 @@ namespace Tests
             bool isChanged = false;
             sut.PropertyChanged += (s, e) =>
             {
-                if(e.PropertyName == "Progress")
+                if (e.PropertyName == "Progress")
                     isChanged = true;
             };
 

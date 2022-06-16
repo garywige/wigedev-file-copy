@@ -18,6 +18,6 @@ namespace WigeDev.View.Implementations
 
         public IOutputWindowAdapter CreateWindow() =>
             new OutputWindowAdapter(show, showDialog, close);
-        
+
     }
 }

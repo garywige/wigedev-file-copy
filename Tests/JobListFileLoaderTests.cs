@@ -1,9 +1,9 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
 using WigeDev.FileSystem.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.ObjectModel;
-using System;
-using System.IO;
 
 namespace Tests
 {

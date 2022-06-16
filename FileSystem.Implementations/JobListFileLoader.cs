@@ -18,8 +18,8 @@ namespace WigeDev.FileSystem.Implementations
             using var reader = fi.OpenText();
 
             data.Clear();
-            
-            while(!reader.EndOfStream)
+
+            while (!reader.EndOfStream)
             {
                 var copyJob = factory.Create();
                 copyJob.Source = reader.ReadLine() ?? "";

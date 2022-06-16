@@ -1,5 +1,4 @@
-﻿using WigeDev.Copier.Interfaces;
-using WigeDev.Output.Interfaces;
+﻿using WigeDev.Output.Interfaces;
 
 namespace WigeDev.Copier.Implementations
 {
@@ -14,7 +13,7 @@ namespace WigeDev.Copier.Implementations
 
         public override async Task CopyFile(FileInfo source, FileInfo dest, CancellationToken token)
         {
-            if(source.LastWriteTime < dest.LastWriteTime)
+            if (source.LastWriteTime < dest.LastWriteTime)
             {
                 output.Write("\tDestination file is same or newer...");
                 await Task.Delay(1);

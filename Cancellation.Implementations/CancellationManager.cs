@@ -1,5 +1,4 @@
-﻿using System.Threading.Tasks;
-using WigeDev.Cancellation.Interfaces;
+﻿using WigeDev.Cancellation.Interfaces;
 
 namespace WigeDev.Cancellation.Implementations
 {
@@ -12,7 +11,7 @@ namespace WigeDev.Cancellation.Implementations
 
         ~CancellationManager() =>
             cts.Dispose();
-        
+
 
         public CancellationToken Token => cts.Token;
 

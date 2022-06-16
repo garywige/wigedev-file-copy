@@ -11,7 +11,7 @@ namespace WigeDev.Validation.Implementations
             this.validators = validators;
         }
 
-        public bool IsValid => 
+        public bool IsValid =>
             validators.Where(validator => !validator.IsValid).Count() == 0;
     }
 }

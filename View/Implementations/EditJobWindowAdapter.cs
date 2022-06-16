@@ -1,7 +1,7 @@
 ﻿using WigeDev.View.Interfaces;
 using WigeDev.View.Windows;
-using WigeDev.ViewModel.Interfaces;
 using WigeDev.ViewModel.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.View.Implementations
 {

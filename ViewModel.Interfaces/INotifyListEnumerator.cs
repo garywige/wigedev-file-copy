@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace WigeDev.ViewModel.Interfaces
+﻿namespace WigeDev.ViewModel.Interfaces
 {
     public interface INotifyListEnumerator<T> : IEnumerator<T>
     {

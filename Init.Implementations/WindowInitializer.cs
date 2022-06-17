@@ -67,7 +67,7 @@ namespace WigeDev.Init.Implementations
                             new EditCommandFactory(
                                 () => !jobStatus.IsCopying,
                                 () => { },
-                                ref editCommandChanged), 
+                                ref editCommandChanged),
                             new DeleteCommandFactory(
                                 () => !jobStatus.IsCopying,
                                 () => { },

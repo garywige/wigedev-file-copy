@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Input;
 using WigeDev.ViewModel.Interfaces;
 
 namespace Tests

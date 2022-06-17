@@ -1,5 +1,5 @@
-﻿using WigeDev.ViewModel.Interfaces;
-using WigeDev.Init.Interfaces;
+﻿using WigeDev.Init.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {
@@ -9,7 +9,7 @@ namespace WigeDev.ViewModel.Implementations
         protected IFactory<ISetExecuteCommand> deleteCommandFactory;
 
         public CopyJobCVMFactory(
-            IFactory<ISetExecuteCommand> editCommandFactory, 
+            IFactory<ISetExecuteCommand> editCommandFactory,
             IFactory<ISetExecuteCommand> deleteCommandFactory)
         {
             this.editCommandFactory = editCommandFactory;

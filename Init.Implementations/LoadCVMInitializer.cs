@@ -51,7 +51,7 @@ namespace WigeDev.Init.Implementations
             if (browserDialogAdapter.ShowDialog())
             {
                 fileLoader.Load(jobList, browserDialogAdapter.SelectedPath);
-                foreach(var job in jobList)
+                foreach (var job in jobList)
                 {
                     job.EditCommand.SetExecute(editCommandExecute(job));
                     job.DeleteCommand.SetExecute(() => jobList.Remove(job));

@@ -1,8 +1,6 @@
 ﻿using System.Windows;
 using WigeDev.Init.Interfaces;
 using WigeDev.Validation.Interfaces;
-using WigeDev.View.Implementations;
-using WigeDev.View.Interfaces;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
 

@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.Copier.Implementations;
-using WigeDev.ViewModel.Interfaces;
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using WigeDev.Copier.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace Tests
 {

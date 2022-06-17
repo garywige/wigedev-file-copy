@@ -18,9 +18,9 @@ namespace Tests
 
         public IList<T> ItemsSource { get; private set; }
 
-        public T SelectedItem 
+        public T SelectedItem
         {
-            get => selectedItem; 
+            get => selectedItem;
             set
             {
                 selectedItem = value;

@@ -1,5 +1,4 @@
-﻿using WigeDev.Copier.Interfaces;
-using WigeDev.Output.Interfaces;
+﻿using WigeDev.Output.Interfaces;
 
 namespace WigeDev.Copier.Implementations
 {

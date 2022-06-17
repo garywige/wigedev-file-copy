@@ -1,7 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.View.Interfaces;
-using WigeDev.View.Implementations;
 using WigeDev.Init.Implementations;
+using WigeDev.View.Interfaces;
 
 namespace Tests
 {

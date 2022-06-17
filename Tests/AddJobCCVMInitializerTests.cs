@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.ViewModel.Interfaces;
-using WigeDev.Init.Implementations;
 using System.Collections.Generic;
+using WigeDev.Init.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace Tests
 {
@@ -11,7 +11,7 @@ namespace Tests
         [TestInitialize]
         public override void Initialize()
         {
-            sut = new AddJobCCVMInitializer(null, new List<ICopyJobControlViewModel>(), new FakeJobStatus());
+            sut = new AddJobCCVMInitializer(null, () => { }, new List<ICopyJobControlViewModel>(), new FakeJobStatus());
         }
     }
 }

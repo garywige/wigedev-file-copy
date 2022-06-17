@@ -16,11 +16,11 @@ namespace WigeDev.ViewModel.Implementations
             totalFiles = 0;
         }
 
-        public bool IsCopying 
-        { 
+        public bool IsCopying
+        {
             get => isCopying;
             set
-            { 
+            {
                 isCopying = value;
                 propertyChanged("IsCopying");
             }
@@ -50,6 +50,6 @@ namespace WigeDev.ViewModel.Implementations
 
         protected void propertyChanged(string property) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
-        
+
     }
 }

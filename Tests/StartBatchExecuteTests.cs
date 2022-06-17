@@ -1,6 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using WigeDev.Execute.Implementations;
-using System.Threading.Tasks;
 
 namespace Tests
 {

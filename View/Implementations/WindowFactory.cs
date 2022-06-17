@@ -2,7 +2,7 @@
 
 namespace WigeDev.View.Implementations
 {
-    public class WindowFactory<T> : IWindowFactory<T> where T: IWindowAdapter, new()
+    public class WindowFactory<T> : IWindowFactory<T> where T : IWindowAdapter, new()
     {
         public T CreateWindow()
         {

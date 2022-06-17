@@ -52,14 +52,26 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
 
-                    <controls:CommandControl x:Name="startBatchCommandControl" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
 
-                    <controls:CommandControl x:Name="addJobCommandControl" Grid.Row="1" />
+                        <controls:CommandControl x:Name="loadCommandControl"/>
 
-                    <controls:BatchListControl x:Name="batchListControl" Grid.Row="2" BorderBrush="Gray" BorderThickness="1" />
+                        <controls:CommandControl x:Name="saveCommandControl" Grid.Column="1"/>
+                    </Grid>
+
+                    <controls:CommandControl x:Name="startBatchCommandControl" Grid.Row="1"/>
+
+                    <controls:CommandControl x:Name="addJobCommandControl" Grid.Row="2" />
+
+                    <controls:BatchListControl x:Name="batchListControl" Grid.Row="3" BorderBrush="Gray" BorderThickness="1" />
                 </Grid>
             </TabItem>
             <TabItem Header="Settings">

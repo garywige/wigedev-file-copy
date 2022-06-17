@@ -16,6 +16,6 @@ namespace WigeDev_File_Copy
             window = new WindowInitializer().Initialize();
             window.Show();
         }
-        
+
     }
 }

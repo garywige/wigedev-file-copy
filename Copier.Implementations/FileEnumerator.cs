@@ -1,6 +1,5 @@
 ﻿using WigeDev.Cancellation.Interfaces;
 using WigeDev.Copier.Interfaces;
-using WigeDev.Copier.Implementations;
 using WigeDev.Settings.Interfaces;
 
 namespace WigeDev.Copier.Implementations
@@ -23,7 +22,7 @@ namespace WigeDev.Copier.Implementations
                 enumerateFiles(output, cancellationManager, sourcePath);
                 await enumerateDirectories(output, cancellationManager, sourcePath);
             }
-            catch(OperationCanceledException)
+            catch (OperationCanceledException)
             {
                 output.Clear();
             }
@@ -31,7 +30,7 @@ namespace WigeDev.Copier.Implementations
             {
                 // do nothing by default
             }
-            
+
             return output;
         }
 

@@ -1,15 +1,12 @@
 ﻿using System.Windows.Input;
-using WigeDev.Cancellation.Implementations;
+using WigeDev.Cancellation.Interfaces;
 using WigeDev.Copier.Interfaces;
-using WigeDev.Copier.Implementations;
 using WigeDev.Execute.Implementations;
 using WigeDev.Init.Interfaces;
 using WigeDev.Output.Interfaces;
-using WigeDev.Settings.Interfaces;
 using WigeDev.Validation.Interfaces;
 using WigeDev.ViewModel.Implementations;
 using WigeDev.ViewModel.Interfaces;
-using WigeDev.Cancellation.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {

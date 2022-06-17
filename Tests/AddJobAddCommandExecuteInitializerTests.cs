@@ -1,8 +1,8 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using WigeDev.Init.Implementations;
-using System.Collections.Generic;
-using WigeDev.ViewModel.Interfaces;
 using System;
+using System.Collections.Generic;
+using WigeDev.Init.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace Tests
 {
@@ -14,7 +14,7 @@ namespace Tests
         {
             var textField = new FakeTextField();
             sut = new AddJobAddCommandExecuteInitializer(new FakeValidator(), null, textField, textField, new List<ICopyJobControlViewModel>(),
-                new FakeEditJobWindowFactory(), new FakeJobStatus());
+                new FakeJobStatus(), job => () => { });
         }
     }
 }

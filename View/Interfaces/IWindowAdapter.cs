@@ -4,5 +4,6 @@
     {
         public void Show();
         public bool? ShowDialog();
+        public void Close();
     }
 }

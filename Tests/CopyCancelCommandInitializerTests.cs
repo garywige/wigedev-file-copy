@@ -1,5 +1,5 @@
-﻿using System.Windows.Input;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Windows.Input;
 using WigeDev.Init.Implementations;
 
 namespace Tests

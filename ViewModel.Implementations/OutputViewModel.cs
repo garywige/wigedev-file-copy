@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
-using WigeDev.ViewModel.Interfaces;
 using WigeDev.Output.Interfaces;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {
@@ -27,7 +27,7 @@ namespace WigeDev.ViewModel.Implementations
         protected void jobStatusPropertyChanged(object? sender, PropertyChangedEventArgs args)
         {
             var jobStatus = sender as IJobStatus;
-            if(jobStatus.TotalFiles != 0 && (args.PropertyName == "TotalFiles" || args.PropertyName == "FilesCopied"))
+            if (jobStatus.TotalFiles != 0 && (args.PropertyName == "TotalFiles" || args.PropertyName == "FilesCopied"))
             {
                 Progress = (double)jobStatus.FilesCopied / jobStatus.TotalFiles * 100;
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Progress"));

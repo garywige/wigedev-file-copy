@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using WigeDev.Copier.Interfaces;
 using WigeDev.Cancellation.Interfaces;
+using WigeDev.Copier.Interfaces;
 
 namespace Tests
 {

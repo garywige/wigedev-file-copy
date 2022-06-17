@@ -1,10 +1,10 @@
-﻿using WigeDev.Init.Interfaces;
-using WigeDev.ViewModel.Interfaces;
-using WigeDev.ViewModel.Implementations;
-using WigeDev.Execute.Implementations;
-using WigeDev.Copier.Interfaces;
+﻿using WigeDev.Cancellation.Interfaces;
 using WigeDev.Copier.Implementations;
-using WigeDev.Cancellation.Interfaces;
+using WigeDev.Copier.Interfaces;
+using WigeDev.Execute.Implementations;
+using WigeDev.Init.Interfaces;
+using WigeDev.ViewModel.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {
@@ -17,7 +17,7 @@ namespace WigeDev.Init.Implementations
         protected IPathConstructor pathConstructor;
 
         public StartBatchCCVMInitializer(
-            IJobStatus jobStatus, 
+            IJobStatus jobStatus,
             ICancellationManager cancellationManager,
             INotifyList<ICopyJobControlViewModel> jobList,
             IFileEnumerator fileEnumerator,

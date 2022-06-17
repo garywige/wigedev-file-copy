@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows;
+﻿using System.Windows;
 using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.View.Windows
@@ -10,7 +9,7 @@ namespace WigeDev.View.Windows
     public partial class AddJobWindow : Window
     {
         public AddJobWindow(
-            IFolderSelectionControlViewModel sourceVM, 
+            IFolderSelectionControlViewModel sourceVM,
             IFolderSelectionControlViewModel destVM,
             ICommandControlViewModel addCommandVM,
             ICommandControlViewModel cancelCommandVM)

@@ -22,7 +22,7 @@ namespace Tests
             try
             {
                 sut.Text = "test";
-            } 
+            }
             catch
             {
                 isError = true;

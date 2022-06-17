@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using WigeDev.ViewModel.Interfaces;
 
@@ -9,8 +8,8 @@ namespace WigeDev.ViewModel.Implementations
     {
         protected T[] items = new T[0];
 
-        public T this[int index] 
-        { 
+        public T this[int index]
+        {
             get => items[index];
             set
             {
@@ -56,7 +55,7 @@ namespace WigeDev.ViewModel.Implementations
 
         public int IndexOf(T item)
         {
-            for(int i = 0; i < items.Length; i++)
+            for (int i = 0; i < items.Length; i++)
             {
                 if (items[i].Equals(item))
                     return i;
@@ -71,7 +70,7 @@ namespace WigeDev.ViewModel.Implementations
             CopyTo(copy, 0);
             grow(1);
 
-            for(int i = index; i < items.Length; i++)
+            for (int i = index; i < items.Length; i++)
                 items[i] = i == index ? item : copy[i - 1];
 
             collectionChanged(NotifyCollectionChangedAction.Add, createItemList(item));
@@ -93,7 +92,7 @@ namespace WigeDev.ViewModel.Implementations
             for (int i = 0; i < arr.Length; i++)
                 arr[i] = i < index ? items[i] : items[i + 1];
             items = arr;
-            
+
             collectionChanged(NotifyCollectionChangedAction.Remove, createItemList(oldValue), null, index);
         }
 

@@ -1,5 +1,5 @@
-﻿using WigeDev.View.Interfaces;
-using System;
+﻿using System;
+using WigeDev.View.Interfaces;
 
 namespace Tests
 {
@@ -13,6 +13,10 @@ namespace Tests
         {
             ShowDialogCalled?.Invoke(this, new EventArgs());
             return false;
+        }
+
+        public void Close()
+        {
         }
 
         public delegate void ShowDialogCalledEvent(object? sender, EventArgs args);

@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using WigeDev.ViewModel.Interfaces;
-using System.Collections.ObjectModel;
 
 namespace Tests
 {
@@ -26,7 +26,11 @@ namespace Tests
 
         public void Add(T item) => list.Add(item);
 
-        public void Clear() => list.Clear();
+        public void Clear()
+        {
+            list.Clear();
+            WasClearCalled = true;
+        }
 
         public bool Contains(T item) => list.Contains(item);
 
@@ -49,5 +53,6 @@ namespace Tests
         IEnumerator IEnumerable.GetEnumerator() => this.GetEnumerator();
 
         public bool GetEnumeratorCalled { get; private set; } = false;
+        public bool WasClearCalled { get; private set; } = false;
     }
 }

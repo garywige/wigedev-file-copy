@@ -19,10 +19,10 @@ namespace WigeDev.Copier.Implementations
         protected ICancellationManager cancellationManager;
         protected IJobStatus jobStatus;
 
-        public Copier(IFileEnumerator enumerator, 
-            ITextField source, 
-            ITextField dest, 
-            IOutput output, 
+        public Copier(IFileEnumerator enumerator,
+            ITextField source,
+            ITextField dest,
+            IOutput output,
             IPathConstructor constructor,
             ICancellationManager cancellationManager,
             IJobStatus jobStatus)
@@ -51,7 +51,7 @@ namespace WigeDev.Copier.Implementations
 
                 output.Write(messageJobComplete);
             }
-            catch(OperationCanceledException)
+            catch (OperationCanceledException)
             {
                 output.Write(messageJobCanceled);
                 setFilesCopied(0);

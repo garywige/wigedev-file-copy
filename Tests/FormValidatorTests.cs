@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Collections.Generic;
 using WigeDev.Validation.Implementations;
 using WigeDev.Validation.Interfaces;
-using System.Collections.Generic;
 
 namespace Tests
 {

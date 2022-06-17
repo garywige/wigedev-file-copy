@@ -1,6 +1,6 @@
 ﻿using WigeDev.Init.Interfaces;
-using WigeDev.ViewModel.Interfaces;
 using WigeDev.ViewModel.Implementations;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Init.Implementations
 {

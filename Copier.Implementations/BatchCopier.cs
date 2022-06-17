@@ -1,5 +1,5 @@
-﻿using WigeDev.Copier.Interfaces;
-using WigeDev.Cancellation.Interfaces;
+﻿using WigeDev.Cancellation.Interfaces;
+using WigeDev.Copier.Interfaces;
 using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.Copier.Implementations
@@ -27,7 +27,7 @@ namespace WigeDev.Copier.Implementations
 
         public async Task Copy()
         {
-            foreach(var job in jobList)
+            foreach (var job in jobList)
             {
                 resetProgress(job);
                 var files = await fileEnumerator.Enumerate(job.Source, cancellationManager);
@@ -39,7 +39,7 @@ namespace WigeDev.Copier.Implementations
                     {
                         await file.CopyTo(pathConstructor.Construct(job.Source, job.Destination, file.Name), cancellationManager);
                     }
-                    catch(OperationCanceledException)
+                    catch (OperationCanceledException)
                     {
                         resetProgress(job);
                         return;

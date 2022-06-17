@@ -8,7 +8,7 @@ namespace Tests
         public bool WasShowDialogCalled { get; set; } = false;
 
         public IOutputWindowAdapter CreateWindow()
-        { 
+        {
             WasCreateWindowCalled = true;
             var window = new FakeOutputWindowAdapter();
             window.ShowDialogCalled += (s, e) =>

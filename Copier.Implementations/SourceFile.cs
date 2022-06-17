@@ -23,7 +23,7 @@ namespace WigeDev.Copier.Implementations
             createDirectories(dest);
             await settingsManager.CopyStrategy.CopyFile(fi, new FileInfo(dest), token);
         }
-        
+
 
         public static SourceFile Create(FileInfo fi, ISettingsManager settingsManager) =>
             new SourceFile(fi, settingsManager);
@@ -39,7 +39,7 @@ namespace WigeDev.Copier.Implementations
 
             }
         }
-            
-       
+
+
     }
 }

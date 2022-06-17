@@ -1,5 +1,4 @@
 ﻿using System.ComponentModel;
-using System.Windows.Input;
 using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
@@ -10,7 +9,7 @@ namespace WigeDev.ViewModel.Implementations
         protected string destination;
         protected double progress;
 
-        public CopyJobControlViewModel(string source, string destination, ICommand editCommand, ICommand deleteCommand)
+        public CopyJobControlViewModel(string source, string destination, ISetExecuteCommand editCommand, ISetExecuteCommand deleteCommand)
         {
             this.source = source;
             this.destination = destination;
@@ -18,7 +17,7 @@ namespace WigeDev.ViewModel.Implementations
             DeleteCommand = deleteCommand;
         }
 
-        public string Source 
+        public string Source
         {
             get => source;
             set
@@ -38,9 +37,9 @@ namespace WigeDev.ViewModel.Implementations
             }
         }
 
-        public ICommand EditCommand { get; protected set; }
+        public ISetExecuteCommand EditCommand { get; protected set; }
 
-        public ICommand DeleteCommand { get; protected set; }
+        public ISetExecuteCommand DeleteCommand { get; protected set; }
 
         public double Progress
         {

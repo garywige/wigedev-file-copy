@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WigeDev.View.Windows"
         xmlns:controls="clr-namespace:WigeDev.View.Controls"
         mc:Ignorable="d"
-        Title="Add Job" Height="300" Width="400" FontSize="16" ResizeMode="NoResize">
+        Title="Add Job" Height="300" Width="400" FontSize="16" ResizeMode="NoResize" Icon="/View;component/Icons/app-icon.png">
     <Window.Resources>
         <Style TargetType="controls:FolderSelectionControl">
             <Setter Property="Margin" Value="16" />

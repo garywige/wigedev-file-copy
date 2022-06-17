@@ -11,7 +11,7 @@ namespace Tests
         [TestInitialize]
         public void Initialize()
         {
-            sut = new(new FakeCommand(), new FakeCommand());
+            sut = new(new FakeSetExecuteCommandFactory(), new FakeSetExecuteCommandFactory());
         }
 
         [TestMethod]

@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Windows.Input;
+using WigeDev.ViewModel.Interfaces;
 
 namespace Tests
 {
-    public class FakeCommand : ICommand
+    public class FakeCommand : ISetExecuteCommand
     {
         public event EventHandler? CanExecuteChanged;
 
@@ -16,6 +16,11 @@ namespace Tests
         public void Execute(object? parameter)
         {
             WasExecuteCalled = true;
+        }
+
+        public void SetExecute(Action execute)
+        {
+            throw new NotImplementedException();
         }
 
         public bool WasCanExecuteCalled { get; private set; } = false;

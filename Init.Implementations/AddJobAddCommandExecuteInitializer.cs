@@ -15,8 +15,8 @@ namespace WigeDev.Init.Implementations
         protected ITextField source;
         protected ITextField dest;
         protected IList<ICopyJobControlViewModel> jobList;
-        protected IWindowFactory<EditJobWindowAdapter> windowFactory;
         protected IJobStatus jobStatus;
+        protected Func<ICopyJobControlViewModel, Action> editCommandExecute;
 
         public AddJobAddCommandExecuteInitializer(
             IValidator validator,
@@ -24,16 +24,16 @@ namespace WigeDev.Init.Implementations
             ITextField source,
             ITextField dest,
             IList<ICopyJobControlViewModel> jobList,
-            IWindowFactory<EditJobWindowAdapter> windowFactory,
-            IJobStatus jobStatus)
+            IJobStatus jobStatus,
+            Func<ICopyJobControlViewModel, Action> editCommandExecute)
         {
             this.validator = validator;
             this.window = window;
             this.source = source;
             this.dest = dest;
             this.jobList = jobList;
-            this.windowFactory = windowFactory;
             this.jobStatus = jobStatus;
+            this.editCommandExecute = editCommandExecute;
         }
 
         public Action Initialize()
@@ -65,21 +65,6 @@ namespace WigeDev.Init.Implementations
 
         protected Action deleteCommandExecute(ICopyJobControlViewModel copyJob) =>
             () => jobList.Remove(copyJob);
-
-        protected Action editCommandExecute(ICopyJobControlViewModel copyJob) =>
-            () =>
-            {
-                // Set fields to match job params
-                source.Text = copyJob.Source;
-                dest.Text = copyJob.Destination;
-
-                var window = new EditJobWindowInitializer(windowFactory).Initialize();
-                if (window.ShowDialog() == true)
-                {
-                    copyJob.Source = source.Text;
-                    copyJob.Destination = dest.Text;
-                }
-            };
 
         protected EventHandler jobStatusPropertyChanged;
     }

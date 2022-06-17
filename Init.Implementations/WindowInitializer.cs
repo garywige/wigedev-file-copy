@@ -33,8 +33,10 @@ namespace WigeDev.Init.Implementations
 
             string filter = "WCF File (*.wcf)|*.wfc";
 
-            textFields["source"].PropertyChanged += (s, e) => textFieldChanged?.Invoke(this, new EventArgs());
-            textFields["destination"].PropertyChanged += (s, e) => textFieldChanged?.Invoke(this, new EventArgs());
+            textFields["source"].PropertyChanged += (s, e) => editCommandChanged?.Invoke(this, new EventArgs());
+            textFields["destination"].PropertyChanged += (s, e) => editCommandChanged?.Invoke(this, new EventArgs());
+            jobStatus.PropertyChanged += (s, e) => editCommandChanged?.Invoke(this, new EventArgs());
+            jobStatus.PropertyChanged += (s, e) => deleteCommandChanged?.Invoke(this, new EventArgs());
 
             // Main Window
             return new MainWindow(
@@ -62,20 +64,16 @@ namespace WigeDev.Init.Implementations
                         "Load Batch"),
                     new JobListFileLoader(
                         new CopyJobCVMFactory(
-                            new CECCommand(
-                                new Command(
-                                    () => !jobStatus.IsCopying,
-                                    () =>
-                                    {
-                                        var factory = createEditJobWindowFactory();
-                                        var dialog = factory.CreateWindow();
-                                        dialog.ShowDialog();
-                                    }),
-                                ref textFieldChanged),
-                            new Command(
-                                    () => !jobStatus.IsCopying,
-                                    () => { }))),
-                        jobList).Initialize());
+                            new EditCommandFactory(
+                                () => !jobStatus.IsCopying,
+                                () => { },
+                                ref editCommandChanged), 
+                            new DeleteCommandFactory(
+                                () => !jobStatus.IsCopying,
+                                () => { },
+                                ref deleteCommandChanged))),
+                        jobList,
+                        editCommandExecute).Initialize());
         }
 
         protected bool? addJobShowDialog(object? output)
@@ -91,7 +89,7 @@ namespace WigeDev.Init.Implementations
         protected Action addCommandExecute(Window window)
         {
             return new AddJobAddCommandExecuteInitializer(validator, window, textFields["source"], textFields["destination"], jobList,
-                createEditJobWindowFactory(), jobStatus).Initialize();
+                jobStatus, editCommandExecute).Initialize();
         }
 
         protected EditJobWindowFactory createEditJobWindowFactory()
@@ -104,6 +102,22 @@ namespace WigeDev.Init.Implementations
                     );
         }
 
-        protected EventHandler textFieldChanged;
+        protected Action editCommandExecute(ICopyJobControlViewModel copyJob) =>
+            () =>
+            {
+                // Set fields to match job params
+                textFields["source"].Text = copyJob.Source;
+                textFields["destination"].Text = copyJob.Destination;
+
+                var window = new EditJobWindowInitializer(createEditJobWindowFactory()).Initialize();
+                if (window.ShowDialog() == true)
+                {
+                    copyJob.Source = textFields["source"].Text;
+                    copyJob.Destination = textFields["destination"].Text;
+                }
+            };
+
+        protected EventHandler editCommandChanged;
+        protected EventHandler deleteCommandChanged;
     }
 }

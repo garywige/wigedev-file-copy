@@ -11,18 +11,21 @@ namespace WigeDev.Init.Implementations
         protected IBrowserDialogAdapter browserDialogAdapter;
         protected IFileLoader<INotifyList<ICopyJobControlViewModel>> fileLoader;
         protected INotifyList<ICopyJobControlViewModel> jobList;
+        protected Func<ICopyJobControlViewModel, Action> editCommandExecute;
 
         public LoadCVMInitializer(
             IJobStatus jobStatus,
             IBrowserDialogAdapter browserDialogAdapter,
             IFileLoader<INotifyList<ICopyJobControlViewModel>> fileLoader,
-            INotifyList<ICopyJobControlViewModel> jobList)
+            INotifyList<ICopyJobControlViewModel> jobList,
+            Func<ICopyJobControlViewModel, Action> editCommandExecute)
         {
             this.jobStatus = jobStatus;
             jobStatus.PropertyChanged += (s, e) => canExecuteChanged?.Invoke(this, new EventArgs());
             this.browserDialogAdapter = browserDialogAdapter;
             this.fileLoader = fileLoader;
             this.jobList = jobList;
+            this.editCommandExecute = editCommandExecute;
         }
 
         public ICommandControlViewModel Initialize()
@@ -48,6 +51,11 @@ namespace WigeDev.Init.Implementations
             if (browserDialogAdapter.ShowDialog())
             {
                 fileLoader.Load(jobList, browserDialogAdapter.SelectedPath);
+                foreach(var job in jobList)
+                {
+                    job.EditCommand.SetExecute(editCommandExecute(job));
+                    job.DeleteCommand.SetExecute(() => jobList.Remove(job));
+                }
             }
         }
     }

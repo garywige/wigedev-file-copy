@@ -1,22 +1,24 @@
-﻿using System.Windows.Input;
-using WigeDev.ViewModel.Interfaces;
+﻿using WigeDev.ViewModel.Interfaces;
+using WigeDev.Init.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {
     public class CopyJobCVMFactory : ICopyJobCVMFactory
     {
-        protected ICommand editCommand;
-        protected ICommand deleteCommand;
+        protected IFactory<ISetExecuteCommand> editCommandFactory;
+        protected IFactory<ISetExecuteCommand> deleteCommandFactory;
 
-        public CopyJobCVMFactory(ICommand editCommand, ICommand deleteCommand)
+        public CopyJobCVMFactory(
+            IFactory<ISetExecuteCommand> editCommandFactory, 
+            IFactory<ISetExecuteCommand> deleteCommandFactory)
         {
-            this.editCommand = editCommand;
-            this.deleteCommand = deleteCommand;
+            this.editCommandFactory = editCommandFactory;
+            this.deleteCommandFactory = deleteCommandFactory;
         }
 
         public ICopyJobControlViewModel Create()
         {
-            return new CopyJobControlViewModel("", "", editCommand, deleteCommand);
+            return new CopyJobControlViewModel("", "", editCommandFactory.Create(), deleteCommandFactory.Create());
         }
     }
 }

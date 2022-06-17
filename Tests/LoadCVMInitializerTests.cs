@@ -15,7 +15,8 @@ namespace Tests
                 new FakeJobStatus(),
                 new FakeFolderBrowserDialog(),
                 null,
-                new FakeNotifyList<ICopyJobControlViewModel>(new ObservableCollection<ICopyJobControlViewModel>()));
+                new FakeNotifyList<ICopyJobControlViewModel>(new ObservableCollection<ICopyJobControlViewModel>()),
+                job => () => { });
         }
     }
 }

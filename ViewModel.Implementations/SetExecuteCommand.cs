@@ -1,8 +1,9 @@
 ﻿using System.Windows.Input;
+using WigeDev.ViewModel.Interfaces;
 
 namespace WigeDev.ViewModel.Implementations
 {
-    public class SetExecuteCommand : ICommand
+    public class SetExecuteCommand : ISetExecuteCommand
     {
         protected ICommand command;
         protected Action? execute;

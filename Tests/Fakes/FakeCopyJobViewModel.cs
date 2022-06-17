@@ -10,9 +10,9 @@ namespace Tests
 
         public string Destination { get; set; } = "C:\\destination";
 
-        public ICommand EditCommand => throw new System.NotImplementedException();
+        public ISetExecuteCommand EditCommand => throw new System.NotImplementedException();
 
-        public ICommand DeleteCommand => throw new System.NotImplementedException();
+        public ISetExecuteCommand DeleteCommand => throw new System.NotImplementedException();
 
         public double Progress
         {

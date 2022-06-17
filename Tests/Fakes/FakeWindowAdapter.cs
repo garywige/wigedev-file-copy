@@ -17,7 +17,6 @@ namespace Tests
 
         public void Close()
         {
-            throw new NotImplementedException();
         }
 
         public delegate void ShowDialogCalledEvent(object? sender, EventArgs args);

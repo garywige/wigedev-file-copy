@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:WigeDev.View.Windows"
         xmlns:controls="clr-namespace:WigeDev.View.Controls"
         mc:Ignorable="d"
-        Title="WigeDev File Copy" Height="500" Width="400" MinHeight="500" Background="LightGray" FontSize="16">
+        Title="WigeDev File Copy" Height="500" Width="400" MinHeight="500" Background="LightGray" FontSize="16" Icon="/View;component/Icons/app-icon.png">
 
     <Window.Resources>
         <Style TargetType="controls:FolderSelectionControl">

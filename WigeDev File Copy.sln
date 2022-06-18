@@ -41,9 +41,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Init.Interfaces", "Init.Int
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Init.Implementations", "Init.Implementations\Init.Implementations.csproj", "{DE640025-34BA-4A17-80C2-B63D825E9D8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.Interfaces", "FileSystem.Interfaces\FileSystem.Interfaces.csproj", "{55E9DDA4-1BC9-4040-915C-7186A7AFB67D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystem.Interfaces", "FileSystem.Interfaces\FileSystem.Interfaces.csproj", "{55E9DDA4-1BC9-4040-915C-7186A7AFB67D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystem.Implementations", "FileSystem.Implementations\FileSystem.Implementations.csproj", "{7290D57A-C804-4B81-BF88-0D336A5ECBDA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystem.Implementations", "FileSystem.Implementations\FileSystem.Implementations.csproj", "{7290D57A-C804-4B81-BF88-0D336A5ECBDA}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Setup", "Setup\Setup.vdproj", "{5A289C97-A228-4071-B129-FBFBD2AF762F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -135,6 +137,8 @@ Global
 		{7290D57A-C804-4B81-BF88-0D336A5ECBDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7290D57A-C804-4B81-BF88-0D336A5ECBDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7290D57A-C804-4B81-BF88-0D336A5ECBDA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A289C97-A228-4071-B129-FBFBD2AF762F}.Debug|Any CPU.ActiveCfg = Debug
+		{5A289C97-A228-4071-B129-FBFBD2AF762F}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

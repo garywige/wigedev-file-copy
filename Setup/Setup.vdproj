@@ -15,6 +15,12 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_0E6D11E106CF491296AB07EC6A946362"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_E7BD30432B1443E5A7510F1C7339818B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -68,6 +74,14 @@
             "PrerequisitesLocation" = "2:1"
             "Url" = "8:"
             "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
             }
         }
     }
@@ -100,6 +114,26 @@
         }
         "File"
         {
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_0E6D11E106CF491296AB07EC6A946362"
+            {
+            "SourcePath" = "8:..\\View\\Icons\\app.ico"
+            "TargetName" = "8:app.ico"
+            "Tag" = "8:"
+            "Folder" = "8:_EAD6602673AE4188BD52B0FD62C7DB69"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
         }
         "FileType"
         {
@@ -168,7 +202,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:WigeDev File Copy"
         "ProductCode" = "8:{DA6B0F02-2D11-4E2A-A6FD-F65BC387E364}"
-        "PackageCode" = "8:{BFB8B20F-9322-4577-90A9-1CF0444051A5}"
+        "PackageCode" = "8:{4C4DB540-1092-404D-826D-DEAD87717BBB}"
         "UpgradeCode" = "8:{16E041EB-AB81-47B4-B7B5-70ADC3C4235F}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
@@ -299,7 +333,7 @@
             "Target" = "8:_E7BD30432B1443E5A7510F1C7339818B"
             "Folder" = "8:_0E0A45D74FA84EB49567271EFA13DBA6"
             "WorkingFolder" = "8:_EAD6602673AE4188BD52B0FD62C7DB69"
-            "Icon" = "8:"
+            "Icon" = "8:_0E6D11E106CF491296AB07EC6A946362"
             "Feature" = "8:"
             }
         }
